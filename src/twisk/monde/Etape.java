@@ -3,27 +3,27 @@ package twisk.monde;
 
 import java.util.Iterator;
 
-public abstract class Etape  {
+public abstract class Etape {
 
     private final String nom;
 
-    Etape (String nom){
+    Etape(String nom) {
         this.nom = nom;
     }
 
-    void ajouterSuccesseur(Etape ... e){
+    void ajouterSuccesseur(Etape... e) {
 
     }
 
-    boolean estUneActivite(){
+    boolean estUneActivite() {
         return false;
     }
 
-    boolean estUnGuichet(){
+    boolean estUnGuichet() {
         return false;
     }
 
-    Iterator<Etape> iterator(){
+    Iterator<Etape> iterator() {
         return null;
     }
 }
