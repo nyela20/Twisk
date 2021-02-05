@@ -11,8 +11,14 @@ public abstract class Etape  {
         this.nom = nom;
     }
 
-    void ajouterSuccesseur(Etape ... e){
+    void ajouterSuccesseur(Etape ... e){ }
 
+    boolean estUneEntree(){
+        return false;
+    }
+
+    boolean estUneSortie(){
+        return false;
     }
 
     boolean estUneActivite(){
