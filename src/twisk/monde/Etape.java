@@ -6,10 +6,11 @@ import java.util.Iterator;
 public abstract class Etape implements Iterable<Etape> {
 
     private final String nom;
-    private GestionnaireSuccesseurs gestionSucc;
+    private final GestionnaireSuccesseurs gestionSucc;
 
     public Etape(String nom) {
         this.nom = nom;
+        this.gestionSucc = new GestionnaireSuccesseurs();
     }
 
     public void ajouterSuccesseur(Etape... etapes) {
@@ -38,6 +39,6 @@ public abstract class Etape implements Iterable<Etape> {
 
     @Override
     public Iterator<Etape> iterator() {
-        return null;
+        return gestionSucc.iterator();
     }
 }
