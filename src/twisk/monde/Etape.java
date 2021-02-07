@@ -3,33 +3,41 @@ package twisk.monde;
 
 import java.util.Iterator;
 
-public abstract class Etape  {
+public abstract class Etape implements Iterable<Etape> {
 
     private final String nom;
+    private GestionnaireSuccesseurs gestionSucc;
 
-    Etape (String nom){
+    public Etape(String nom) {
         this.nom = nom;
     }
 
-    void ajouterSuccesseur(Etape ... e){ }
-
-    boolean estUneEntree(){
-        return false;
+    public void ajouterSuccesseur(Etape... etapes) {
+        for (Etape e : etapes) {
+            if (this.estUnGuichet() && e.estUneActivite() && gestionSucc.nbSEtapes() < 1) {
+                gestionSucc.ajouter(e);
+            }
+            if (this.estUneActivite()) {
+                gestionSucc.ajouter(e);
+            }
+        }
     }
 
-    boolean estUneSortie(){
-        return false;
+    public int nbSuccesseurs() {
+        return gestionSucc.nbSEtapes();
     }
 
-    boolean estUneActivite(){
-        return false;
+    public abstract boolean estUneActivite();
+
+    public abstract boolean estUnGuichet();
+
+    @Override
+    public String toString() {
+        return this.nom;
     }
 
-    boolean estUnGuichet(){
-        return false;
-    }
-
-    Iterator<Etape> iterator(){
+    @Override
+    public Iterator<Etape> iterator() {
         return null;
     }
 }

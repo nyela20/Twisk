@@ -1,6 +1,8 @@
 package twisk.monde;
 
-public class Monde /*implements Iterable*/ {
+import java.util.Iterator;
+
+public class Monde implements Iterable<Etape> {
 
     private Etape SasSortie;
     private Etape SasEntree;
@@ -8,15 +10,16 @@ public class Monde /*implements Iterable*/ {
 
 
     public Monde(){
-        Etape SasEntree = new Activite("SasEntree");
-        Etape SasSortie = new Activite("SasSortie");
+        SasEntree sasEntree = new SasEntree();
+        SasSortie sasSortie = new SasSortie();
     }
-
 
     void aCommeEntree(Etape ... etapes){
-
     }
 
 
-
+    @Override
+    public Iterator<Etape> iterator() {
+        return null;
+    }
 }
