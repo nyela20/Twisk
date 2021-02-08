@@ -1,6 +1,7 @@
-package twisk.outils;
+package twisk.test;
 
 import org.junit.jupiter.api.Test;
+import twisk.outils.FabriqueNumero;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,7 +15,6 @@ class FabriqueNumeroTest {
     }
     @Test
     void getNumeroEtape() {
-        fabric = FabriqueNumero.getInstance();
         assertEquals(fabric.getNumeroEtape(),0);
         assertEquals(fabric.getNumeroEtape(),1);
         assertEquals(fabric.getNumeroEtape(),2);
