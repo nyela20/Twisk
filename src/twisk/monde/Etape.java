@@ -41,6 +41,7 @@ public abstract class Etape implements Iterable<Etape> {
 
     /**
      * retourne le nombre de successeur(s) d'une Etape
+     *
      * @return le nombre de successeur(s) d'une Etape
      */
     public int nbSuccesseurs() {
@@ -49,18 +50,21 @@ public abstract class Etape implements Iterable<Etape> {
 
     /**
      * retourn la definition d'une Activité
+     *
      * @return vrai si une activité, sinon faux
      */
     public abstract boolean estUneActivite();
 
     /**
      * retourne la définition d'un Guichet
+     *
      * @return vrai si un guichet, sinon faux
      */
     public abstract boolean estUnGuichet();
 
     /**
      * retourne le nom de l'Etape
+     *
      * @return le nom de l'Etape
      */
     @Override
@@ -70,6 +74,7 @@ public abstract class Etape implements Iterable<Etape> {
 
     /**
      * Retourne l'itérateur de l'Etape
+     *
      * @return l'itérateur de l'Etape
      */
     @Override

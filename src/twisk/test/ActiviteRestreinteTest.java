@@ -4,10 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ActiviteRestreinteTest extends ActiviteTest{
+class ActiviteRestreinteTest extends ActiviteTest {
 
-    @Test
-    void testToString() {
-        assertTrue(vipLodge.toString().equals("vipLodge"));
-    }
+
 }

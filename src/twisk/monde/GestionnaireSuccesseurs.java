@@ -18,6 +18,7 @@ public class GestionnaireSuccesseurs implements Iterable<Etape> {
     /**
      * Ajoute n Etapes dans la liste chainées
      * du GestionnaireSuccesseurs
+     *
      * @param etapes les etapes à rajouter
      */
     public void ajouter(Etape... etapes) {
@@ -26,6 +27,7 @@ public class GestionnaireSuccesseurs implements Iterable<Etape> {
 
     /**
      * return le nombre D'Etape qu'il y a dans le GestionnaireSuccesseurs
+     *
      * @return le nb d'Etape dans le GestionnaireSuccesseurs
      */
     public int nbSEtapes() {
@@ -34,6 +36,7 @@ public class GestionnaireSuccesseurs implements Iterable<Etape> {
 
     /**
      * retourne l'iterateur du GestionnaireSuccesseurs
+     *
      * @return Iterator<Etape>
      */
     @Override
@@ -43,6 +46,7 @@ public class GestionnaireSuccesseurs implements Iterable<Etape> {
 
     /**
      * Affichage du GestionnaireSuccesseurs
+     *
      * @return String
      */
     @Override

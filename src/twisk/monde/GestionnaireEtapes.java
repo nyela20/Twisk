@@ -18,7 +18,8 @@ public class GestionnaireEtapes implements Iterable<Etape> {
     /**
      * ajoute n Etape dans la liste chainées
      * du GestionnaireEtapes
-     * @param etapes
+     *
+     * @param etapes nombre d'etapes
      */
     public void ajouter(Etape... etapes) {
         this.gestionEtapes.addAll(Arrays.asList(etapes));
@@ -26,20 +27,23 @@ public class GestionnaireEtapes implements Iterable<Etape> {
 
     /**
      * retourne le nombre d'Etape du GestionnaireEtapes
+     *
      * @return int le nb d'Etape du GestionnaireEtapes
      */
-    public int nbEtapes(){
+    public int nbEtapes() {
         return gestionEtapes.size();
     }
 
     /**
      * retourne le nombre de Guichet qu'il y a dans le GestionnaireEtapes
+     *
      * @return int le nb de Guichet présent dans le GestionnaireEtapes
      */
-    public int nbGuichet(){
+
+    public int nbGuichet() {
         int compt = 0;
-        for (Etape e : this.gestionEtapes){
-            if(e.estUnGuichet()){
+        for (Etape e : this.gestionEtapes) {
+            if (e.estUnGuichet()) {
                 compt++;
             }
         }
@@ -48,6 +52,7 @@ public class GestionnaireEtapes implements Iterable<Etape> {
 
     /**
      * Afficage du GestionnaireEtapes
+     *
      * @return String
      */
     @Override
