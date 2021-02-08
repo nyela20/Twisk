@@ -29,8 +29,7 @@ public class Monde implements Iterable<Etape> {
 
     /**
      * Défini les sorties du monde
-     * ,le SASSortie
-     * @param etapes
+     * @param etapes les sortie
      */
     public void aCommeSortie(Etape... etapes) {
         for (Etape e : etapes){
@@ -65,8 +64,8 @@ public class Monde implements Iterable<Etape> {
     }
 
     /**
-     * Affichage du Monde (en extension)
-     * @return String
+     * Affichage du monde
+     * @return affichge du monde en string
      */
     @Override
     public String toString() {
@@ -97,6 +96,10 @@ public class Monde implements Iterable<Etape> {
         return affichage.toString();
     }
 
+    /**
+     * retourne l'itérateur de GestionEtapes
+     * @return Iterator<Etape>
+     */
     @Override
     public Iterator<Etape> iterator() {
         return gestioEtapes.iterator();

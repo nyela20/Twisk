@@ -18,7 +18,7 @@ public class GestionnaireSuccesseurs implements Iterable<Etape> {
     /**
      * Ajoute n Etapes dans la liste chainées
      * du GestionnaireSuccesseurs
-     * @param etapes
+     * @param etapes les etapes à rajouter
      */
     public void ajouter(Etape... etapes) {
         listEtaps.addAll(Arrays.asList(etapes));
@@ -49,7 +49,7 @@ public class GestionnaireSuccesseurs implements Iterable<Etape> {
     public String toString() {
         StringBuilder affichage = new StringBuilder(100);
         for (Etape e : listEtaps) {
-            affichage.append(e.toString() + ",");
+            affichage.append(e.toString()).append(",");
         }
         return affichage.toString();
     }

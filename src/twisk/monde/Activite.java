@@ -7,7 +7,7 @@ public class Activite extends Etape{
 
     /**
      * Constructeur d'une Activité
-     * @param nom
+     * @param nom le nom de l'Activité
      */
    public Activite(String nom) {
         super(nom);
@@ -17,11 +17,11 @@ public class Activite extends Etape{
 
     /**
      * Constructeur d'une Activité
-     * @param nom
-     * @param temps
-     * @param ecartTemps
+     * @param nom le nom de l'activité
+     * @param temps le temps de l'activité
+     * @param ecartTemps l'ecart-temps de l'activité
      */
-   public Activite(String nom,int temps,int ecartTemps) {
+   public Activite(String nom,int temps,int ecartTemps){
         super(nom);
         this.ecartTemps = ecartTemps;
         this.temps = temps;
@@ -29,19 +29,19 @@ public class Activite extends Etape{
 
     /**
      * retourne un booléen
-     * @return toujours vrai
+     * @return vrai si c'est une Activité, sinon faux
      */
     @Override
-    public boolean estUneActivite() {
+    public boolean estUneActivite(){
         return true;
     }
 
     /**
      * retourne un booléen
-     * @return toujours faux
+     * @return vrii si c'est un guichet, sinon faux
      */
     @Override
-    public boolean estUnGuichet() {
+    public boolean estUnGuichet(){
         return false;
     }
 
@@ -50,9 +50,7 @@ public class Activite extends Etape{
      * @return String, le nom de l'activité
      */
     @Override
-    public String toString() {
+    public String toString(){
         return super.toString();
     }
-
-
 }
