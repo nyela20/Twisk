@@ -1,13 +1,14 @@
 package twisk.monde;
 
 
-public class Guichet extends Etape{
+public class Guichet extends Etape {
 
     private final int nbJetons;
     private int numeroGuichet;
 
     /**
      * Constructeur d'un guichet
+     *
      * @param nom le nom du guichet
      */
     public Guichet(String nom) {
@@ -17,16 +18,18 @@ public class Guichet extends Etape{
 
     /**
      * Constructeur d'un guichet
-     * @param nom le nom du guichet
+     *
+     * @param nom      le nom du guichet
      * @param nbJetons le nombre de jetons dans le guichet
      */
-    public Guichet(String nom, int nbJetons){
+    public Guichet(String nom, int nbJetons) {
         super(nom);
         this.nbJetons = nbJetons;
     }
 
     /**
      * retourne un booléen
+     *
      * @return vrai si c'est un guichet, sinon faux
      */
     @Override
@@ -36,15 +39,17 @@ public class Guichet extends Etape{
 
     /**
      * retourne un booléen
+     *
      * @return vrai si c'est un Activité, sinon faux
      */
     @Override
-    public boolean estUneActivite(){
+    public boolean estUneActivite() {
         return false;
     }
 
     /**
      * retourne le nom de l'Etape
+     *
      * @return le nom du guichet en format string
      */
     @Override

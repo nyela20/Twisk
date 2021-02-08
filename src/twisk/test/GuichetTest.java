@@ -1,10 +1,8 @@
 package twisk.test;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class GuichetTest extends EtapeTest{
+class GuichetTest extends EtapeTest {
 
 
     @org.junit.jupiter.api.Test
@@ -13,9 +11,9 @@ class GuichetTest extends EtapeTest{
     }
 
     @org.junit.jupiter.api.Test
-    void estUneActivite(){
-        assertFalse(guichetBasketBall.estUneActivite(),"Erreur estUneActivite() ne reconnaît pas une activité");
-        assertFalse(guichetFootball.estUneActivite(),"Erreur estUneActivite() ne reconnaît pas une activité");
+    void estUneActivite() {
+        assertFalse(guichetBasketBall.estUneActivite(), "Erreur estUneActivite() ne reconnaît pas une activité");
+        assertFalse(guichetFootball.estUneActivite(), "Erreur estUneActivite() ne reconnaît pas une activité");
     }
 
     @org.junit.jupiter.api.Test

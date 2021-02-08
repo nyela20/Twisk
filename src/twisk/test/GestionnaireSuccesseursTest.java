@@ -14,6 +14,7 @@ class GestionnaireSuccesseursTest {
     Etape guichetFootball;
     Etape guichetBasketBall;
     GestionnaireSuccesseurs gesti;
+
     @BeforeEach
     void setUp() {
 
@@ -27,39 +28,43 @@ class GestionnaireSuccesseursTest {
     @Test
     void ajouter() {
         gesti = new GestionnaireSuccesseurs();
-        gesti.ajouter(football,basketBall);
+        gesti.ajouter(football, basketBall);
         int Compteur = 0;
-        for(Etape e : gesti){ Compteur++; }
-        assertEquals(Compteur,2,"Erreur la fonction ajouter ne rajoute par les Etape données en paramètres");
-        gesti.ajouter(guichetBasketBall,guichetFootball);
+        for (Etape ignored : gesti) {
+            Compteur++;
+        }
+        assertEquals(Compteur, 2, "Erreur la fonction ajouter ne rajoute par les Etape données en paramètres");
+        gesti.ajouter(guichetBasketBall, guichetFootball);
         Compteur = 0;
-        for(Etape e : gesti){ Compteur++; }
-        assertEquals(Compteur,4,"Erreur la fonction ajouter ne rajoute par les Etape données en paramètres");
+        for (Etape ignored : gesti) {
+            Compteur++;
+        }
+        assertEquals(Compteur, 4, "Erreur la fonction ajouter ne rajoute par les Etape données en paramètres");
     }
 
     @Test
     void nbSEtapes() {
         gesti.ajouter();
-        assertEquals(gesti.nbSEtapes(),0,"Erreur nbSEtapes ne retourne pas une valeur valide");
+        assertEquals(gesti.nbSEtapes(), 0, "Erreur nbSEtapes ne retourne pas une valeur valide");
         gesti.ajouter(basketBall);
-        assertEquals(gesti.nbSEtapes(),1,"Erreur nbSEtapes ne retourne pas une valeur valide");
+        assertEquals(gesti.nbSEtapes(), 1, "Erreur nbSEtapes ne retourne pas une valeur valide");
         gesti.ajouter(football);
-        assertEquals(gesti.nbSEtapes(),2,"Erreur nbSEtapes ne retourne pas une valeur valide");
-        gesti.ajouter(guichetFootball,guichetBasketBall);
-        assertEquals(gesti.nbSEtapes(),4,"Erreur nbSEtapes ne retourne pas une valeur valide");
+        assertEquals(gesti.nbSEtapes(), 2, "Erreur nbSEtapes ne retourne pas une valeur valide");
+        gesti.ajouter(guichetFootball, guichetBasketBall);
+        assertEquals(gesti.nbSEtapes(), 4, "Erreur nbSEtapes ne retourne pas une valeur valide");
     }
 
     @Test
     void iterator() {
         gesti.ajouter(basketBall);
-        assertTrue(gesti.iterator().hasNext(),"Erreur fonctionnement de l'itérateur");
+        assertTrue(gesti.iterator().hasNext(), "Erreur fonctionnement de l'itérateur");
     }
 
     @Test
     void testToString() {
         gesti.ajouter(football);
-        assertEquals(gesti.toString(),"Football,");
+        assertEquals(gesti.toString(), "Football,");
         gesti.ajouter(basketBall);
-        assertEquals(gesti.toString(),"Football,BasketBall,");
+        assertEquals(gesti.toString(), "Football,BasketBall,");
     }
 }

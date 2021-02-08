@@ -7,33 +7,32 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FabriqueNumeroTest {
 
-    FabriqueNumero fabric;
-
-    @org.junit.jupiter.api.BeforeEach
-    void setUp() {
-        fabric = FabriqueNumero.getInstance();
-    }
-    @Test
-    void getNumeroEtape() {
-        assertEquals(fabric.getNumeroEtape(),0);
-        assertEquals(fabric.getNumeroEtape(),1);
-        assertEquals(fabric.getNumeroEtape(),2);
-        assertEquals(fabric.getNumeroEtape(),3);
-    }
-
-    @Test
-    void getNumeroSemaphore() {
-        assertEquals(fabric.getNumeroSemaphore(),1);
-        assertEquals(fabric.getNumeroSemaphore(),2);
-        assertEquals(fabric.getNumeroSemaphore(),3);
-        assertEquals(fabric.getNumeroSemaphore(),4);
-    }
+    FabriqueNumero fabric = FabriqueNumero.getInstance();
 
     @Test
     void reset() {
         fabric.reset();
-        assertEquals(fabric.getNumeroEtape(),0);
-        assertEquals(fabric.getNumeroSemaphore(),1);
+        assertEquals(fabric.getNumeroEtape(), 0);
+        assertEquals(fabric.getNumeroSemaphore(), 1);
     }
+
+    @Test
+    void getNumeroEtape() {
+        fabric.reset();
+        assertEquals(fabric.getNumeroEtape(), 0);
+        assertEquals(fabric.getNumeroEtape(), 1);
+        assertEquals(fabric.getNumeroEtape(), 2);
+        assertEquals(fabric.getNumeroEtape(), 3);
+    }
+
+    @Test
+    void getNumeroSemaphore() {
+        fabric.reset();
+        assertEquals(fabric.getNumeroSemaphore(), 1);
+        assertEquals(fabric.getNumeroSemaphore(), 2);
+        assertEquals(fabric.getNumeroSemaphore(), 3);
+        assertEquals(fabric.getNumeroSemaphore(), 4);
+    }
+
 
 }

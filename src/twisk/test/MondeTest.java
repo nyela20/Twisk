@@ -7,7 +7,6 @@ import twisk.monde.Etape;
 import twisk.monde.Guichet;
 import twisk.monde.Monde;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class MondeTest {
 
@@ -33,22 +32,22 @@ class MondeTest {
 
     @Test
     void ajouter() {
-        monde.ajouter(football,basketBall);
-        monde.ajouter(guichetFootball,guichetBasketBall);
+        monde.ajouter(football, basketBall);
+        monde.ajouter(guichetFootball, guichetBasketBall);
         int nbEtape = 0;
-        for(Etape e : monde){
+        for (Etape ignored : monde) {
             nbEtape++;
         }
-        assert(nbEtape == 4) : "Nombre d'Etape retourne une valeur incorrecte";
+        assert (nbEtape == 4) : "Nombre d'Etape retourne une valeur incorrecte";
 
         nbEtape = 0;
-        for(int i=0; i< 10; i++){
+        for (int i = 0; i < 10; i++) {
             monde.ajouter(new Activite("activite"));
         }
-        for(Etape e : monde){
+        for (Etape ignored : monde) {
             nbEtape++;
         }
-        assert(nbEtape == 14) : "Nombre d'Etape retourne une valeur incorrecte";
+        assert (nbEtape == 14) : "Nombre d'Etape retourne une valeur incorrecte";
 
     }
 
@@ -56,35 +55,33 @@ class MondeTest {
     void nbGuichet() {
         monde.ajouter(basketBall);
         assert (monde.nbGuichet() == 0) : "Erreur le nombre de guichets retourné est incorrecte";
-        monde.ajouter(guichetBasketBall,football);
-        assert(monde.nbGuichet() == 1) : "Erreur le nombre de guichet retourné est incorrecte";
+        monde.ajouter(guichetBasketBall, football);
+        assert (monde.nbGuichet() == 1) : "Erreur le nombre de guichet retourné est incorrecte";
         monde.ajouter(guichetFootball);
-        assert(monde.nbGuichet() == 2) : "Erreur le nombre de guichet retourné est incorrecte";
+        assert (monde.nbGuichet() == 2) : "Erreur le nombre de guichet retourné est incorrecte";
     }
 
     @Test
     void nbEtapes() {
         monde.ajouter();
-        assert(monde.nbEtapes()== 0) : "Erreur le nombre d'étapes retourné est incoorecte";
+        assert (monde.nbEtapes() == 0) : "Erreur le nombre d'étapes retourné est incoorecte";
         monde.ajouter(football);
-        assert(monde.nbEtapes() ==1) : "Erreur le nombre d'etapes retourné est incorrecte";
+        assert (monde.nbEtapes() == 1) : "Erreur le nombre d'etapes retourné est incorrecte";
         monde.ajouter(guichetFootball);
-        assert(monde.nbEtapes() ==2) : "Erreur le nombre d'etapes retourné est incorrecte";
-        monde.ajouter(guichetBasketBall,basketBall);
-        assert(monde.nbEtapes() ==4) : "Erreur le nombre d'etapes retourné est incorrecte";
+        assert (monde.nbEtapes() == 2) : "Erreur le nombre d'etapes retourné est incorrecte";
+        monde.ajouter(guichetBasketBall, basketBall);
+        assert (monde.nbEtapes() == 4) : "Erreur le nombre d'etapes retourné est incorrecte";
     }
 
     @Test
     void aCommeEntree() {
         monde.aCommeEntree(football);
     }
+
     @Test
     void aCommeSortie() {
         monde.aCommeSortie(basketBall);
     }
-
-
-
 
 
 }
