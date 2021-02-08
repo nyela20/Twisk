@@ -8,5 +8,6 @@ class ActiviteRestreinteTest extends ActiviteTest{
 
     @Test
     void testToString() {
+        assertTrue(vipLodge.toString().equals("vipLodge"));
     }
 }
