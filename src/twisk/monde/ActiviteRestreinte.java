@@ -23,6 +23,15 @@ public class ActiviteRestreinte extends Activite {
     }
 
     /**
+     * retourn la definition d'une Activité
+     *
+     * @return vrai si une activité, sinon faux
+     */
+    public boolean estUneActiviteRestreinte() {
+        return true;
+    }
+
+    /**
      * retourne le nom de l'ActivitéRestreinte
      *
      * @return le nom de l'activité en string
