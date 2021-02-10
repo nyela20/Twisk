@@ -21,13 +21,12 @@ class GestionnaireSuccesseursTest {
         football = new Activite("Football", 90, 15);
         basketBall = new Activite("BasketBall", 120, 10);
         guichetFootball = new Guichet("guichet de Football");
-        guichetBasketBall = new Guichet("BasketBall");
+        guichetBasketBall = new Guichet("guichet de BasketBall");
         gesti = new GestionnaireSuccesseurs();
     }
 
     @Test
     void ajouter() {
-        gesti = new GestionnaireSuccesseurs();
         gesti.ajouter(football, basketBall);
         int Compteur = 0;
         for (Etape ignored : gesti) {

@@ -52,7 +52,7 @@ class EtapeTest {
     }
 
     @org.junit.jupiter.api.Test
-    void ajouterSuccesseur() {
+    void nbSuccesseur() {
 
         tennis.ajouterSuccesseur();
         assert (tennis.nbSuccesseurs() == 0) : "Erreur aucun ajout en paramètre";

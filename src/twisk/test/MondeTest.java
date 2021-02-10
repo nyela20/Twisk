@@ -83,5 +83,15 @@ class MondeTest {
         monde.aCommeSortie(basketBall);
     }
 
+    @Test
+    void ToString(){
+        monde.ajouter(football,basketBall,guichetBasketBall,guichetFootball);
+        monde.aCommeEntree(football);
+        football.ajouterSuccesseur(guichetBasketBall);
+        guichetBasketBall.ajouterSuccesseur(basketBall);
+        monde.aCommeSortie(basketBall);
+        System.out.println(monde.toString());
+    }
+
 
 }

@@ -33,6 +33,4 @@ class FabriqueNumeroTest {
         assertEquals(fabric.getNumeroSemaphore(), 3);
         assertEquals(fabric.getNumeroSemaphore(), 4);
     }
-
-
 }

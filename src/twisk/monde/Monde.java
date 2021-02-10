@@ -20,7 +20,6 @@ public class Monde implements Iterable<Etape> {
 
     /**
      * Défini les entrées du monde
-     * ,le SASEntrée
      *
      * @param etapes les entrées du monde
      */
@@ -35,9 +34,8 @@ public class Monde implements Iterable<Etape> {
      */
     public void aCommeSortie(Etape... etapes) {
         for (Etape e : etapes) {
-            if (e.estUneActivite()) {
-                e.ajouterSuccesseur(sasSortie);
-            }
+            assert(e.estUneActivite()) : "un guichet pour sortie est impossible.";
+            e.ajouterSuccesseur(sasSortie);
         }
     }
 
@@ -78,23 +76,21 @@ public class Monde implements Iterable<Etape> {
 
         StringBuilder affichage = new StringBuilder();
 
-        affichage.append(sasEntree).append(": successeur - ");
+        affichage.append(sasEntree).append(sasEntree.nbSuccesseurs()).append(" successeur - ");
         for (Etape e : sasEntree) {
             affichage.append(e).append(" ");
         }
         affichage.append("\n");
 
-        affichage.append(sasSortie).append(": -");
-        for (Etape e : sasSortie) {
-            affichage.append(e).append(" ");
-        }
+        affichage.append(sasSortie).append("0 successeur - ");
+
         affichage.append("\n");
 
         for (Etape etape : gestioEtapes) {
             affichage.append(etape).append(" ");
-            affichage.append("Successeur: ");
-            for (Etape j : etape) {
-                affichage.append(j).append(" - ");
+            affichage.append(etape.nbSuccesseurs()).append("Successeur: ");
+            for (Etape successeur : etape) {
+                affichage.append(successeur).append(" - ");
             }
             affichage.append("\n");
         }
