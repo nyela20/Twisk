@@ -9,4 +9,8 @@ public class SasEntree extends Activite {
         super("SasEntrée", 0, 0);
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

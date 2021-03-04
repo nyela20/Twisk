@@ -2,16 +2,15 @@ package twisk.test;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import twisk.monde.Activite;
-import twisk.monde.Etape;
-import twisk.monde.Guichet;
-import twisk.monde.Monde;
+import twisk.monde.*;
 
 
 class MondeTest {
 
     Monde monde;
 
+    Etape tennis = new Activite("Tennis", 80, 5);
+    Etape marathon = new Activite("Marathon");
     Etape football;
     Etape basketBall;
 
@@ -26,7 +25,7 @@ class MondeTest {
         basketBall = new Activite("BasketBall", 120, 10);
 
         guichetFootball = new Guichet("guichet de Football");
-        guichetBasketBall = new Guichet("BasketBall");
+        guichetBasketBall = new Guichet("guichet de BasketBall");
 
     }
 
@@ -83,15 +82,7 @@ class MondeTest {
         monde.aCommeSortie(basketBall);
     }
 
-    @Test
-    void ToString(){
-        monde.ajouter(football,basketBall,guichetBasketBall,guichetFootball);
-        monde.aCommeEntree(football);
-        football.ajouterSuccesseur(guichetBasketBall);
-        guichetBasketBall.ajouterSuccesseur(basketBall);
-        monde.aCommeSortie(basketBall);
-        System.out.println(monde.toString());
-    }
+
 
 
 }

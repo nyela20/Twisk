@@ -53,7 +53,7 @@ public class GestionnaireSuccesseurs implements Iterable<Etape> {
     public String toString() {
         StringBuilder affichage = new StringBuilder(100);
         for (Etape e : listEtaps) {
-            affichage.append(e.toString()).append(",");
+            affichage.append(" - ").append(e.getNom());
         }
         return affichage.toString();
     }

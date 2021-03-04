@@ -63,14 +63,25 @@ public abstract class Etape implements Iterable<Etape> {
     public abstract boolean estUnGuichet();
 
     /**
+     *
+     * @return le nom de l'etape
+     */
+    public String getNom(){
+        return this.nom;
+    }
+    /**
      * retourne le nom de l'Etape
      *
      * @return le nom de l'Etape
      */
     @Override
     public String toString() {
-        return this.nom;
+        return nom + " : " +
+                nbSuccesseurs() +
+                " Successeur " +
+                gestionSucc.toString();
     }
+
 
     /**
      * Retourne l'itérateur de l'Etape

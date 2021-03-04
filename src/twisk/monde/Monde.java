@@ -34,7 +34,7 @@ public class Monde implements Iterable<Etape> {
      */
     public void aCommeSortie(Etape... etapes) {
         for (Etape e : etapes) {
-            assert(e.estUneActivite()) : "un guichet pour sortie est impossible.";
+            assert(e.estUneActivite()) : "un guichet comme sortie est impossible.";
             e.ajouterSuccesseur(sasSortie);
         }
     }
@@ -74,28 +74,9 @@ public class Monde implements Iterable<Etape> {
     @Override
     public String toString() {
 
-        StringBuilder affichage = new StringBuilder();
-
-        affichage.append(sasEntree).append(sasEntree.nbSuccesseurs()).append(" successeur - ");
-        for (Etape e : sasEntree) {
-            affichage.append(e).append(" ");
-        }
-        affichage.append("\n");
-
-        affichage.append(sasSortie).append("0 successeur - ");
-
-        affichage.append("\n");
-
-        for (Etape etape : gestioEtapes) {
-            affichage.append(etape).append(" ");
-            affichage.append(etape.nbSuccesseurs()).append("Successeur: ");
-            for (Etape successeur : etape) {
-                affichage.append(successeur).append(" - ");
-            }
-            affichage.append("\n");
-        }
-
-        return affichage.toString();
+        return sasEntree + "\n" +
+                sasSortie + "\n\n" +
+                gestioEtapes;
     }
 
     /**

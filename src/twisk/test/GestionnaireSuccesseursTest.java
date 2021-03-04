@@ -59,11 +59,4 @@ class GestionnaireSuccesseursTest {
         assertTrue(gesti.iterator().hasNext(), "Erreur fonctionnement de l'itérateur");
     }
 
-    @Test
-    void testToString() {
-        gesti.ajouter(football);
-        assertEquals(gesti.toString(), "Football,");
-        gesti.ajouter(basketBall);
-        assertEquals(gesti.toString(), "Football,BasketBall,");
-    }
 }

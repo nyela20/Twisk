@@ -18,11 +18,4 @@ class ActiviteTest extends EtapeTest {
         assertTrue(basketBall.estUneActivite(), "Erreur estUneActivite() ne reconnaît pas une activité");
     }
 
-    @org.junit.jupiter.api.Test
-    void TesttoString() {
-        assertEquals(football.toString(), "Football");
-        assertEquals(marathon.toString(), "Marathon");
-    }
-
-
 }

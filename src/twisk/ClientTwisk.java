@@ -10,14 +10,13 @@ public class ClientTwisk {
     public static void main(String[] args) {
 
         Monde monde = new Monde();
+
         Etape football = new Activite("Football", 90, 15);
         Etape basketBall = new Activite("BasketBall", 120, 10);
         Etape tennis = new Activite("Tennis", 80, 5);
         Etape marathon = new Activite("Marathon");
 
         Etape guichetFootbal = new Guichet("guichet de Football");
-        Etape guichetBasketBall = new Guichet("BasketBall");
-        Etape guichetTennis = new Guichet("guichet de Tennis");
         monde.ajouter(marathon,guichetFootbal,football,basketBall,tennis);
 
         monde.aCommeEntree(marathon);
