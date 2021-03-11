@@ -90,7 +90,6 @@ class MondeTest {
 
         monde.aCommeEntree(marathon);
         monde.aCommeSortie(tennis);
-
         monde.ajouter(marathon,guichetBasketBall,tennis);
 
         marathon.ajouterSuccesseur(guichetBasketBall);

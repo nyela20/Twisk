@@ -1,5 +1,7 @@
 package twisk.monde;
 
+import twisk.outils.FabriqueNumero;
+
 import java.util.Iterator;
 
 public class Monde implements Iterable<Etape> {
@@ -13,6 +15,7 @@ public class Monde implements Iterable<Etape> {
      * Constructeur d'un Monde
      */
     public Monde() {
+        FabriqueNumero.getInstance().reset();
         this.sasEntree = new SasEntree();
         this.sasSortie = new SasSortie();
         this.gestioEtapes = new GestionnaireEtapes();
@@ -34,7 +37,7 @@ public class Monde implements Iterable<Etape> {
      */
     public void aCommeSortie(Etape... etapes) {
         for (Etape e : etapes) {
-            assert(e.estUneActivite()) : "un guichet comme sortie est impossible.";
+            assert (e.estUneActivite()) : "un guichet comme sortie est impossible.";
             e.ajouterSuccesseur(sasSortie);
         }
     }
@@ -67,15 +70,41 @@ public class Monde implements Iterable<Etape> {
     }
 
     /**
+     * le monde sous code C
      *
+     * @return code C
      */
-
-    public String toC(){
+    public String toC() {
         StringBuilder affichage = new StringBuilder();
 
-        for (Etape e : gestioEtapes){
-            affichage.append(e.toC());
+        //Ecriture des includes
+        affichage.append("#include<stdio.h>\n");
+        affichage.append("#include<stdlib.h>\n");
+        affichage.append("#include\"def.h\"\n");
+
+        affichage.append("#define ").append(sasEntree.getNom()).append(" ").append(sasEntree.getNumeroEtape()).append("\n");
+        affichage.append("#define ").append(sasSortie.getNom()).append(" ").append(sasSortie.getNumeroEtape()).append("\n");
+        for (Etape e : gestioEtapes) {
+            affichage.append("#define ").append(e.getNom()).append(" ").append(e.getNumeroEtape()).append("\n");
         }
+
+
+
+        //Ecriture de la fonction Simuler
+        affichage.append("void simulation(int ids){\n");
+        affichage.append(sasEntree.toC());
+        Iterator<Etape> it = gestioEtapes.iterator();
+        while (it.hasNext()) {
+            Etape e = it.next();
+            affichage.append(e.toC());
+            if (e.estUnGuichet()) {
+                it.next();
+            }
+        }
+        affichage.append("}");
+        //Fin
+
+
         return affichage.toString();
     }
 
@@ -86,7 +115,6 @@ public class Monde implements Iterable<Etape> {
      */
     @Override
     public String toString() {
-
         return sasEntree + "\n" +
                 sasSortie + "\n\n" +
                 gestioEtapes;

@@ -40,6 +40,14 @@ public abstract class Etape implements Iterable<Etape> {
     }
 
     /**
+     * NuEtape
+     * @return nuEtape
+     */
+    public int getNumeroEtape() {
+        return numeroEtape;
+    }
+
+    /**
      * retourne le nombre de successeur(s) d'une Etape
      *
      * @return le nombre de successeur(s) d'une Etape
@@ -84,7 +92,6 @@ public abstract class Etape implements Iterable<Etape> {
                 " Successeur " +
                 gestionSucc.toString();
     }
-
 
     /**
      * Retourne l'itérateur de l'Etape

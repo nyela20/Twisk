@@ -6,7 +6,7 @@ public class SasEntree extends Activite {
      * Constructeur des SasEntree
      */
     public SasEntree() {
-        super("SasEntrée", 0, 0);
+        super("SasEntree", 0, 0);
     }
 
     @Override
@@ -16,6 +16,11 @@ public class SasEntree extends Activite {
 
     @Override
     public String toC() {
-        return "entrer(" + getNom() + ")";
+
+        Etape succ = iterator().next();
+        return "entrer(" + getNom() + ");\n" +
+                "delai(" + getTemps() + "," + getEcartTemps() + ");\n" +
+                "transfert(" + getNom() + "," + succ.getNom() + ");";
+
     }
 }

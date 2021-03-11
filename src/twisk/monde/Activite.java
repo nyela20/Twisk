@@ -30,6 +30,22 @@ public class Activite extends Etape {
     }
 
     /**
+     * retourne l'ecart temps
+     * @return ecaartTemps
+     */
+    public int getEcartTemps() {
+        return ecartTemps;
+    }
+
+    /**
+     * retourne temps
+     * @return temps
+     */
+    public int getTemps() {
+        return temps;
+    }
+
+    /**
      * retourne un booléen
      *
      * @return vrai si c'est une Activité, sinon faux
@@ -53,11 +69,11 @@ public class Activite extends Etape {
      * retourne une etape en langugae C
      */
     public String toC() {
+
         Etape succ = iterator().next();
-        return "transfert(" + getNom() + "," + succ.getNom() + ");\ndelai(" + temps + ","+ ecartTemps + ");\n";
-
+        return "\ndelai(" + temps + "," + ecartTemps + ");\n" +
+                "transfert(" + getNom() + "," + succ.getNom() + ");\n";
     }
-
     /**
      * retourne le nom de l'activité
      *

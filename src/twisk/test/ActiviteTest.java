@@ -20,6 +20,8 @@ class ActiviteTest extends EtapeTest {
 
     @org.junit.jupiter.api.Test
      void toC(){
+        //--------------------convertir en test et les multiplier
+
         football.ajouterSuccesseur(basketBall);
         System.out.println(football.toC());
     }

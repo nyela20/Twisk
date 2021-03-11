@@ -52,18 +52,19 @@ public class Guichet extends Etape {
         return false;
     }
 
+    /**
+     * code C
+     * @return code C
+     */
     @Override
     public String toC() {
-
-
-        Etape succ = iterator().next();
-        return
-                "transfert" + getNom() + 
-
-                "P(ids," + noSemaphore + ")\n" + succ.toC() +
-                "\nV(ids," + noSemaphore + ")";
-
-
+        //---------------------a multiplier
+        Activite succ = (Activite) iterator().next();
+        return "P(ids," + noSemaphore + ");\n" +
+                "transfert(" + this.getNom() + "," + succ.getNom() + ");\n" +
+                "delai(" + succ.getTemps() + "," + succ.getEcartTemps() + ");\n" +
+                "V(ids," + noSemaphore + ")\n" +
+                "transfert(" + succ.getNom() + "," + succ.iterator().next().getNom() + ") ";
     }
 
     /**
