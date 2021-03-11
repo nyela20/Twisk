@@ -15,4 +15,15 @@ class GuichetTest extends EtapeTest {
         assertFalse(guichetBasketBall.estUneActivite(), "Erreur estUneActivite() ne reconnaît pas une activité");
         assertFalse(guichetFootball.estUneActivite(), "Erreur estUneActivite() ne reconnaît pas une activité");
     }
+
+    @org.junit.jupiter.api.Test
+    void toC() {
+        //multiplier
+
+        guichetFootball.ajouterSuccesseur(football);
+        football.ajouterSuccesseur(basketBall);
+
+
+        System.out.println(guichetFootball.toC());
+    }
 }

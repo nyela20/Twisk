@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import twisk.monde.*;
 
+import java.sql.SQLOutput;
+
 
 class MondeTest {
 
@@ -82,6 +84,21 @@ class MondeTest {
         monde.aCommeSortie(basketBall);
     }
 
+    @Test
+    void toC(){
+        //multipliuer
+
+        monde.aCommeEntree(marathon);
+        monde.aCommeSortie(tennis);
+
+        monde.ajouter(marathon,guichetBasketBall,tennis);
+
+        marathon.ajouterSuccesseur(guichetBasketBall);
+        guichetBasketBall.ajouterSuccesseur(basketBall);
+        basketBall.ajouterSuccesseur(tennis);
+
+        System.out.println(monde.toC());
+    }
 
 
 

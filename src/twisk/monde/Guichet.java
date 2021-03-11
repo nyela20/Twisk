@@ -1,10 +1,13 @@
 package twisk.monde;
 
 
+import twisk.outils.FabriqueNumero;
+
 public class Guichet extends Etape {
 
     private final int nbJetons;
     private int numeroGuichet;
+    private int noSemaphore;
 
     /**
      * Constructeur d'un guichet
@@ -14,6 +17,7 @@ public class Guichet extends Etape {
     public Guichet(String nom) {
         super(nom);
         this.nbJetons = 10;
+        this.noSemaphore = FabriqueNumero.getInstance().getNumeroSemaphore();
     }
 
     /**
@@ -37,6 +41,7 @@ public class Guichet extends Etape {
         return true;
     }
 
+
     /**
      * retourne un booléen
      *
@@ -45,6 +50,20 @@ public class Guichet extends Etape {
     @Override
     public boolean estUneActivite() {
         return false;
+    }
+
+    @Override
+    public String toC() {
+
+
+        Etape succ = iterator().next();
+        return
+                "transfert" + getNom() + 
+
+                "P(ids," + noSemaphore + ")\n" + succ.toC() +
+                "\nV(ids," + noSemaphore + ")";
+
+
     }
 
     /**

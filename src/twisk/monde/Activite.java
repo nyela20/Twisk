@@ -7,6 +7,7 @@ public class Activite extends Etape {
 
     /**
      * Constructeur d'une Activité
+     *
      * @param nom le nom de l'Activité
      */
     public Activite(String nom) {
@@ -17,6 +18,7 @@ public class Activite extends Etape {
 
     /**
      * Constructeur d'une Activité
+     *
      * @param nom        le nom de l'activité
      * @param temps      le temps de l'activité
      * @param ecartTemps l'ecart-temps de l'activité
@@ -29,6 +31,7 @@ public class Activite extends Etape {
 
     /**
      * retourne un booléen
+     *
      * @return vrai si c'est une Activité, sinon faux
      */
     @Override
@@ -38,6 +41,7 @@ public class Activite extends Etape {
 
     /**
      * retourne un booléen
+     *
      * @return vrii si c'est un guichet, sinon faux
      */
     @Override
@@ -46,7 +50,17 @@ public class Activite extends Etape {
     }
 
     /**
+     * retourne une etape en langugae C
+     */
+    public String toC() {
+        Etape succ = iterator().next();
+        return "transfert(" + getNom() + "," + succ.getNom() + ");\ndelai(" + temps + ","+ ecartTemps + ");\n";
+
+    }
+
+    /**
      * retourne le nom de l'activité
+     *
      * @return String, le nom de l'activité
      */
     @Override

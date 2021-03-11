@@ -13,4 +13,9 @@ public class SasEntree extends Activite {
     public String toString() {
         return super.toString();
     }
+
+    @Override
+    public String toC() {
+        return "entrer(" + getNom() + ")";
+    }
 }

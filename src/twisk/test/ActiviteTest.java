@@ -18,4 +18,9 @@ class ActiviteTest extends EtapeTest {
         assertTrue(basketBall.estUneActivite(), "Erreur estUneActivite() ne reconnaît pas une activité");
     }
 
+    @org.junit.jupiter.api.Test
+     void toC(){
+        football.ajouterSuccesseur(basketBall);
+        System.out.println(football.toC());
+    }
 }

@@ -67,6 +67,19 @@ public class Monde implements Iterable<Etape> {
     }
 
     /**
+     *
+     */
+
+    public String toC(){
+        StringBuilder affichage = new StringBuilder();
+
+        for (Etape e : gestioEtapes){
+            affichage.append(e.toC());
+        }
+        return affichage.toString();
+    }
+
+    /**
      * Affichage du monde
      *
      * @return affichge du monde en string

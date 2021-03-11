@@ -69,6 +69,9 @@ public abstract class Etape implements Iterable<Etape> {
     public String getNom(){
         return this.nom;
     }
+
+    public abstract String toC();
+
     /**
      * retourne le nom de l'Etape
      *
