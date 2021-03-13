@@ -15,7 +15,7 @@ public class ClientTwisk {
         Etape tennis = new Activite("Tennis", 80, 5);
         Etape marathon = new Activite("Marathon");
 
-        Etape guichetFootbal = new Guichet("guichet de Football");
+        Etape guichetFootbal = new Guichet("guichet_de_Football");
         monde.ajouter(marathon,guichetFootbal,football,tennis);
 
         monde.aCommeEntree(marathon);

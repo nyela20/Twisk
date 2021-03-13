@@ -63,8 +63,8 @@ public class Guichet extends Etape {
         return "P(ids," + noSemaphore + ");\n" +
                 "transfert(" + this.getNom() + "," + succ.getNom() + ");\n" +
                 "delai(" + succ.getTemps() + "," + succ.getEcartTemps() + ");\n" +
-                "V(ids," + noSemaphore + ")\n" +
-                "transfert(" + succ.getNom() + "," + succ.iterator().next().getNom() + ") ";
+                "V(ids," + noSemaphore + ");\n" +
+                "transfert(" + succ.getNom() + "," + succ.iterator().next().getNom() + "); ";
     }
 
     /**
