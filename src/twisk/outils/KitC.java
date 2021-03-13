@@ -1,6 +1,13 @@
 package twisk.outils;
 
+import org.junit.platform.engine.support.descriptor.FileSystemSource;
+
 import java.io.*;
+import java.nio.file.FileSystem;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class KitC {
 
@@ -12,9 +19,24 @@ public class KitC {
         FileWriter flot;
         BufferedWriter flotFiltre;
 
+        //creation du dossier et recopier des fichers
         File dossier = new File("/tmp/twisk");
         dossier.mkdir();
-        File chemin = new File("/tmp/twisk/client.c");
+
+
+        try {
+            if (dossier.exists()) {
+                String dest1 = "/tmp/twisk/def.c";
+                String src1 = getClass().getResource("/def.h").toExternalForm();
+                String src2 = getClass().getResource("/programmeC.o").toExternalForm();
+                Files.copy(Paths.get(src1), Paths.get(dest1));
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+     /*   File chemin = new File("/tmp/twisk/client.c");
         try {
             flot = new FileWriter(chemin);
             flotFiltre = new BufferedWriter(flot);
@@ -22,7 +44,7 @@ public class KitC {
             flotFiltre.close();
         } catch (IOException e) {
             System.out.println("Impossible d'ecrire le code C");
-        }
+        }*/
     }
 
     public void compiler() {
