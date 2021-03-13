@@ -24,7 +24,7 @@ public class KitC {
         dossier.mkdir();
 
 
-        try {
+      /*  try {
             if (dossier.exists()) {
                 String dest1 = "/tmp/twisk/def.h";
                 String src1 = getClass().getResource("/def.h").toExternalForm();
@@ -34,9 +34,9 @@ public class KitC {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
-     /*   File chemin = new File("/tmp/twisk/client.c");
+        File chemin = new File("/tmp/twisk/client.c");
         try {
             flot = new FileWriter(chemin);
             flotFiltre = new BufferedWriter(flot);
@@ -44,7 +44,7 @@ public class KitC {
             flotFiltre.close();
         } catch (IOException e) {
             System.out.println("Impossible d'ecrire le code C");
-        }*/
+        }
     }
 
     public void compiler() {
@@ -64,6 +64,28 @@ public class KitC {
                 System.out.println(ligne);
             }
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void construireLaLibrairie() {
+        try {
+            Runtime runtime = Runtime.getRuntime();
+            Process p = runtime.exec("gcc -shared /tmp/twisk/programmeC.o /tmp/twisk/client.o -o /tmp/twisk/libTwisk.so");
+            p.waitFor();
+
+            // récupération des messages sur la sortie standard et la sortie d’erreur de la commande exécutée
+            // à reprendre éventuellement et à adapter à votre code
+            BufferedReader output = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            BufferedReader error = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+            String ligne;
+            while ((ligne = output.readLine()) != null) {
+                System.out.println(ligne);
+            }
+            while ((ligne = error.readLine()) != null) {
+                System.out.println(ligne);
+            }
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }

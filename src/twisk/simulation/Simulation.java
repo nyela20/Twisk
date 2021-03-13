@@ -13,10 +13,11 @@ public class Simulation {
     }
 
     public void simuler(Monde monde) {
-       // System.out.println(monde);
+        System.out.println(monde);
         KitC kitC = new KitC();
         kitC.creerFichier(monde.toC());
-       // kitC.compiler();
+        kitC.compiler();
+        kitC.construireLaLibrairie();
     }
 
 }
