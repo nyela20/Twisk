@@ -26,7 +26,7 @@ public class KitC {
 
         try {
             if (dossier.exists()) {
-                String dest1 = "/tmp/twisk/def.c";
+                String dest1 = "/tmp/twisk/def.h";
                 String src1 = getClass().getResource("/def.h").toExternalForm();
                 String src2 = getClass().getResource("/programmeC.o").toExternalForm();
                 Files.copy(Paths.get(src1), Paths.get(dest1));
