@@ -5,6 +5,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class KitC {
@@ -13,11 +14,7 @@ public class KitC {
     public KitC() {
     }
 
-    public void creerFichier(String codeC) {
-        FileWriter flot;
-        BufferedWriter flotFiltre;
-
-
+    public void creerEnvironnement() {
         try {
             // création du répertoire twisk sous /tmp. Ne déclenche pas d’erreur si le répertoire existe déjà
             Path directories = Files.createDirectories(Paths.get("/tmp/twisk"));
@@ -31,7 +28,11 @@ public class KitC {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public void creerFichier(String codeC) {
+        FileWriter flot;
+        BufferedWriter flotFiltre;
         File chemin = new File("/tmp/twisk/client.c");
         try {
             flot = new FileWriter(chemin);

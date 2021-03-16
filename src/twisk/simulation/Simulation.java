@@ -12,6 +12,7 @@ public class Simulation {
     public void simuler(Monde monde) {
         System.out.println(monde);
         KitC kitC = new KitC();
+        kitC.creerEnvironnement();
         kitC.creerFichier(monde.toC());
         kitC.compiler();
         kitC.construireLaLibrairie();
