@@ -14,6 +14,7 @@ class FabriqueNumeroTest {
         fabric.reset();
         assertEquals(fabric.getNumeroEtape(), 0);
         assertEquals(fabric.getNumeroSemaphore(), 1);
+        fabric.reset();
     }
 
     @Test
@@ -23,6 +24,7 @@ class FabriqueNumeroTest {
         assertEquals(fabric.getNumeroEtape(), 1);
         assertEquals(fabric.getNumeroEtape(), 2);
         assertEquals(fabric.getNumeroEtape(), 3);
+        fabric.reset();
     }
 
     @Test
@@ -32,5 +34,6 @@ class FabriqueNumeroTest {
         assertEquals(fabric.getNumeroSemaphore(), 2);
         assertEquals(fabric.getNumeroSemaphore(), 3);
         assertEquals(fabric.getNumeroSemaphore(), 4);
+        fabric.reset();
     }
 }

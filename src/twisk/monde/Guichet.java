@@ -6,7 +6,6 @@ import twisk.outils.FabriqueNumero;
 public class Guichet extends Etape {
 
     private final int nbJetons;
-    private int numeroGuichet;
     private int noSemaphore;
 
     /**
@@ -64,10 +63,10 @@ public class Guichet extends Etape {
     public String toC() {
         //---------------------a multiplier
         Activite succ = (Activite) iterator().next();
-        return "P(ids," + noSemaphore + ");\n" +
+        return "P(ids," + this.numeroEtape + ");\n" +
                 "transfert(" + this.getNom() + "," + succ.getNom() + ");\n" +
                 "delai(" + succ.getTemps() + "," + succ.getEcartTemps() + ");\n" +
-                "V(ids," + noSemaphore + ");\n" +
+                "V(ids," + this.numeroEtape + ");\n" +
                 "transfert(" + succ.getNom() + "," + succ.iterator().next().getNom() + "); ";
     }
 

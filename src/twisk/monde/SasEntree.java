@@ -21,6 +21,5 @@ public class SasEntree extends Activite {
         return "entrer(" + getNom() + ");\n" +
                 "delai(" + getTemps() + "," + getEcartTemps() + ");\n" +
                 "transfert(" + getNom() + "," + succ.getNom() + ");";
-
     }
 }

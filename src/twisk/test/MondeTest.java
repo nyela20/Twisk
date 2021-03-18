@@ -3,6 +3,7 @@ package twisk.test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import twisk.monde.*;
+import twisk.outils.FabriqueNumero;
 
 import java.sql.SQLOutput;
 
@@ -64,14 +65,14 @@ class MondeTest {
 
     @Test
     void nbEtapes() {
-        monde.ajouter();
-        assert (monde.nbEtapes() == 0) : "Erreur le nombre d'étapes retourné est incoorecte";
+        FabriqueNumero.getInstance().reset();
+        assert (monde.nbEtapes() == 2) : "Erreur le nombre d'étapes retourné est incoorecte";
         monde.ajouter(football);
-        assert (monde.nbEtapes() == 1) : "Erreur le nombre d'etapes retourné est incorrecte";
+        assert (monde.nbEtapes() == 3) : "Erreur le nombre d'etapes retourné est incorrecte";
         monde.ajouter(guichetFootball);
-        assert (monde.nbEtapes() == 2) : "Erreur le nombre d'etapes retourné est incorrecte";
-        monde.ajouter(guichetBasketBall, basketBall);
         assert (monde.nbEtapes() == 4) : "Erreur le nombre d'etapes retourné est incorrecte";
+        monde.ajouter(guichetBasketBall, basketBall);
+        assert (monde.nbEtapes() == 6) : "Erreur le nombre d'etapes retourné est incorrecte";
     }
 
     @Test
@@ -86,11 +87,11 @@ class MondeTest {
 
     @Test
     void toC(){
-        //multipliuer
+        //multiplier
 
         monde.aCommeEntree(marathon);
         monde.aCommeSortie(tennis);
-        monde.ajouter(marathon,guichetBasketBall,tennis);
+        monde.ajouter(marathon,guichetBasketBall,basketBall,tennis);
 
         marathon.ajouterSuccesseur(guichetBasketBall);
         guichetBasketBall.ajouterSuccesseur(basketBall);

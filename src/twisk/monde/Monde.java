@@ -15,10 +15,10 @@ public class Monde implements Iterable<Etape> {
      * Constructeur d'un Monde
      */
     public Monde() {
-        FabriqueNumero.getInstance().reset();
+       //FabriqueNumero.getInstance().reset();
         this.sasEntree = new SasEntree();
-        this.sasSortie = new SasSortie();
         this.gestioEtapes = new GestionnaireEtapes();
+        this.sasSortie = new SasSortie();
     }
 
     /**
@@ -57,7 +57,7 @@ public class Monde implements Iterable<Etape> {
      * @return le nb d'Etape dans le monde
      */
     public int nbEtapes() {
-        return gestioEtapes.nbEtapes();
+        return gestioEtapes.nbEtapes() +2;
     }
 
     /**
@@ -74,7 +74,7 @@ public class Monde implements Iterable<Etape> {
      *
      * @return code C
      */
-    public String toC() {
+    public String toC(){
         StringBuilder affichage = new StringBuilder();
 
         //Ecriture des includes
@@ -86,6 +86,12 @@ public class Monde implements Iterable<Etape> {
         affichage.append("#define ").append(sasSortie.getNom()).append(" ").append(sasSortie.getNumeroEtape()).append("\n");
         for (Etape e : gestioEtapes) {
             affichage.append("#define ").append(e.getNom()).append(" ").append(e.getNumeroEtape()).append("\n");
+        }
+        System.out.println();
+        for (Etape e : gestioEtapes) {
+            if (e instanceof Guichet ){
+                affichage.append("#define ").append("num_sem").append(e.getNom()).append(" ").append(e.getNumeroEtape()).append("\n");
+            }
         }
 
 
