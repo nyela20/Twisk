@@ -55,7 +55,7 @@ public class Simulation {
 
 
         //La condition de fin de boucle ci-dessous n'arrête pas l'itération, à changer !
-        while (ou_sont_les_clients(nbEtapes, nbClients)[((nbClients + 1) * nbEtapes) - (nbClients + 1)] != nbClients) {
+        while (ou_sont_les_clients(nbEtapes, nbClients)[monde.getSasSortieNumeroEtape()*nbClients+monde.getSasSortieNumeroEtape()] != nbClients) {
 
             int[] tabEmplaceClients;
             tabEmplaceClients = ou_sont_les_clients(nbEtapes, nbClients);
@@ -82,7 +82,7 @@ public class Simulation {
             System.out.println();
 
             try {
-                Thread.sleep(500);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -135,4 +135,13 @@ public class Monde implements Iterable<Etape> {
     public Iterator<Etape> iterator() {
         return gestioEtapes.iterator();
     }
+
+    /**
+     * la fonction retourne le numéroD'Etape du sasDeSortie
+     * utile pour atteindre la condition de fin
+     * de la boucle while dans la classe Simulation
+     */
+    public int getSasSortieNumeroEtape(){
+        return this.sasSortie.numeroEtape;
+    }
 }
