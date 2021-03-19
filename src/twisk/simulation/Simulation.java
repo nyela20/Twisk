@@ -59,7 +59,6 @@ public class Simulation {
         //c'est juste l'affichage
         while (ou_sont_les_clients(nbEtapes, nbClients)[monde.getSasSortieNumeroEtape()*nbClients+1] != nbClients) {
 
-            System.out.println("nb : " + ou_sont_les_clients(nbEtapes, nbClients)[monde.getSasSortieNumeroEtape()*nbClients+1]);
             int[] tabEmplaceClients;
             tabEmplaceClients = ou_sont_les_clients(nbEtapes, nbClients);
 
@@ -77,7 +76,6 @@ public class Simulation {
                 }catch(Exception e){
                     delta = 0;
                 }
-                System.out.println("delta : " + delta);
                 debut = debut + nbClients + 1;
                 fin = debut + delta;
             }
