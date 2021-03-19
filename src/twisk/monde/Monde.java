@@ -89,7 +89,7 @@ public class Monde implements Iterable<Etape> {
         }
         System.out.println();
         for (Etape e : gestioEtapes) {
-            if (e instanceof Guichet ){
+            if (e.estUnGuichet()){
                 affichage.append("#define ").append("num_sem").append(e.getNom()).append(" ").append(e.getNumeroEtape()).append("\n");
             }
         }

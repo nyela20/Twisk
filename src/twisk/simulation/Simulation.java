@@ -54,9 +54,12 @@ public class Simulation {
         //----------  afficherEmplacementClient 2------------
 
 
-        //La condition de fin de boucle ci-dessous n'arrête pas l'itération, à changer !
-        while (ou_sont_les_clients(nbEtapes, nbClients)[monde.getSasSortieNumeroEtape()*nbClients+monde.getSasSortieNumeroEtape()] != nbClients) {
+        //La condition de fin de boucle est correcte
+        //seulement on a l'impression que le dernier client n'est pas dans sasSortie
+        //c'est juste l'affichage
+        while (ou_sont_les_clients(nbEtapes, nbClients)[monde.getSasSortieNumeroEtape()*nbClients+1] != nbClients) {
 
+            System.out.println("nb : " + ou_sont_les_clients(nbEtapes, nbClients)[monde.getSasSortieNumeroEtape()*nbClients+1]);
             int[] tabEmplaceClients;
             tabEmplaceClients = ou_sont_les_clients(nbEtapes, nbClients);
 
@@ -82,7 +85,7 @@ public class Simulation {
             System.out.println();
 
             try {
-                Thread.sleep(10);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

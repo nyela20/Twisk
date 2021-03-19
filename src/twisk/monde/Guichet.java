@@ -28,6 +28,7 @@ public class Guichet extends Etape {
     public Guichet(String nom, int nbJetons) {
         super(nom);
         this.nbJetons = nbJetons;
+        this.noSemaphore = FabriqueNumero.getInstance().getNumeroSemaphore();
     }
 
     public int getNbJetons() {
@@ -63,11 +64,11 @@ public class Guichet extends Etape {
     public String toC() {
         //---------------------a multiplier
         Activite succ = (Activite) iterator().next();
-        return "P(ids," + this.numeroEtape + ");\n" +
+        return "P(ids," + this.noSemaphore + ");\n" +
                 "transfert(" + this.getNom() + "," + succ.getNom() + ");\n" +
                 "delai(" + succ.getTemps() + "," + succ.getEcartTemps() + ");\n" +
-                "V(ids," + this.numeroEtape + ");\n" +
-                "transfert(" + succ.getNom() + "," + succ.iterator().next().getNom() + "); ";
+                "V(ids," + this.noSemaphore + ");\n" +
+                "transfert(" + succ.getNom() + "," + succ.iterator().next().getNom() + ");\n";
     }
 
     /**

@@ -14,8 +14,8 @@ public class ClientTwisk {
         /* On crée un monde dans l'ordre */
 
 
-        Etape fast_food = new Activite("fast_food",5,2);
-        Etape guichet_lion = new Guichet("Guichet_lion",5);
+        Etape fast_food = new Activite("fast_food",4,2);
+        Etape guichet_lion = new Guichet("Guichet_lion",4);
         Etape cage_lion = new Activite("Cage_lion",5,2);
         Etape guichet_girafe = new Guichet("Guichet_girafe",5);
         Etape plaine_girafe = new Activite("plaine_girafe",5,2);
