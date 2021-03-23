@@ -69,7 +69,7 @@ public class Simulation {
             int debut = 1, fin = debut + tabEmplaceClients[0], delta;
 
             for (int i = 0; i < nbEtapes; i++) {
-                System.out.print("etape " + i + " (etape) " + tabEmplaceClients[debut - 1] + "client(s)");
+                System.out.print("etape " + i + " (etape) " + tabEmplaceClients[debut - 1] + " client(s)");
 
                 for (int j = debut; j < fin; j++) {
                     System.out.print(" " + tabEmplaceClients[j] + " ");

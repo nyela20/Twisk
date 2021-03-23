@@ -15,7 +15,7 @@ public class Monde implements Iterable<Etape> {
      * Constructeur d'un Monde
      */
     public Monde() {
-       //FabriqueNumero.getInstance().reset();
+        FabriqueNumero.getInstance().reset();
         this.sasEntree = new SasEntree();
         this.gestioEtapes = new GestionnaireEtapes();
         this.sasSortie = new SasSortie();
@@ -57,7 +57,7 @@ public class Monde implements Iterable<Etape> {
      * @return le nb d'Etape dans le monde
      */
     public int nbEtapes() {
-        return gestioEtapes.nbEtapes() +2;
+        return gestioEtapes.nbEtapes() + 2;
     }
 
     /**
@@ -74,27 +74,34 @@ public class Monde implements Iterable<Etape> {
      *
      * @return code C
      */
-    public String toC(){
+    public String toC() {
         StringBuilder affichage = new StringBuilder();
 
         //Ecriture des includes
         affichage.append("#include<stdio.h>\n");
         affichage.append("#include<stdlib.h>\n");
-        affichage.append("#include\"def.h\"\n");
+        affichage.append("#include\"def.h\"\n\n");
 
-        affichage.append("#define ").append(sasEntree.getNom()).append(" ").append(sasEntree.getNumeroEtape()).append("\n");
-        affichage.append("#define ").append(sasSortie.getNom()).append(" ").append(sasSortie.getNumeroEtape()).append("\n");
+        //ecriture des defines des etapes
+        affichage.append("#define ").append(sasEntree.getNom()).append(" ").append(sasEntree.getNumeroEtape()).append("\n\n");
         for (Etape e : gestioEtapes) {
             affichage.append("#define ").append(e.getNom()).append(" ").append(e.getNumeroEtape()).append("\n");
         }
-        System.out.println();
+        affichage.append("\n");
+
+        affichage.append("#define ").append(sasSortie.getNom()).append(" ").append(sasSortie.getNumeroEtape()).append("\n\n");
+
+
+        //Ecritures des defines des numero des semamphores
+        System.out.println("");
         for (Etape e : gestioEtapes) {
-            if (e.estUnGuichet()){
-                affichage.append("#define ").append("num_sem").append(e.getNom()).append(" ").append(e.getNumeroEtape()).append("\n");
+            if (e.estUnGuichet()) {
+                affichage.append("#define ");
+                affichage.append("num_sem");
+                affichage.append(((Guichet) e).getNoSemaphore()).append(" ");
+                affichage.append(((Guichet) e).getNoSemaphore()).append("\n");
             }
         }
-
-
 
         //Ecriture de la fonction Simuler
         affichage.append("void simulation(int ids){\n");
@@ -108,9 +115,8 @@ public class Monde implements Iterable<Etape> {
             }
         }
         affichage.append("}");
+
         //Fin
-
-
         return affichage.toString();
     }
 
@@ -121,9 +127,9 @@ public class Monde implements Iterable<Etape> {
      */
     @Override
     public String toString() {
-        return sasEntree + "\n" +
-                sasSortie + "\n\n" +
-                gestioEtapes;
+        return sasEntree + "\n\n" +
+                gestioEtapes + "\n" +
+                sasSortie;
     }
 
     /**
@@ -141,7 +147,7 @@ public class Monde implements Iterable<Etape> {
      * utile pour atteindre la condition de fin
      * de la boucle while dans la classe Simulation
      */
-    public int getSasSortieNumeroEtape(){
-        return this.sasSortie.numeroEtape;
+    public int getSasSortieNumeroEtape() {
+        return this.sasSortie.getNumeroEtape();
     }
 }

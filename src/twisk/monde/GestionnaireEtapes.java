@@ -53,7 +53,7 @@ public class GestionnaireEtapes implements Iterable<Etape> {
 
     @Override
     public String toString() {
-        StringBuilder affichage = new StringBuilder();
+        StringBuilder affichage = new StringBuilder(10);
 
         for(Etape e : gestionEtapes) {
             affichage.append(e.toString());

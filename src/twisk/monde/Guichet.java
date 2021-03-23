@@ -31,6 +31,10 @@ public class Guichet extends Etape {
         this.noSemaphore = FabriqueNumero.getInstance().getNumeroSemaphore();
     }
 
+    public int getNoSemaphore() {
+        return noSemaphore;
+    }
+
     public int getNbJetons() {
         return nbJetons;
     }

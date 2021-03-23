@@ -7,7 +7,7 @@ import java.util.Iterator;
 
 public abstract class Etape implements Iterable<Etape> {
 
-    protected final int numeroEtape;
+    private final int numeroEtape;
     private final String nom;
     private final GestionnaireSuccesseurs gestionSucc;
 
