@@ -2,6 +2,7 @@ package twisk.monde;
 
 import twisk.outils.FabriqueNumero;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Monde implements Iterable<Etape> {
@@ -21,6 +22,8 @@ public class Monde implements Iterable<Etape> {
         this.sasSortie = new SasSortie();
     }
 
+
+
     /**
      * Défini les entrées du monde
      *
@@ -39,6 +42,26 @@ public class Monde implements Iterable<Etape> {
         for (Etape e : etapes) {
             assert (e.estUneActivite()) : "un guichet comme sortie est impossible.";
             e.ajouterSuccesseur(sasSortie);
+        }
+    }
+
+    public int getnbJetonsNiemeEtape(int ieme) {
+        ArrayList<Guichet> etapes = new ArrayList<>();
+        for (int i = 0; i < gestioEtapes.nbEtapes(); i++) {
+            if(gestioEtapes.getIemeEtape(i).estUnGuichet()){
+                etapes.add((Guichet) gestioEtapes.getIemeEtape(i));
+            }
+        }
+        return etapes.get(ieme-1).getNbJetons();
+    }
+
+
+    public String getNomNiemeEtape(int ieme){
+        if( ieme < gestioEtapes.nbEtapes()) {
+            return gestioEtapes.getIemeEtape(ieme).getNom();
+        }
+        else{
+            return null;
         }
     }
 

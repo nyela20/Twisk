@@ -34,9 +34,9 @@ public class Simulation {
         int nbClients = 10;
         int nbEtapes = monde.nbEtapes();
         int[] TableauDeJetons = new int[monde.nbGuichet()];
-        TableauDeJetons[0] = 2;
-        TableauDeJetons[1] = 2;
-        TableauDeJetons[2] = 2;
+        TableauDeJetons[0] = monde.getnbJetonsNiemeEtape(1);
+        TableauDeJetons[1] = monde.getnbJetonsNiemeEtape(2);
+        TableauDeJetons[2] = monde.getnbJetonsNiemeEtape(3);
 
         int[] tableauP = start_simulation(nbEtapes, 3, nbClients, TableauDeJetons);
 
@@ -54,9 +54,6 @@ public class Simulation {
         //----------  afficherEmplacementClient 2------------
 
 
-        //La condition de fin de boucle est correcte
-        //seulement on a l'impression que le dernier client n'est pas dans sasSortie
-        //c'est juste l'affichage
         boolean findeBoucle = false;
         while(!findeBoucle){
 
@@ -67,10 +64,24 @@ public class Simulation {
             tabEmplaceClients = ou_sont_les_clients(nbEtapes, nbClients);
 
             int debut = 1, fin = debut + tabEmplaceClients[0], delta;
-
-            for (int i = 0; i < nbEtapes; i++) {
-                System.out.print("etape " + i + " (etape) " + tabEmplaceClients[debut - 1] + " client(s)");
-
+            System.out.print("etape " + 0 + " " + "SasEntree" + " " + tabEmplaceClients[0] + " client(s) ");
+            for (int j = debut; j < fin; j++) {
+                System.out.print(" " + tabEmplaceClients[j] + " ");
+            }
+            System.out.println();
+            delta = tabEmplaceClients[debut + nbClients];
+            debut = debut + nbClients + 1;
+            fin = debut + delta;
+            System.out.print("etape " + 1 + " " + "SasSortie" + " " + tabEmplaceClients[nbClients*nbEtapes] + " client(s) ");
+            for (int j = debut; j < fin; j++) {
+                System.out.print(" " + tabEmplaceClients[j] + " ");
+            }
+            System.out.println();
+            delta = tabEmplaceClients[debut + nbClients];
+            debut = debut + nbClients + 1;
+            fin = debut + delta;
+            for (int i = 2; i < nbEtapes; i++) {
+                System.out.print("etape " + i + " " +  monde.getNomNiemeEtape(i-2) + " " + tabEmplaceClients[debut - 1] + " client(s) ");
                 for (int j = debut; j < fin; j++) {
                     System.out.print(" " + tabEmplaceClients[j] + " ");
                 }

@@ -34,6 +34,9 @@ public class GestionnaireEtapes implements Iterable<Etape> {
         return gestionEtapes.size();
     }
 
+    public Etape getIemeEtape(int ieme){
+        return gestionEtapes.get(ieme);
+    }
 
     /**
      * retourne le nombre de Guichet qu'il y a dans le GestionnaireEtapes

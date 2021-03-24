@@ -39,6 +39,8 @@ public class Guichet extends Etape {
         return nbJetons;
     }
 
+
+
     /**
      * retourne un booléen
      *
@@ -74,6 +76,7 @@ public class Guichet extends Etape {
                 "V(ids," + this.noSemaphore + ");\n" +
                 "transfert(" + succ.getNom() + "," + succ.iterator().next().getNom() + ");\n";
     }
+
 
     /**
      * retourne le nom de l'Etape
