@@ -70,10 +70,10 @@ public class Guichet extends Etape {
     public String toC() {
         //---------------------a multiplier
         Activite succ = (Activite) iterator().next();
-        return "P(ids," + this.noSemaphore + ");\n" +
+        return "P(ids," + "num_sem" + this.getNom() + ");\n" +
                 "transfert(" + this.getNom() + "," + succ.getNom() + ");\n" +
                 "delai(" + succ.getTemps() + "," + succ.getEcartTemps() + ");\n" +
-                "V(ids," + this.noSemaphore + ");\n" +
+                "V(ids,"  + "num_sem" + this.getNom() + ");\n" +
                 "transfert(" + succ.getNom() + "," + succ.iterator().next().getNom() + ");\n";
     }
 

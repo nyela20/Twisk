@@ -18,7 +18,10 @@ class EtapeTest {
 
     Activite footballRestreint;
     Activite basketBallRestreint;
+    Activite Tennis_de_table;
+    Activite cent_metre;
 
+    Etape guichet_Fast_Food;
     Etape guichetFootball;
     Etape guichetBasketBall;
     Etape guichetEscrime;
@@ -38,11 +41,14 @@ class EtapeTest {
         Escrime = new Activite("Escrime", 60, 12);
         course = new Activite("course", 60, 12);
         Piscine = new Activite("piscine", 120, 20);
+        Tennis_de_table = new Activite("Tennis_de_table",100,15);
+        cent_metre = new Activite("cent_metre",120,30);
 
         footballRestreint = new Activite("Football Privé", 90, 15);
         basketBallRestreint = new Activite("BasketBall Privé", 120, 10);
 
         guichetFootball = new Guichet("guichet de Football");
+        guichet_Fast_Food = new Guichet("guichet_Fast_Food");
         guichetBasketBall = new Guichet("guichet de BasketBall");
         guichetEscrime = new Guichet("guichet escrime");
         guichetTennis = new Guichet("guichet tennis");
@@ -80,7 +86,6 @@ class EtapeTest {
         assert (guichetTennis.nbSuccesseurs() == 0) : "Erreur le premier paramètre n'est pas succéder par le second";
         assert (Piscine.nbSuccesseurs() == 2) : "Erreur lors de l'ajout avec deux Etapes en paramètre";
         assert (guichetPiscine.nbSuccesseurs() == 1) : "vErreur lors de l'ajout de trois Etapes";
-        //jsp si c la fct nbSuccesseurs qui bug ou c quoi
 
         guichetBasketBall.ajouterSuccesseur(basketBall);
         basketBall.ajouterSuccesseur(guichetBasketBall, basketBall);

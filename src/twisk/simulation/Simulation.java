@@ -64,22 +64,25 @@ public class Simulation {
             tabEmplaceClients = ou_sont_les_clients(nbEtapes, nbClients);
 
             int debut = 1, fin = debut + tabEmplaceClients[0], delta;
-            System.out.print("etape " + 0 + " " + "SasEntree" + " " + tabEmplaceClients[0] + " client(s) ");
-            for (int j = debut; j < fin; j++) {
-                System.out.print(" " + tabEmplaceClients[j] + " ");
+            int k =0;
+            String sas = "SasEntree";
+
+            for(int i = 0; i<2;i++) {
+                System.out.print("etape " + i + " " + sas + " " + tabEmplaceClients[nbClients*i-k] + " client(s) ");
+                for (int j = debut; j < fin; j++) {
+                    System.out.print(" " + tabEmplaceClients[j] + " ");
+                }
+                System.out.println();
+                delta = tabEmplaceClients[debut + nbClients];
+                debut = debut + nbClients + 1;
+                fin = debut + delta;
+                k++;
+                sas = "SasSortie";
             }
-            System.out.println();
-            delta = tabEmplaceClients[debut + nbClients];
-            debut = debut + nbClients + 1;
-            fin = debut + delta;
-            System.out.print("etape " + 1 + " " + "SasSortie" + " " + tabEmplaceClients[nbClients*nbEtapes] + " client(s) ");
-            for (int j = debut; j < fin; j++) {
-                System.out.print(" " + tabEmplaceClients[j] + " ");
-            }
-            System.out.println();
-            delta = tabEmplaceClients[debut + nbClients];
-            debut = debut + nbClients + 1;
-            fin = debut + delta;
+
+
+
+
             for (int i = 2; i < nbEtapes; i++) {
                 System.out.print("etape " + i + " " +  monde.getNomNiemeEtape(i-2) + " " + tabEmplaceClients[debut - 1] + " client(s) ");
                 for (int j = debut; j < fin; j++) {

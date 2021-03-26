@@ -21,7 +21,6 @@ public abstract class Etape implements Iterable<Etape> {
         this.nom = nom;
         this.gestionSucc = new GestionnaireSuccesseurs();
         this.numeroEtape = FabriqueNumero.getInstance().getNumeroEtape();
-        System.out.println("numéro : " + this.numeroEtape + " " + this.nom);
     }
 
     /**

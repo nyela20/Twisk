@@ -22,8 +22,6 @@ public class Monde implements Iterable<Etape> {
         this.sasSortie = new SasSortie();
     }
 
-
-
     /**
      * Défini les entrées du monde
      *
@@ -121,7 +119,7 @@ public class Monde implements Iterable<Etape> {
             if (e.estUnGuichet()) {
                 affichage.append("#define ");
                 affichage.append("num_sem");
-                affichage.append(((Guichet) e).getNoSemaphore()).append(" ");
+                affichage.append((e.getNom())).append(" ");
                 affichage.append(((Guichet) e).getNoSemaphore()).append("\n");
             }
         }

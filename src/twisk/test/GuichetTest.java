@@ -18,10 +18,14 @@ class GuichetTest extends EtapeTest {
 
     @org.junit.jupiter.api.Test
     void toC() {
-        //---------------------------multiplier
-
-        guichetFootball.ajouterSuccesseur(football);
-        football.ajouterSuccesseur(basketBall);
+        guichetFootball.ajouterSuccesseur(footballRestreint);
+        footballRestreint.ajouterSuccesseur(basketBall);
         System.out.println(guichetFootball.toC());
+        String res = "P(ids,num_semguichet de Football);\n" +
+                "transfert(" + guichetFootball.getNom() + "," + guichetFootball.iterator().next().getNom() + ");\n" +
+                "delai(" + footballRestreint.getTemps() + "," + footballRestreint.getEcartTemps() + ");\n" +
+                "V(ids,num_semguichet de Football);\n" +
+                "transfert(" + guichetFootball.iterator().next().getNom() + "," + guichetFootball.iterator().next().iterator().next().getNom() + ");\n";
+        assertEquals(guichetFootball.toC(), res, "La fonction toC ne retourne pas la syntaxe attendue");
     }
 }
