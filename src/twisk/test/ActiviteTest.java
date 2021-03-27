@@ -31,6 +31,5 @@ class ActiviteTest extends EtapeTest {
         res = "\ndelai("+cent_metre.getTemps()+","+cent_metre.getEcartTemps()+");\n" +
                 "transfert(cent_metre,"+cent_metre.iterator().next().getNom() +");\n";
         assertEquals(cent_metre.toC(),res,"La fonction ne retroune pas la syntaxe attendue");
-
     }
 }

@@ -20,7 +20,6 @@ public class Simulation {
     public void simuler(Monde monde) {
 
         System.out.println(monde);
-
         KitC kitC = new KitC();
         kitC.creerEnvironnement();
         kitC.creerFichier(monde.toC());
@@ -60,15 +59,13 @@ public class Simulation {
             if(ou_sont_les_clients(nbEtapes, nbClients)[monde.getSasSortieNumeroEtape()*nbClients+1] == 10){
                 findeBoucle = true;
             }
-            int[] tabEmplaceClients;
-            tabEmplaceClients = ou_sont_les_clients(nbEtapes, nbClients);
+            int[] tabEmplaceClients = ou_sont_les_clients(nbEtapes, nbClients);
 
-            int debut = 1, fin = debut + tabEmplaceClients[0], delta;
-            int k =0;
+            int debut = 1, fin = debut + tabEmplaceClients[0], delta, k = 0;
             String sas = "SasEntree";
 
             for(int i = 0; i<2;i++) {
-                System.out.print("etape " + i + " " + sas + " " + tabEmplaceClients[nbClients*i-k] + " client(s) ");
+                System.out.print("etape " + i + " " + sas + " " + tabEmplaceClients[nbClients*i+k] + " client(s) ");
                 for (int j = debut; j < fin; j++) {
                     System.out.print(" " + tabEmplaceClients[j] + " ");
                 }
@@ -97,9 +94,7 @@ public class Simulation {
                 debut = debut + nbClients + 1;
                 fin = debut + delta;
             }
-
             System.out.println();
-
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

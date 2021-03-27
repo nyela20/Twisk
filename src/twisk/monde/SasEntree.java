@@ -22,4 +22,6 @@ public class SasEntree extends Activite {
                 "delai(" + getTemps() + "," + getEcartTemps() + ");\n" +
                 "transfert(" + getNom() + "," + succ.getNom() + ");";
     }
+
+
 }

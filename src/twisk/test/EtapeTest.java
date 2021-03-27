@@ -21,6 +21,9 @@ class EtapeTest {
     Activite Tennis_de_table;
     Activite cent_metre;
 
+    ActiviteRestreinte yoga;
+    ActiviteRestreinte karate;
+
     Etape guichet_Fast_Food;
     Etape guichetFootball;
     Etape guichetBasketBall;
@@ -55,6 +58,9 @@ class EtapeTest {
         guichetCourse = new Guichet("guichet de course");
         guichetPiscine = new Guichet("guichet piscine");
         vipLodge = new ActiviteRestreinte("vipLodge", 360, 60);
+
+        yoga = new ActiviteRestreinte("yoga",360,60);
+        karate = new ActiviteRestreinte("Karate",360,60);
     }
 
     @org.junit.jupiter.api.Test
