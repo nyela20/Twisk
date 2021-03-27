@@ -30,7 +30,7 @@ public class Simulation {
 
         //--------------Ecriture du code MAIN.C
 
-        int nbClients = 10;
+        int nbClients = 40;
         int nbEtapes = monde.nbEtapes();
         int[] TableauDeJetons = new int[monde.nbGuichet()];
         TableauDeJetons[0] = monde.getnbJetonsNiemeEtape(1);
@@ -56,7 +56,7 @@ public class Simulation {
         boolean findeBoucle = false;
         while(!findeBoucle){
 
-            if(ou_sont_les_clients(nbEtapes, nbClients)[monde.getSasSortieNumeroEtape()*nbClients+1] == 10){
+            if(ou_sont_les_clients(nbEtapes, nbClients)[monde.getSasSortieNumeroEtape()*nbClients+1] == nbClients){
                 findeBoucle = true;
             }
             int[] tabEmplaceClients = ou_sont_les_clients(nbEtapes, nbClients);
