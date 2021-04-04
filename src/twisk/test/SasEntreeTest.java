@@ -12,7 +12,6 @@ class SasEntreeTest extends EtapeTest {
     void toC(){
         Etape sasentree = new SasEntree();
         sasentree.ajouterSuccesseur(vipLodge);
-        System.out.println(sasentree.toC());
         String res = "entrer("+ sasentree.getNom() +");\n" +
                 "delai(3,1);\n" +
                 "transfert("+sasentree.getNom()+","+sasentree.iterator().next().getNom()+");";

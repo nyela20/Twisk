@@ -28,15 +28,9 @@ public abstract class Etape implements Iterable<Etape> {
      *
      * @param etapes à rajouter
      */
+
     public void ajouterSuccesseur(Etape... etapes) {
-        for (Etape e : etapes) {
-            if (this.estUnGuichet() && e.estUneActivite() && (gestionSucc.nbSEtapes() < 1)) {
-                gestionSucc.ajouter(e);
-            }
-            if (this.estUneActivite()) {
-                gestionSucc.ajouter(e);
-            }
-        }
+        gestionSucc.ajouter(etapes);
     }
 
     /**
@@ -65,10 +59,15 @@ public abstract class Etape implements Iterable<Etape> {
 
     /**
      * retourne la définition d'un Guichet
-     *
      * @return vrai si un guichet, sinon faux
      */
     public abstract boolean estUnGuichet();
+
+    /**
+     * retourne la définition d'une Acti Rest
+     * @return vrai si un guichet, sinon faux
+     */
+    public abstract boolean estUneActiviteRestreinte();
 
     /**
      *

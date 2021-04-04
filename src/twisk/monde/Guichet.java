@@ -31,6 +31,13 @@ public class Guichet extends Etape {
         this.noSemaphore = FabriqueNumero.getInstance().getNumeroSemaphore();
     }
 
+    @Override
+    public void ajouterSuccesseur(Etape... etapes) {
+        if (etapes[0].estUneActiviteRestreinte()) {
+            super.ajouterSuccesseur(etapes[0]);
+        }
+    }
+
     public int getNoSemaphore() {
         return noSemaphore;
     }
@@ -38,7 +45,6 @@ public class Guichet extends Etape {
     public int getNbJetons() {
         return nbJetons;
     }
-
 
 
     /**
@@ -49,6 +55,11 @@ public class Guichet extends Etape {
     @Override
     public boolean estUnGuichet() {
         return true;
+    }
+
+    @Override
+    public boolean estUneActiviteRestreinte() {
+        return false;
     }
 
 
@@ -62,19 +73,24 @@ public class Guichet extends Etape {
         return false;
     }
 
+
     /**
      * code C
+     *
      * @return code C
      */
     @Override
     public String toC() {
         //---------------------a multiplier
-        Activite succ = (Activite) iterator().next();
+
+        ActiviteRestreinte succ = (ActiviteRestreinte) iterator().next();
         return "P(ids," + "num_sem" + this.getNom() + ");\n" +
                 "transfert(" + this.getNom() + "," + succ.getNom() + ");\n" +
                 "delai(" + succ.getTemps() + "," + succ.getEcartTemps() + ");\n" +
-                "V(ids,"  + "num_sem" + this.getNom() + ");\n" +
+                "V(ids," + "num_sem" + this.getNom() + ");\n" +
                 "transfert(" + succ.getNom() + "," + succ.iterator().next().getNom() + ");\n";
+
+
     }
 
 

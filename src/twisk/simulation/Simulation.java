@@ -4,7 +4,6 @@ import twisk.monde.Monde;
 import twisk.outils.KitC;
 
 
-
 public class Simulation {
 
 
@@ -30,77 +29,82 @@ public class Simulation {
 
         //--------------Ecriture du code MAIN.C
 
-        int nbClients = 40;
-        int nbEtapes = monde.nbEtapes();
+        int NB_CLIENTS = 20;
+        int NB_GUICHETS = monde.nbGuichet();
+        int NB_ETAPES = monde.nbEtapes();
+
+
+        //instanciation des jetons
         int[] TableauDeJetons = new int[monde.nbGuichet()];
-        TableauDeJetons[0] = monde.getnbJetonsNiemeEtape(1);
-        TableauDeJetons[1] = monde.getnbJetonsNiemeEtape(2);
-        TableauDeJetons[2] = monde.getnbJetonsNiemeEtape(3);
+        for (int i = 0; i < NB_GUICHETS; i++) {
+            TableauDeJetons[i] = monde.getnbJetonsNiemeEtape(i);
+        }
 
-        int[] tableauP = start_simulation(nbEtapes, 3, nbClients, TableauDeJetons);
+        int[] tableauP = start_simulation(NB_ETAPES, 3, NB_CLIENTS, TableauDeJetons);
 
 
-        //----------  afficher Client 1------------
+        //----------  Affiche les clients en dbut de simulation------------
 
         System.out.print("les clients : ");
-
-        for (int i = 0; i < nbClients - 1; i++) {
-            System.out.print(tableauP[i]+ " ");
+        for (int i = 0; i < NB_CLIENTS - 1; i++) {
+            System.out.print(tableauP[i] + " ");
         }
-        System.out.print(tableauP[nbClients - 1] + "\n\n");
-
+        System.out.print(tableauP[NB_CLIENTS - 1] + "\n\n");
 
         //----------  afficherEmplacementClient 2------------
 
-
         boolean findeBoucle = false;
-        while(!findeBoucle){
+        while (!findeBoucle) {
 
-            if(ou_sont_les_clients(nbEtapes, nbClients)[monde.getSasSortieNumeroEtape()*nbClients+1] == nbClients){
+            //condition d'arret de la bouche
+            if (ou_sont_les_clients(NB_ETAPES, NB_CLIENTS)[monde.getSasSortieNumeroEtape() * NB_CLIENTS + 1] == NB_CLIENTS) {
                 findeBoucle = true;
             }
-            int[] tabEmplaceClients = ou_sont_les_clients(nbEtapes, nbClients);
+
+            int[] tabEmplaceClients = ou_sont_les_clients(NB_ETAPES, NB_CLIENTS);
 
             int debut = 1, fin = debut + tabEmplaceClients[0], delta, k = 0;
             String sas = "SasEntree";
 
-            for(int i = 0; i<2;i++) {
-                System.out.print("etape " + i + " " + sas + " " + tabEmplaceClients[nbClients*i+k] + " client(s) ");
+            for (int i = 0; i < 2; i++) {
+                System.out.print("etape " + i + " " + sas + " " + tabEmplaceClients[NB_CLIENTS * i + k] + " client(s) ");
                 for (int j = debut; j < fin; j++) {
                     System.out.print(" " + tabEmplaceClients[j] + " ");
                 }
                 System.out.println();
-                delta = tabEmplaceClients[debut + nbClients];
-                debut = debut + nbClients + 1;
+                delta = tabEmplaceClients[debut + NB_CLIENTS];
+                debut = debut + NB_CLIENTS + 1;
                 fin = debut + delta;
                 k++;
                 sas = "SasSortie";
             }
 
-
-
-
-            for (int i = 2; i < nbEtapes; i++) {
-                System.out.print("etape " + i + " " +  monde.getNomNiemeEtape(i-2) + " " + tabEmplaceClients[debut - 1] + " client(s) ");
+            for (int i = 2; i < NB_ETAPES; i++) {
+                System.out.print("etape " + i + " " + monde.getNomNiemeEtape(i - 2) + " " + tabEmplaceClients[debut - 1] + " client(s) ");
                 for (int j = debut; j < fin; j++) {
                     System.out.print(" " + tabEmplaceClients[j] + " ");
                 }
                 System.out.print("\n");
+
                 try {
-                    delta = tabEmplaceClients[debut + nbClients];
-                }catch(Exception e){
-                    delta = 0;
+                    delta = tabEmplaceClients[debut + NB_CLIENTS];
                 }
-                debut = debut + nbClients + 1;
+                catch (Exception e){
+                    delta=0;
+                }
+                debut = debut + NB_CLIENTS + 1;
                 fin = debut + delta;
             }
             System.out.println();
+
+            //mise en pause
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+
         nettoyage();
     }
 }

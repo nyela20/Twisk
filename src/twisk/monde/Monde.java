@@ -46,21 +46,17 @@ public class Monde implements Iterable<Etape> {
     public int getnbJetonsNiemeEtape(int ieme) {
         ArrayList<Guichet> etapes = new ArrayList<>();
         for (int i = 0; i < gestioEtapes.nbEtapes(); i++) {
-            if(gestioEtapes.getIemeEtape(i).estUnGuichet()){
+            if (gestioEtapes.getIemeEtape(i).estUnGuichet()) {
                 etapes.add((Guichet) gestioEtapes.getIemeEtape(i));
             }
         }
-        return etapes.get(ieme-1).getNbJetons();
+        return etapes.get(ieme).getNbJetons();
     }
 
 
-    public String getNomNiemeEtape(int ieme){
-        if( ieme < gestioEtapes.nbEtapes()) {
-            return gestioEtapes.getIemeEtape(ieme).getNom();
-        }
-        else{
-            return null;
-        }
+    public String getNomNiemeEtape(int ieme) {
+        return gestioEtapes.getIemeEtape(ieme).getNom();
+
     }
 
     /**

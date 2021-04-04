@@ -13,6 +13,17 @@ public class ActiviteRestreinte extends Activite {
         super(nom, temps, ecartTemps);
     }
 
+
+    @Override
+    public int getTemps() {
+        return super.getTemps();
+    }
+
+    @Override
+    public int getEcartTemps() {
+        return super.getEcartTemps();
+    }
+
     /**
      * retourne le nom de l'ActivitéRestreinte
      *
@@ -21,5 +32,18 @@ public class ActiviteRestreinte extends Activite {
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    @Override
+    public boolean estUneActivite() {
+        return false;
+    }
+
+    public void ajouterSuccesseur(Etape... etapes){
+        super.ajouterSuccesseur(etapes);
+    }
+
+    public boolean estUneActiviteRestreinte(){
+        return true;
     }
 }

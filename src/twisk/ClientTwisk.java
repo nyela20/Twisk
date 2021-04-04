@@ -1,9 +1,6 @@
 package twisk;
 
-import twisk.monde.Activite;
-import twisk.monde.Etape;
-import twisk.monde.Guichet;
-import twisk.monde.Monde;
+import twisk.monde.*;
 import twisk.simulation.Simulation;
 
 public class ClientTwisk {
@@ -14,18 +11,17 @@ public class ClientTwisk {
         /* On crée un monde dans l'ordre */
 
 
-        Etape fast_food = new Activite("fast_food",4,2);
+        Etape fast_food = new Activite("fast_food",8,4);
         Etape guichet_lion = new Guichet("Guichet_lion",4);
-        Etape cage_lion = new Activite("Cage_lion",5,2);
-        Etape guichet_girafe = new Guichet("Guichet_girafe",5);
-        Etape plaine_girafe = new Activite("plaine_girafe",5,2);
+        Etape cage_lion = new ActiviteRestreinte("Cage_lion",6,2);
+        Etape guichet_girafe = new Guichet("Guichet_girafe",2);
+        Etape plaine_girafe = new ActiviteRestreinte("plaine_girafe",5,2);
         Etape guichet_zebre = new Guichet("Guichet_zebre",5);
-        Etape plaine_zebre = new Activite("plaine_zebre",5,2);
+        Etape plaine_zebre = new ActiviteRestreinte("plaine_zebre",5,2);
         Etape magasin_souvenir = new Activite("magasin_souvenir",5,2);
 
 
         monde.ajouter(fast_food,guichet_lion,cage_lion,guichet_girafe,plaine_girafe,guichet_zebre,plaine_zebre,magasin_souvenir);
-
         monde.aCommeEntree(fast_food);
         monde.aCommeSortie(magasin_souvenir);
 

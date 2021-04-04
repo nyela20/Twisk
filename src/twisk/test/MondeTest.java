@@ -89,15 +89,6 @@ class MondeTest {
     void toC(){
         //multiplier
 
-        monde.aCommeEntree(marathon);
-        monde.aCommeSortie(tennis);
-        monde.ajouter(marathon,guichetBasketBall,basketBall,tennis);
-
-        marathon.ajouterSuccesseur(guichetBasketBall);
-        guichetBasketBall.ajouterSuccesseur(basketBall);
-        basketBall.ajouterSuccesseur(tennis);
-
-        System.out.println(monde.toC());
     }
 
 

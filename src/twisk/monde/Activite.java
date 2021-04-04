@@ -65,6 +65,15 @@ public class Activite extends Etape {
         return false;
     }
 
+    @Override
+    public boolean estUneActiviteRestreinte() {
+        return false;
+    }
+
+    public void ajouterSuccesseur(Etape...etapes){
+        super.ajouterSuccesseur(etapes);
+    }
+
     /**
      * retourne une etape en langugae C
      */

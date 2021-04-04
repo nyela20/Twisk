@@ -78,26 +78,26 @@ class EtapeTest {
         tennis.ajouterSuccesseur(guichetFootball);
         assert (tennis.nbSuccesseurs() == 2) : "Impossible d'ajouter un guichet après une activité qui a déjà un successeur";
 
-        guichetFootball.ajouterSuccesseur(football);
+        guichetFootball.ajouterSuccesseur(yoga);
         assert (guichetFootball.nbSuccesseurs() == 1) : "Impossible d'ajouter une activité après un guichet";
 
         marathon.ajouterSuccesseur(guichetEscrime, guichetCourse);
         assert (marathon.nbSuccesseurs() == 2) : "Erreur deux guichet se suivent";
 
         guichetEscrime.ajouterSuccesseur(Escrime, Escrime);
-        assert (guichetEscrime.nbSuccesseurs() == 1) : "Une meme instance d'activité ne peut pas être doublé";
+        assert (guichetEscrime.nbSuccesseurs() == 0) : "Une meme instance d'activité ne peut pas être doublé";
 
         guichetPiscine.ajouterSuccesseur(Piscine);
         Piscine.ajouterSuccesseur(guichetTennis, guichetBasketBall);
         assert (guichetTennis.nbSuccesseurs() == 0) : "Erreur le premier paramètre n'est pas succéder par le second";
         assert (Piscine.nbSuccesseurs() == 2) : "Erreur lors de l'ajout avec deux Etapes en paramètre";
-        assert (guichetPiscine.nbSuccesseurs() == 1) : "vErreur lors de l'ajout de trois Etapes";
+        assert (guichetPiscine.nbSuccesseurs() == 0) : "vErreur lors de l'ajout de trois Etapes";
 
         guichetBasketBall.ajouterSuccesseur(basketBall);
         basketBall.ajouterSuccesseur(guichetBasketBall, basketBall);
         guichetBasketBall.ajouterSuccesseur(basketBall);
         basketBall.ajouterSuccesseur(guichetBasketBall);
-        assert (guichetBasketBall.nbSuccesseurs() == 1) : "Erreur lors d'un ajout multiple.";
+        assert (guichetBasketBall.nbSuccesseurs() == 0) : "Erreur lors d'un ajout multiple.";
 
     }
 
@@ -118,8 +118,8 @@ class EtapeTest {
         }
         assert (compteurTest2 == 7) : "Erreur de nombre dans l'iterateur de successeur";
 
-        guichetBasketBall.ajouterSuccesseur();
-        assert (!guichetBasketBall.iterator().hasNext()) : "Erreur l'Etape est sans successeur ";
+        guichetBasketBall.ajouterSuccesseur(yoga);
+        assert (guichetBasketBall.iterator().hasNext()) : "Erreur l'Etape est sans successeur ";
 
     }
 }
