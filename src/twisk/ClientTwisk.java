@@ -34,6 +34,7 @@ public class ClientTwisk {
         plaine_zebre.ajouterSuccesseur(magasin_souvenir);
 
         Simulation simulation = new Simulation();
+        simulation.setNbClients(3);
         simulation.simuler(monde);
     }
 }

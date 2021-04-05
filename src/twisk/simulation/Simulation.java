@@ -7,7 +7,13 @@ import twisk.outils.KitC;
 public class Simulation {
 
 
+    private int NB_CLIENTS;
+
     public Simulation(){ }
+
+    public void setNbClients(int nbClients){
+        this.NB_CLIENTS = nbClients;
+    }
 
     public native int[] start_simulation(int NB_ETAPES, int NB_GUICHET, int NB_CLIENTS, int[] tabJeton);
 
@@ -28,7 +34,6 @@ public class Simulation {
 
         //--------------Ecriture du code MAIN.C
 
-        int NB_CLIENTS = 10;
         int NB_GUICHETS = monde.nbGuichet();
         int NB_ETAPES = monde.nbEtapes();
 
