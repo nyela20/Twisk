@@ -7,8 +7,7 @@ import twisk.outils.KitC;
 public class Simulation {
 
 
-    public Simulation() {
-    }
+    public Simulation(){ }
 
     public native int[] start_simulation(int NB_ETAPES, int NB_GUICHET, int NB_CLIENTS, int[] tabJeton);
 
@@ -43,7 +42,7 @@ public class Simulation {
         int[] tableauP = start_simulation(NB_ETAPES, 3, NB_CLIENTS, TableauDeJetons);
 
 
-        //----------  Affiche les clients en dbut de simulation------------
+        //----------  Affiche les clients en début de simulation------------
 
         System.out.print("les clients : ");
         for (int i = 0; i < NB_CLIENTS - 1; i++) {

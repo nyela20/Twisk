@@ -13,7 +13,7 @@ public class Guichet extends Etape {
      *
      * @param nom le nom du guichet
      */
-    public Guichet(String nom) {
+    public Guichet(String nom){
         super(nom);
         this.nbJetons = 3;
         this.noSemaphore = FabriqueNumero.getInstance().getNumeroSemaphore();
@@ -25,15 +25,15 @@ public class Guichet extends Etape {
      * @param nom      le nom du guichet
      * @param nbJetons le nombre de jetons dans le guichet
      */
-    public Guichet(String nom, int nbJetons) {
+    public Guichet(String nom, int nbJetons){
         super(nom);
         this.nbJetons = nbJetons;
         this.noSemaphore = FabriqueNumero.getInstance().getNumeroSemaphore();
     }
 
     @Override
-    public void ajouterSuccesseur(Etape... etapes) {
-        if (etapes[0].estUneActiviteRestreinte()) {
+    public void ajouterSuccesseur(Etape... etapes){
+        if (etapes[0].estUneActiviteRestreinte()){
             super.ajouterSuccesseur(etapes[0]);
         }
     }

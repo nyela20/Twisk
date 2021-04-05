@@ -85,7 +85,7 @@ public abstract class Etape implements Iterable<Etape> {
      * @return le nom de l'Etape
      */
     @Override
-    public String toString() {
+    public String toString(){
         return nom + " : " +
                 nbSuccesseurs() +
                 " Successeur " +
