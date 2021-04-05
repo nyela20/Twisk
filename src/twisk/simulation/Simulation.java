@@ -29,7 +29,7 @@ public class Simulation {
 
         //--------------Ecriture du code MAIN.C
 
-        int NB_CLIENTS = 20;
+        int NB_CLIENTS = 10;
         int NB_GUICHETS = monde.nbGuichet();
         int NB_ETAPES = monde.nbEtapes();
 
