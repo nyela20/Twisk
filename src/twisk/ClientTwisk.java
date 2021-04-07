@@ -8,33 +8,27 @@ public class ClientTwisk {
 
         Monde monde = new Monde();
 
-        /* On crée un monde dans l'ordre */
+        Activite zoo = new Activite("balade_au_zoo", 3, 1);
+        Guichet guichettob = new Guichet("acces_au_toboggan", 2);
+        Activite tob = new ActiviteRestreinte("toboggan", 2, 1);
+        Guichet guichetpiscne = new Guichet("acces_a_la_piscine",2);
+        Activite piscine = new ActiviteRestreinte("piscine",3,1);
 
+        monde.ajouter(zoo, guichettob,guichetpiscne,tob,piscine);
 
-        Etape fast_food = new Activite("fast_food",8,4);
-        Etape guichet_lion = new Guichet("Guichet_lion",4);
-        Etape cage_lion = new ActiviteRestreinte("Cage_lion",6,2);
-        Etape guichet_girafe = new Guichet("Guichet_girafe",2);
-        Etape plaine_girafe = new ActiviteRestreinte("plaine_girafe",5,2);
-        Etape guichet_zebre = new Guichet("Guichet_zebre",5);
-        Etape plaine_zebre = new ActiviteRestreinte("plaine_zebre",5,2);
-        Etape magasin_souvenir = new Activite("magasin_souvenir",5,2);
+        zoo.ajouterSuccesseur(guichettob);
+        guichettob.ajouterSuccesseur(tob);
+        tob.ajouterSuccesseur(guichetpiscne);
+        guichetpiscne.ajouterSuccesseur(piscine);
 
+        monde.aCommeEntree(zoo);
+        monde.aCommeSortie(piscine);
 
-        monde.ajouter(fast_food,guichet_lion,cage_lion,guichet_girafe,plaine_girafe,guichet_zebre,plaine_zebre,magasin_souvenir);
-        monde.aCommeEntree(fast_food);
-        monde.aCommeSortie(magasin_souvenir);
-
-        fast_food.ajouterSuccesseur(guichet_lion);
-        guichet_lion.ajouterSuccesseur(cage_lion);
-        cage_lion.ajouterSuccesseur(guichet_girafe);
-        guichet_girafe.ajouterSuccesseur(plaine_girafe);
-        plaine_girafe.ajouterSuccesseur(guichet_zebre);
-        guichet_zebre.ajouterSuccesseur(plaine_zebre);
-        plaine_zebre.ajouterSuccesseur(magasin_souvenir);
-
-        Simulation simulation = new Simulation();
-        simulation.setNbClients(3);
-        simulation.simuler(monde);
+        Simulation s = new Simulation();
+        s.setNbClients(5);
+        s.simuler(monde);
     }
+
+
+
 }

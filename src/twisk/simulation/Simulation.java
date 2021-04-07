@@ -1,6 +1,7 @@
 package twisk.simulation;
 
 import twisk.monde.Monde;
+import twisk.monde.SasEntree;
 import twisk.outils.KitC;
 
 
@@ -8,8 +9,11 @@ public class Simulation {
 
 
     private int NB_CLIENTS;
+    private GestionnaireClients gestionnaireClients;
 
-    public Simulation(){ }
+    public Simulation(){
+        gestionnaireClients = new GestionnaireClients();
+    }
 
     public void setNbClients(int nbClients){
         this.NB_CLIENTS = nbClients;
@@ -57,6 +61,11 @@ public class Simulation {
 
         //----------  afficherEmplacementClient 2------------
 
+        //déplacement des clients dans sasentree
+        for(Client client : gestionnaireClients){
+            client.allerA(monde.getSasEntree(),0);
+        }
+
         boolean findeBoucle = false;
         while (!findeBoucle) {
 
@@ -65,7 +74,10 @@ public class Simulation {
                 findeBoucle = true;
             }
 
+
             int[] tabEmplaceClients = ou_sont_les_clients(NB_ETAPES, NB_CLIENTS);
+
+
 
             int debut = 1, fin = debut + tabEmplaceClients[0], delta, k = 0;
             String sas = "SasEntree";
@@ -84,7 +96,7 @@ public class Simulation {
             }
 
             for (int i = 2; i < NB_ETAPES; i++) {
-                System.out.print("etape " + i + " " + monde.getNomNiemeEtape(i - 2) + " " + tabEmplaceClients[debut - 1] + " client(s) ");
+                System.out.print("etape " + i + " " + monde.getNomNiemeEtape(i-2) + " " + tabEmplaceClients[debut - 1] + " client(s) ");
                 for (int j = debut; j < fin; j++) {
                     System.out.print(" " + tabEmplaceClients[j] + " ");
                 }

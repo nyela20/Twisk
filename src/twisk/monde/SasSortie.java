@@ -14,5 +14,9 @@ public class SasSortie extends Activite {
         return super.toString();
     }
 
+    @Override
+    public String getNom(){
+        return "Sas_Sortie";
+    }
 
 }

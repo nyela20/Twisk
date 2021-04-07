@@ -23,5 +23,10 @@ public class SasEntree extends Activite {
                 "transfert(" + getNom() + "," + succ.getNom() + ");";
     }
 
+    @Override
+    public String getNom(){
+        return "Sas_Entree";
+    }
+
 
 }

@@ -149,6 +149,15 @@ public class Monde implements Iterable<Etape> {
                 sasSortie;
     }
 
+
+    public Etape getSasEntree(){
+        return sasEntree;
+    }
+
+    public Etape getSasSortie(){
+        return sasSortie;
+    }
+
     /**
      * retourne l'itérateur de GestionEtapes
      *
