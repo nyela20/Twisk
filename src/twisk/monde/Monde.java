@@ -1,5 +1,6 @@
 package twisk.monde;
 
+import twisk.Exceptions.ExceptionObjetNonTrouve;
 import twisk.outils.FabriqueNumero;
 
 import java.util.ArrayList;
@@ -74,6 +75,27 @@ public class Monde implements Iterable<Etape> {
     }
 
     /**
+     * retourne l'Etape ayant le
+     * même nom que celui donné en paramètre
+     * @param nom le nom de l'Etape
+     * @return l'Etape
+     */
+    public Etape getEtape(String nom) throws ExceptionObjetNonTrouve {
+        if(nom.equals(sasEntree.getNom())){
+            return sasEntree;
+        }
+        if(nom.equals(sasSortie.getNom())){
+            return  sasSortie;
+        }
+        for(Etape etape : this){
+            if(etape.getNom().equals(nom)){
+                return etape;
+            }
+        }
+        throw new ExceptionObjetNonTrouve("Aucun etape trouvé portant ce nom");
+    }
+
+    /**
      * Ajoute successivement des Etapes au Monde
      *
      * @param etapes les Etape  à ajoutés
@@ -123,7 +145,7 @@ public class Monde implements Iterable<Etape> {
         affichage.append("\n#define ").append(sasSortie.getNom()).append(" ").append(sasSortie.getNumeroEtape()).append("\n\n");
 
         //Ecritures des defines des numero des semamphores
-        System.out.println("");
+        System.out.println();
         for (Etape e : gestioEtapes) {
             if (e.estUnGuichet()) {
                 affichage.append("#define ");
@@ -156,15 +178,6 @@ public class Monde implements Iterable<Etape> {
         return sasEntree + "\n\n" +
                 gestioEtapes + "\n" +
                 sasSortie;
-    }
-
-
-    public Etape getSasEntree() {
-        return sasEntree;
-    }
-
-    public Etape getSasSortie() {
-        return sasSortie;
     }
 
     /**

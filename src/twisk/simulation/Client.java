@@ -3,8 +3,8 @@ package twisk.simulation;
 import twisk.monde.Etape;
 
 public class Client {
-    private int numeroClient;
-    private int rangClient;
+    private final int numeroClient;
+    private int rang;
     private Etape etapeClient;
 
     public Client(int numero){
@@ -13,15 +13,15 @@ public class Client {
 
     public void allerA(Etape etape,int rang){
         etapeClient = etape;
-        rangClient = rang;
+        this.rang = rang;
     }
 
     public int getNumeroClient(){
         return numeroClient;
     }
 
-    public int getRangClient(){
-        return rangClient;
+    public int getRang(){
+        return rang;
     }
 
     public Etape getEtapeClient(){

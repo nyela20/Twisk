@@ -1,10 +1,10 @@
 package twisk.simulation;
 
+import twisk.Exceptions.ExceptionObjetNonTrouve;
 import twisk.monde.Etape;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 
 public class GestionnaireClients implements Iterable<Client> {
 
@@ -36,6 +36,22 @@ public class GestionnaireClients implements Iterable<Client> {
                 client.allerA(etape,rang);
             }
         }
+    }
+
+    /**
+     * retourne un client ayant le mếmé numéro
+     * que celui donné en paramètre
+     * @param num numéro du client
+     * @return le client
+     * @throws ExceptionObjetNonTrouve si aucun client trouvé
+     */
+    public Client getClient(int num) throws ExceptionObjetNonTrouve {
+        for(Client client : gestionnaireClients){
+            if(client.getNumeroClient() == num){
+                return client;
+            }
+        }
+        throw new ExceptionObjetNonTrouve("Aucun clients trouvé portant ce numéro");
     }
 
     public void reset(){

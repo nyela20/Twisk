@@ -6,15 +6,12 @@ import twisk.monde.*;
 import twisk.outils.FabriqueNumero;
 import twisk.simulation.Simulation;
 
-import java.sql.SQLOutput;
 
 
 class MondeTest {
 
     Monde monde;
 
-    Etape tennis = new Activite("Tennis", 80, 5);
-    Etape marathon = new Activite("Marathon");
     Etape football;
     Etape basketBall;
 
@@ -26,7 +23,7 @@ class MondeTest {
         monde = new Monde();
 
         football = new Activite("Football", 90, 15);
-        basketBall = new Activite("BasketBall", 120, 10);
+        basketBall = new ActiviteRestreinte("BasketBall");
 
         guichetFootball = new Guichet("guichet de Football");
         guichetBasketBall = new Guichet("guichet de BasketBall");
@@ -86,32 +83,12 @@ class MondeTest {
         monde.aCommeSortie(basketBall);
     }
 
+
     @Test
     void toC(){
         Monde monde = new Monde();
 
-        Activite zoo = new Activite("balade_au_zoo", 3, 1);
-        Guichet guichet = new Guichet("acces_au_toboggan", 2);
-        Activite tob = new ActiviteRestreinte("toboggan", 2, 1);
-
-        zoo.ajouterSuccesseur(guichet);
-        guichet.ajouterSuccesseur(tob);
-
-        monde.ajouter(tob, zoo, guichet);
-
-        monde.aCommeEntree(zoo);
-        monde.aCommeSortie(tob);
-
-        Simulation s = new Simulation();
-        s.setNbClients(5);
-        s.simuler(monde);
-    }
-
-    @Test
-    void toC2(){
-        Monde monde = new Monde();
-
-        Activite tob = new ActiviteRestreinte("toboggan", 2, 1);
+        Activite tob = new Activite("toboggan", 2, 1);
         Activite zoo = new Activite("balade_au_zoo", 3, 1);
 
         zoo.ajouterSuccesseur(tob);
@@ -121,6 +98,38 @@ class MondeTest {
 
         Simulation s = new Simulation();
         s.setNbClients(5);
-        s.simuler(monde);
+        try {
+            s.simuler(monde);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void toC2(){
+        Monde monde2 = new Monde();
+
+        Activite zoo = new Activite("zoo", 2, 1);
+        Etape Guichettob = new Guichet("guichet_tob", 2);
+        Activite tob = new ActiviteRestreinte("toboggan", 2, 1);
+        Etape GuichetPiscine = new Guichet("guichet_piscine", 3);
+        Activite piscine = new ActiviteRestreinte("piscine", 2, 1);
+
+
+        zoo.ajouterSuccesseur(Guichettob);
+        Guichettob.ajouterSuccesseur(tob);
+        tob.ajouterSuccesseur(GuichetPiscine);
+        GuichetPiscine.ajouterSuccesseur(piscine);
+        monde2.ajouter(tob,zoo,Guichettob,GuichetPiscine,piscine);
+        monde2.aCommeEntree(zoo);
+        monde2.aCommeSortie(piscine);
+
+        Simulation s = new Simulation();
+        s.setNbClients(15);
+        try {
+            s.simuler(monde2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

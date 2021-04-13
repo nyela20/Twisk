@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import twisk.monde.Activite;
 import twisk.monde.Etape;
-import twisk.simulation.Client;
 import twisk.simulation.GestionnaireClients;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,7 +38,7 @@ class GestionnaireClientsTest {
         assertEquals(gestionnaireClients.iterator().next().getNumeroClient(),11111,"Erreur la fonction ne manipule pas le processus donnée en paramètre.");
         assertEquals(gestionnaireClients.iterator().next().getNumeroClient(),11111,"Erreur la fonction ne manipule pas le processus donnée en paramètre.");
         assertEquals(gestionnaireClients.iterator().next().getEtapeClient(),etape,"erreur l'étape donnée en paramètre n'a pas été assigné au client");
-        assertEquals(gestionnaireClients.iterator().next().getRangClient(),0,"erreur le rang donéne en paramètre n'apas été assigné au client");
+        assertEquals(gestionnaireClients.iterator().next().getRang(),0,"erreur le rang donéne en paramètre n'apas été assigné au client");
     }
 
 
