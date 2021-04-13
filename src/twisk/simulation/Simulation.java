@@ -54,7 +54,7 @@ public class Simulation {
         //----------  Affiche les clients en début de simulation------------
 
         System.out.print("les clients : ");
-        for (int i = 0; i < NB_CLIENTS - 1; i++) {
+        for (int i = 0; i < NB_CLIENTS - 1; i++){
             System.out.print(tableauP[i] + " ");
         }
         System.out.print(tableauP[NB_CLIENTS - 1] + "\n\n");
@@ -74,10 +74,7 @@ public class Simulation {
                 findeBoucle = true;
             }
 
-
             int[] tabEmplaceClients = ou_sont_les_clients(NB_ETAPES, NB_CLIENTS);
-
-
 
             int debut = 1, fin = debut + tabEmplaceClients[0], delta, k = 0;
             String sas = "SasEntree";

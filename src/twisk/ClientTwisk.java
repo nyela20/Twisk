@@ -14,7 +14,7 @@ public class ClientTwisk {
         Guichet guichetpiscne = new Guichet("acces_a_la_piscine",2);
         Activite piscine = new ActiviteRestreinte("piscine",3,1);
 
-        monde.ajouter(zoo, guichettob,guichetpiscne,tob,piscine);
+        monde.ajouter(zoo, guichettob,tob,guichetpiscne,piscine);
 
         zoo.ajouterSuccesseur(guichettob);
         guichettob.ajouterSuccesseur(tob);
