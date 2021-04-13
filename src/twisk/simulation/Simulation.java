@@ -1,8 +1,8 @@
 package twisk.simulation;
 
 import twisk.monde.Monde;
-import twisk.monde.SasEntree;
 import twisk.outils.KitC;
+
 
 
 public class Simulation {
@@ -11,11 +11,12 @@ public class Simulation {
     private int NB_CLIENTS;
     private GestionnaireClients gestionnaireClients;
 
-    public Simulation(){
+    public Simulation() {
         gestionnaireClients = new GestionnaireClients();
     }
 
-    public void setNbClients(int nbClients){
+    public void setNbClients(int nbClients) {
+        assert(nbClients > 0) : "erreur valeur nbclients.";
         this.NB_CLIENTS = nbClients;
     }
 
@@ -50,21 +51,15 @@ public class Simulation {
 
         int[] tableauP = start_simulation(NB_ETAPES, 3, NB_CLIENTS, TableauDeJetons);
 
-
         //----------  Affiche les clients en début de simulation------------
 
         System.out.print("les clients : ");
-        for (int i = 0; i < NB_CLIENTS - 1; i++){
+        for (int i = 0; i < NB_CLIENTS - 1; i++) {
             System.out.print(tableauP[i] + " ");
         }
         System.out.print(tableauP[NB_CLIENTS - 1] + "\n\n");
 
         //----------  afficherEmplacementClient 2------------
-
-        //déplacement des clients dans sasentree
-        for(Client client : gestionnaireClients){
-            client.allerA(monde.getSasEntree(),0);
-        }
 
         boolean findeBoucle = false;
         while (!findeBoucle) {
@@ -73,44 +68,11 @@ public class Simulation {
             if (ou_sont_les_clients(NB_ETAPES, NB_CLIENTS)[monde.getSasSortieNumeroEtape() * NB_CLIENTS + 1] == NB_CLIENTS) {
                 findeBoucle = true;
             }
-
             int[] tabEmplaceClients = ou_sont_les_clients(NB_ETAPES, NB_CLIENTS);
 
-            int debut = 1, fin = debut + tabEmplaceClients[0], delta, k = 0;
-            String sas = "SasEntree";
-
-            for (int i = 0; i < 2; i++) {
-                System.out.print("etape " + i + " " + sas + " " + tabEmplaceClients[NB_CLIENTS * i + k] + " client(s) ");
-                for (int j = debut; j < fin; j++) {
-                    System.out.print(" " + tabEmplaceClients[j] + " ");
-                }
-                System.out.println();
-                delta = tabEmplaceClients[debut + NB_CLIENTS];
-                debut = debut + NB_CLIENTS + 1;
-                fin = debut + delta;
-                k++;
-                sas = "SasSortie";
-            }
-
-            for (int i = 2; i < NB_ETAPES; i++) {
-                System.out.print("etape " + i + " " + monde.getNomNiemeEtape(i-2) + " " + tabEmplaceClients[debut - 1] + " client(s) ");
-                for (int j = debut; j < fin; j++) {
-                    System.out.print(" " + tabEmplaceClients[j] + " ");
-                }
-                System.out.print("\n");
-
-                try {
-                    delta = tabEmplaceClients[debut + NB_CLIENTS];
-                }
-                catch (Exception e){
-                    delta=0;
-                }
-                debut = debut + NB_CLIENTS + 1;
-                fin = debut + delta;
-            }
-            System.out.println();
-
-            //mise en pause
+            tabEmplaceClients = ou_sont_les_clients(NB_ETAPES, NB_CLIENTS);
+            affichage_tab(tabEmplaceClients, NB_ETAPES, monde);
+            System.out.println("\n");
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -118,6 +80,25 @@ public class Simulation {
             }
         }
 
+
+        System.out.println();
+
+        //mise en pause
         nettoyage();
+    }
+
+    public void affichage_tab(int[] tab, int nb_etapes, Monde monde) {
+
+        for (int i = 0; i < nb_etapes; i++) {
+
+            System.out.print("Etape " + i + " (" + monde.getNomNiemeEtape(i) + ") " + tab[(i * (NB_CLIENTS + 1))] + " clients :\t");
+
+            for (int j = 1; j <= tab[(i * (NB_CLIENTS + 1))]; j++) {
+                if (tab[(i * (NB_CLIENTS + 1) + j)] != 0) {
+                    System.out.print(tab[(i * (NB_CLIENTS + 1) + j)] + " ");
+                }
+            }
+            System.out.println();
+        }
     }
 }

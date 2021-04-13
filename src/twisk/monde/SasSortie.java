@@ -19,4 +19,8 @@ public class SasSortie extends Activite {
         return super.getNom();
     }
 
+    public String toC(){
+        return "";
+    }
+
 }

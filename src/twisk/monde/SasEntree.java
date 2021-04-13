@@ -20,7 +20,7 @@ public class SasEntree extends Activite {
         Etape succ = iterator().next();
         return "entrer(" + getNom() + ");\n" +
                 "delai(" + getTemps() + "," + getEcartTemps() + ");\n" +
-                "transfert(" + getNom() + "," + succ.getNom() + ");";
+                "transfert(" + getNom() + "," + succ.getNom() + ");" + succ.toC();
     }
 
     @Override

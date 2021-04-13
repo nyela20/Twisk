@@ -13,6 +13,10 @@ public class ActiviteRestreinte extends Activite {
         super(nom, temps, ecartTemps);
     }
 
+    public ActiviteRestreinte(String nom){
+        super(nom);
+    }
+
 
     @Override
     public int getTemps() {
@@ -38,7 +42,7 @@ public class ActiviteRestreinte extends Activite {
     }
 
     public String toC(){
-        return "";
+        return iterator().next().toC();
     }
 
 

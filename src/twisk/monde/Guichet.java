@@ -81,19 +81,17 @@ public class Guichet extends Etape {
      */
     @Override
     public String toC() {
-        //---------------------a multiplier
         ActiviteRestreinte succ = (ActiviteRestreinte) iterator().next();
         return "\nP(ids," + "num_sem" + this.getNom() + ");\n" +
                 "transfert(" + this.getNom() + "," + succ.getNom() + ");\n" +
                 "delai(" + succ.getTemps() + "," + succ.getEcartTemps() + ");\n" +
                 "V(ids," + "num_sem" + this.getNom() + ");\n" +
-                "transfert(" + succ.getNom() + "," + succ.iterator().next().getNom() + ");\n";
+                "transfert(" + succ.getNom() + "," + succ.iterator().next().getNom() + ");\n" + succ.toC();
     }
 
 
     /**
      * retourne le nom de l'Etape
-     *
      * @return le nom du guichet en format string
      */
     @Override

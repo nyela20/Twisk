@@ -15,7 +15,7 @@ public class Monde implements Iterable<Etape> {
     /**
      * Constructeur d'un Monde
      */
-    public Monde() {
+    public Monde(){
         FabriqueNumero.getInstance().reset();
         this.sasEntree = new SasEntree();
         this.gestioEtapes = new GestionnaireEtapes();
@@ -55,8 +55,22 @@ public class Monde implements Iterable<Etape> {
 
 
     public String getNomNiemeEtape(int ieme) {
-        return gestioEtapes.getIemeEtape(ieme).getNom();
+        if (ieme == 0) {
+            return sasEntree.getNom();
+        }
+        if (ieme == 1) {
+            return sasSortie.getNom();
+        }
+        //  return gestioEtapes.getIemeEtape(ieme - 2).getNom();
 
+
+        for (int i = 2; i < nbEtapes() ; i++) {
+            if (gestioEtapes.getIemeEtape(i-2).getNumeroEtape() == ieme) {
+                return gestioEtapes.getIemeEtape(i-2).getNom();
+            }
+        }
+        System.out.println();
+        return null;
     }
 
     /**
@@ -73,7 +87,7 @@ public class Monde implements Iterable<Etape> {
      *
      * @return le nb d'Etape dans le monde
      */
-    public int nbEtapes() {
+    public int nbEtapes(){
         return gestioEtapes.nbEtapes() + 2;
     }
 
@@ -126,9 +140,7 @@ public class Monde implements Iterable<Etape> {
         affichage.append("void simulation(int ids){\n");
 
         affichage.append(sasEntree.toC());
-        for (Etape e : gestioEtapes) {
-            affichage.append(e.toC());
-        }
+        sasEntree.toC();
         affichage.append("}");
         //Fin
         return affichage.toString();
@@ -147,11 +159,11 @@ public class Monde implements Iterable<Etape> {
     }
 
 
-    public Etape getSasEntree(){
+    public Etape getSasEntree() {
         return sasEntree;
     }
 
-    public Etape getSasSortie(){
+    public Etape getSasSortie() {
         return sasSortie;
     }
 

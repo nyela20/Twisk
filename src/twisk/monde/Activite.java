@@ -81,7 +81,7 @@ public class Activite extends Etape {
 
         Etape succ = iterator().next();
         return "\ndelai(" + temps + "," + ecartTemps + ");\n" +
-                "transfert(" + getNom() + "," + succ.getNom() + ");\n" ;
+                "transfert(" + getNom() + "," + succ.getNom() + ");\n" + succ.toC() ;
     }
     /**
      * retourne le nom de l'activité
