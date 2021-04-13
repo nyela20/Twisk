@@ -1,8 +1,5 @@
 package twisk.test;
 
-
-import twisk.monde.Activite;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ActiviteTest extends EtapeTest {

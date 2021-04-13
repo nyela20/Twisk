@@ -6,7 +6,7 @@ public class SasSortie extends Activite {
      * Constructeur d'un SasSortie
      */
     public SasSortie() {
-        super("SasSortie", 0, 0);
+        super("Sas_Sortie", 0, 0);
     }
 
     @Override
@@ -16,7 +16,7 @@ public class SasSortie extends Activite {
 
     @Override
     public String getNom(){
-        return "Sas_Sortie";
+        return super.getNom();
     }
 
 }

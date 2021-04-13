@@ -38,7 +38,7 @@ public class Monde implements Iterable<Etape> {
      */
     public void aCommeSortie(Etape... etapes) {
         for (Etape e : etapes) {
-            assert (e.estUneActivite()) : "un guichet comme sortie est impossible.";
+//            assert (e.estUneActivite()) : "un guichet comme sortie est impossible.";
             e.ajouterSuccesseur(sasSortie);
         }
     }
@@ -104,10 +104,7 @@ public class Monde implements Iterable<Etape> {
         for (Etape e : gestioEtapes) {
             affichage.append("#define ").append(e.getNom()).append(" ").append(e.getNumeroEtape()).append("\n");
         }
-        affichage.append("\n");
-
-        affichage.append("#define ").append(sasSortie.getNom()).append(" ").append(sasSortie.getNumeroEtape()).append("\n\n");
-
+        affichage.append("\n#define ").append(sasSortie.getNom()).append(" ").append(sasSortie.getNumeroEtape()).append("\n\n");
 
         //Ecritures des defines des numero des semamphores
         System.out.println("");
@@ -127,8 +124,10 @@ public class Monde implements Iterable<Etape> {
         while (it.hasNext()) {
             Etape e = it.next();
             affichage.append(e.toC());
-            if (e.estUnGuichet()) {
-                it.next();
+            if (e.estUneActiviteRestreinte()) {
+                if(it.hasNext()){
+                    it.next();
+                }
             }
         }
         affichage.append("}");
