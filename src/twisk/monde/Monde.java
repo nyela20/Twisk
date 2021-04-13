@@ -94,6 +94,8 @@ public class Monde implements Iterable<Etape> {
     public String toC() {
         StringBuilder affichage = new StringBuilder();
 
+        //----------------------------------EN TETE CLIENT.C
+
         //Ecriture des includes
         affichage.append("#include<stdio.h>\n");
         affichage.append("#include<stdlib.h>\n");
@@ -117,21 +119,17 @@ public class Monde implements Iterable<Etape> {
             }
         }
 
+
+        //------------------------------------------------------FONCTION SIMULER
+
         //Ecriture de la fonction Simuler
         affichage.append("void simulation(int ids){\n");
+
         affichage.append(sasEntree.toC());
-        Iterator<Etape> it = gestioEtapes.iterator();
-        while (it.hasNext()) {
-            Etape e = it.next();
+        for (Etape e : gestioEtapes) {
             affichage.append(e.toC());
-            if (e.estUneActiviteRestreinte()) {
-                if(it.hasNext()){
-                    it.next();
-                }
-            }
         }
         affichage.append("}");
-
         //Fin
         return affichage.toString();
     }

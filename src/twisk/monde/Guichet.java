@@ -83,7 +83,7 @@ public class Guichet extends Etape {
     public String toC() {
         //---------------------a multiplier
         ActiviteRestreinte succ = (ActiviteRestreinte) iterator().next();
-        return "P(ids," + "num_sem" + this.getNom() + ");\n" +
+        return "\nP(ids," + "num_sem" + this.getNom() + ");\n" +
                 "transfert(" + this.getNom() + "," + succ.getNom() + ");\n" +
                 "delai(" + succ.getTemps() + "," + succ.getEcartTemps() + ");\n" +
                 "V(ids," + "num_sem" + this.getNom() + ");\n" +

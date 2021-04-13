@@ -24,16 +24,6 @@ public class ActiviteRestreinte extends Activite {
         return super.getEcartTemps();
     }
 
-    /**
-     * retourne le nom de l'ActivitéRestreinte
-     *
-     * @return le nom de l'activité en string
-     */
-    @Override
-    public String toString() {
-        return super.toString();
-    }
-
     @Override
     public boolean estUneActivite() {
         return false;
@@ -46,4 +36,23 @@ public class ActiviteRestreinte extends Activite {
     public boolean estUneActiviteRestreinte(){
         return true;
     }
+
+    public String toC(){
+        return "";
+    }
+
+
+    /**
+     * retourne le nom de l'ActivitéRestreinte
+     *
+     * @return le nom de l'activité en string
+     */
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
+
+
+
 }
