@@ -39,7 +39,7 @@ public class Monde implements Iterable<Etape> {
      */
     public void aCommeSortie(Etape... etapes) {
         for (Etape e : etapes) {
-//            assert (e.estUneActivite()) : "un guichet comme sortie est impossible.";
+            assert (e.estUneActivite() || e.estUneActiviteRestreinte()) : "un guichet comme sortie est impossible.";
             e.ajouterSuccesseur(sasSortie);
         }
     }
@@ -70,7 +70,6 @@ public class Monde implements Iterable<Etape> {
                 return gestioEtapes.getIemeEtape(i-2).getNom();
             }
         }
-        System.out.println();
         return null;
     }
 

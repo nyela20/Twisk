@@ -46,7 +46,7 @@ public class Simulation {
         for (int i = 0; i < NB_GUICHETS; i++) {
             TableauDeJetons[i] = monde.getnbJetonsNiemeEtape(i);
         }
-        int[] tableauClientsStep = start_simulation(NB_ETAPES, 3, NB_CLIENTS, TableauDeJetons);
+        int[] tableauClientsStep = start_simulation(NB_ETAPES, NB_GUICHETS, NB_CLIENTS, TableauDeJetons);
         //ajouter les clients dans le monde
         gestionnaireClients.setClients(tableauClientsStep);
 
