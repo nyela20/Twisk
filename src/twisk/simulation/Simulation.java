@@ -2,6 +2,7 @@ package twisk.simulation;
 
 import twisk.Exceptions.ExceptionObjetNonTrouve;
 import twisk.monde.Monde;
+import twisk.outils.FabriqueNumero;
 import twisk.outils.KitC;
 
 
@@ -15,6 +16,11 @@ public class Simulation {
         gestionnaireClients = new GestionnaireClients();
     }
 
+
+    /**
+     * assigner le nombre de client(s) dans le monde
+     * @param nbClients le nombre de client
+     */
     public void setNbClients(int nbClients) {
         assert (nbClients > 0) : "erreur valeur nbclients.";
         this.NB_CLIENTS = nbClients;
@@ -26,15 +32,20 @@ public class Simulation {
 
     public native void nettoyage();
 
+    /**
+     * Lance la simulation du monde
+     * @param monde le monde à simuler
+     */
     public void simuler(Monde monde) {
 
+        String libnum= String.valueOf(FabriqueNumero.getInstance().getNumerolibrairie());
         System.out.println(monde);
         KitC kitC = new KitC();
         kitC.creerEnvironnement();
         kitC.creerFichier(monde.toC());
         kitC.compiler();
-        kitC.construireLaLibrairie();
-        System.load("/tmp/twisk/libTwisk.so");
+        kitC.construireLaLibrairie(libnum);
+        System.load("/tmp/twisk/libTwisk"+libnum+".so");
 
 
         //--------------Ecriture du code MAIN.C
@@ -77,7 +88,6 @@ public class Simulation {
 
     /**
      * la fonction affiche les Etapes et la positions des clients dans le monde
-     *
      * @param tab       un tableau contenant le numéro des clients
      * @param nb_etapes le nombre d'étape(s) dans le monde
      * @param monde     le monde

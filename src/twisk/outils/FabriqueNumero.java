@@ -5,6 +5,7 @@ public class FabriqueNumero {
     private static final FabriqueNumero instance = new FabriqueNumero();
     private int cptEtape;
     private int cptSemaphore;
+    private int libnum;
 
     /**
      * Constructeur du Singleton
@@ -12,6 +13,7 @@ public class FabriqueNumero {
     private FabriqueNumero() {
         this.cptEtape = 0;
         this.cptSemaphore = 1;
+        this.libnum = 1;
     }
 
     /**
@@ -32,6 +34,16 @@ public class FabriqueNumero {
         assert (cptEtape >= 0) : "Le compteur ne doit pas être négatif.";
         cptEtape++;
         return cptEtape - 1;
+    }
+
+    /**
+     * retourne un numéro unique pour la librairie
+     * @return un numéro unique pour la libraire
+     */
+    public int getNumerolibrairie(){
+        assert(libnum > 0) :"le numéro de librairie est inférieur/égale à 0";
+        libnum++;
+        return libnum -1;
     }
 
     /**
