@@ -79,7 +79,7 @@ public class Monde implements Iterable<Etape> {
      * @param nom le nom de l'Etape
      * @return l'Etape
      */
-    public Etape getEtape(String nom) throws ExceptionObjetNonTrouve {
+    public Etape getEtape(String nom) {
         if(nom.equals(sasEntree.getNom())){
             return sasEntree;
         }
@@ -91,7 +91,8 @@ public class Monde implements Iterable<Etape> {
                 return etape;
             }
         }
-        throw new ExceptionObjetNonTrouve("Aucun etape trouvé portant ce nom");
+        return null;
+      //  throw new ExceptionObjetNonTrouve("Aucun etape trouvé portant ce nom");
     }
 
     /**

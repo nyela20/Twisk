@@ -26,7 +26,7 @@ public class Simulation {
 
     public native void nettoyage();
 
-    public void simuler(Monde monde) throws ExceptionObjetNonTrouve {
+    public void simuler(Monde monde) {
 
         System.out.println(monde);
         KitC kitC = new KitC();
@@ -83,7 +83,7 @@ public class Simulation {
      * @param monde     le monde
      * @throws ExceptionObjetNonTrouve lance un exception dans le getter
      */
-    public void affichage_tab_deplacementClients(int[] tab, int nb_etapes, Monde monde) throws ExceptionObjetNonTrouve {
+    public void affichage_tab_deplacementClients(int[] tab, int nb_etapes, Monde monde){
         for (int i = 0; i < nb_etapes; i++) {
             System.out.print("Etape " + i + " (" + monde.getNomNiemeEtape(i) + ") " + tab[(i * (NB_CLIENTS + 1))] + " clients :\t");
             for (int j = 1; j <= tab[(i * (NB_CLIENTS + 1))]; j++) {

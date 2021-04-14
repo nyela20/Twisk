@@ -43,15 +43,15 @@ public class GestionnaireClients implements Iterable<Client> {
      * que celui donné en paramètre
      * @param num numéro du client
      * @return le client
-     * @throws ExceptionObjetNonTrouve si aucun client trouvé
      */
-    public Client getClient(int num) throws ExceptionObjetNonTrouve {
+    public Client getClient(int num){
         for(Client client : gestionnaireClients){
             if(client.getNumeroClient() == num){
                 return client;
             }
         }
-        throw new ExceptionObjetNonTrouve("Aucun clients trouvé portant ce numéro");
+        return null;
+      //  throw new ExceptionObjetNonTrouve("Aucun clients trouvé portant ce numéro");
     }
 
     public void reset(){
