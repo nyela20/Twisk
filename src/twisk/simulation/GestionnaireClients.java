@@ -1,6 +1,5 @@
 package twisk.simulation;
 
-import twisk.Exceptions.ExceptionObjetNonTrouve;
 import twisk.monde.Etape;
 
 import java.util.ArrayList;

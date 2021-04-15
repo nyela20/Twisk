@@ -1,0 +1,65 @@
+/*--bouton__activite---*/
+
+#buttonActivite0 {
+   -fx-background-color: #fffd1d;
+    -fx-text-fill: black;
+}
+
+#buttonActivite1 {
+    -fx-background-color:
+      linear-gradient(#f2f2f2, #d6d6d6),
+      linear-gradient(#dddddd 50%, #f6f6f6 25%);
+      -fx-font-weight: bold;
+      -fx-effect: dropshadow( three-pass-box , rgba(0,0,255,0.8)  , 20, 0.6 , 0 , 1 );
+}
+
+#buttonActivite2 {
+   -fx-background-color: #ffd65b;
+    -fx-text-fill: white;
+}
+
+#buttonActivite3 {
+   -fx-background-color: #F08080;
+    -fx-text-fill: white;
+}
+
+#buttonActivite4 {
+   -fx-background-color: #833917;
+    -fx-text-fill: white;
+}
+
+
+/*--bouton__guichet--*/
+
+#buttonGuichet0 {
+    -fx-background-color: #27e5f5;
+    -fx-text-fill: black;
+}
+
+#buttonGuichet1 {
+    -fx-background-color:
+      linear-gradient(#f2f2f2, #d6d6d6),
+      linear-gradient(#dddddd 50%, #f6f6f6 25%);
+      -fx-font-weight: bold;
+      -fx-effect: dropshadow( three-pass-box , rgba(0,255,0,0.8)  , 20, 0.6 , 0 , 1 );
+}
+
+#buttonGuichet2 {
+    -fx-background-color:  #41f025;
+    -fx-text-fill: black;
+}
+
+#buttonGuichet3 {
+    -fx-background-color:  #ffee00;
+    -fx-text-fill: black;
+}
+
+#buttonGuichet4 {
+    -fx-background-color:  #bd20ba ;
+    -fx-text-fill: black;
+}
+
+
+
+
+

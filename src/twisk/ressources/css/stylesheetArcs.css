@@ -1,0 +1,79 @@
+
+
+/*--ligne séléctionnée style---*/
+#ligne_selected{
+    -fx-stroke-width: 5;
+    -fx-stroke: red;
+}
+#polygonfleche_selected{
+    -fx-stroke-width: 5;
+    -fx-stroke: red;
+    -fx-fill: red;
+}
+
+/*Style par défault*/
+
+#ligne0_not_selected{
+    -fx-stroke-width: 5;
+    -fx-stroke: #fce620;
+}
+
+#polygonfleche0_not_selected{
+    -fx-stroke-width: 5;
+    -fx-stroke: #fce620;
+    -fx-fill: #fce620;
+}
+
+/*--Style-1--*/
+
+#ligne1_not_selected{
+    -fx-stroke-width: 5;
+    -fx-stroke: #8078e0;
+}
+
+#polygonfleche1_not_selected{
+    -fx-stroke-width: 5;
+    -fx-stroke: #8078e0;
+    -fx-fill: #8078e0;
+}
+
+/*--Style-2--*/
+
+#ligne2_not_selected{
+    -fx-stroke-width: 5;
+    -fx-stroke: #fb9c0e;
+}
+
+#polygonfleche2_not_selected{
+    -fx-stroke-width: 5;
+    -fx-stroke: #fb9c0e;
+    -fx-fill: #fb9c0e;
+}
+
+
+/*--Style-3--*/
+
+#ligne3_not_selected{
+    -fx-stroke-width: 5;
+    -fx-stroke: #F08080;
+}
+
+#polygonfleche3_not_selected{
+    -fx-stroke-width: 5;
+    -fx-stroke: #F08080;
+    -fx-fill: #F08080;
+}
+
+
+/*--Style-4--*/
+
+#ligne4_not_selected{
+    -fx-stroke-width: 5;
+    -fx-stroke: black;
+}
+
+#polygonfleche4_not_selected{
+    -fx-stroke-width: 5;
+    -fx-stroke: black;
+    -fx-fill: black;
+}

@@ -1,6 +1,6 @@
 package twisk.simulation;
 
-import twisk.Exceptions.ExceptionObjetNonTrouve;
+import twisk.exceptionstwisk.ExceptionObjetNonTrouve;
 import twisk.monde.Monde;
 import twisk.outils.FabriqueNumero;
 import twisk.outils.KitC;
@@ -38,13 +38,14 @@ public class Simulation {
      */
     public void simuler(Monde monde) {
 
+        FabriqueNumero.getInstance().incrementerlibrairenum();
         String libnum= String.valueOf(FabriqueNumero.getInstance().getNumerolibrairie());
         System.out.println(monde);
         KitC kitC = new KitC();
         kitC.creerEnvironnement();
         kitC.creerFichier(monde.toC());
         kitC.compiler();
-        kitC.construireLaLibrairie(libnum);
+        kitC.construireLaLibrairie();
         System.load("/tmp/twisk/libTwisk"+libnum+".so");
 
 
@@ -98,11 +99,11 @@ public class Simulation {
             System.out.print("Etape " + i + " (" + monde.getNomNiemeEtape(i) + ") " + tab[(i * (NB_CLIENTS + 1))] + " clients :\t");
             for (int j = 1; j <= tab[(i * (NB_CLIENTS + 1))]; j++) {
                 if (tab[(i * (NB_CLIENTS + 1) + j)] != 0) {
-                    System.out.print(tab[(i * (NB_CLIENTS + 1) + j)] + " ");
                     Client clientinterm = gestionnaireClients.getClient(tab[(i * (NB_CLIENTS + 1) + j)]);
                     clientinterm.allerA(monde.getEtape(monde.getNomNiemeEtape(i)), 0);
-                    //System.out.print("le client numéro: " + tab[(i * (NB_CLIENTS + 1) + j)] + " ");
-                    //System.out.println("est à l'étape" + clientinterm.getEtapeClient());
+                    System.out.print(tab[(i * (NB_CLIENTS + 1) + j)] + " ");
+                  //System.out.println("\nle client numéro: " + tab[(i * (NB_CLIENTS + 1) + j)] + " ");
+                  //System.out.println("est à l'étape " + clientinterm.getEtapeClient());
                 }
             }
             System.out.println();

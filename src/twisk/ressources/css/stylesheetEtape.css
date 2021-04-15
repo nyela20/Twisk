@@ -1,0 +1,344 @@
+
+
+/*.............................................................................................STYLE ACTIVITE.........*/
+
+/*Style par défault*/
+
+#activite0_not_selected{
+   -fx-background-color:
+   linear-gradient(#fffd37 , #fffd1d),
+   radial-gradient(center 50% -40%, radius 200%, #fffd1d 45%, #fffd1d 50%);
+   -fx-background-radius: 6, 5;
+   -fx-background-insets: 0, 1;
+   -fx-effect: dropshadow( three-pass-box , rgba(150,150,0,0.7) , 10, 0.0 , 0 , 1 );
+   -fx-text-fill: #395306;
+   -fx-font-weight: normal;
+}
+
+#activite0_selected{
+         -fx-background-color:
+         linear-gradient(#fffd37 , #fffd1d),
+         radial-gradient(center 50% -40%, radius 200%, #fffd1d 45%, #fffd1d 50%);
+         -fx-background-radius: 6, 5;
+         -fx-background-insets: 0, 1;
+         -fx-effect: dropshadow( three-pass-box , rgba(150,150,0,0.7) , 15, 0.0 , 0 , 1 );
+         -fx-text-fill: #395306;
+         -fx-font-weight: bold;
+}
+
+#activite0_hbox_clients{
+    -fx-background-color:
+    linear-gradient(#f2f2f2, #d6d6d6),
+    linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+    linear-gradient(#dddddd 50%, #f6f6f6 100%);
+    -fx-border-color: #0059FF;
+    -fx-padding: 40 0 0 0;
+}
+
+/*--Style-1--*/
+
+#activite1_selected{
+   -fx-background-color:
+   linear-gradient(#f2f2f2, #d6d6d6),
+   linear-gradient(#dddddd 50%, #f6f6f6 25%);
+   -fx-font-weight: bold;
+   -fx-effect: dropshadow( three-pass-box , rgba(0,0,255,0.8)  , 15, 0.0 , 0 , 1 );
+}
+
+#activite1_not_selected{
+   -fx-background-color: linear-gradient(#f2f2f2, #d6d6d6), linear-gradient(#dddddd 50%, #f6f6f6 25%);
+   -fx-font-weight: normal;
+   -fx-effect: dropshadow( three-pass-box , rgba(0,0,255,0.8)  , 15, 0.0 , 0 , 1 );
+}
+
+#activite1_hbox_clients {
+    -fx-background-color:
+    linear-gradient(#f2f2f2, #d6d6d6),
+    linear-gradient(#dddddd 0%, #f6f6f6 0%);
+    -fx-border-color: #0059FF;
+    -fx-padding: 40 0 0 0;
+}
+
+
+
+
+/*--Style-2--*/
+
+#activite2_selected {
+    -fx-background-color:
+        linear-gradient(#ffd65b, #e68400),
+        linear-gradient(#ffef84, #f2ba44),
+        linear-gradient(#ffea6a, #efaa22),
+        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),
+        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 30;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: #654b00;
+    -fx-font-weight: bold;
+    -fx-padding: 0 20 0 20;
+}
+
+#activite2_not_selected {
+    -fx-background-color:
+        linear-gradient(#ffd65b, #e68400),
+        linear-gradient(#ffef84, #f2ba44),
+        linear-gradient(#ffea6a, #efaa22),
+        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),
+        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 30;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: #654b00;
+    -fx-font-weight: normal;
+    -fx-padding: 0 20 0 20;
+}
+
+#activite2_hbox_clients{
+    -fx-background-color:
+    linear-gradient(#f2f2f2, #d6d6d6),
+    linear-gradient(#dddddd 0%, #f6f6f6 0%);
+    -fx-border-color: #0059FF;
+    -fx-padding: 40 0 0 0;
+}
+
+
+/*--Style-3--*/
+
+#activite3_not_selected{
+   -fx-background-color:
+   linear-gradient(#f0ff35, #a9ff00),
+   radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
+   -fx-background-radius: 6, 5;
+   -fx-background-insets: 0, 1;
+   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 10, 0.0 , 0 , 1 );
+   -fx-text-fill: #395306;
+   -fx-font-weight: normal;
+}
+
+#activite3_selected{
+   -fx-background-color:
+   linear-gradient(#f0ff35, #a9ff00),
+   radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
+   -fx-background-radius: 6, 5;
+   -fx-background-insets: 0, 1;
+   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 10, 0.0 , 0 , 1 );
+   -fx-text-fill: #395306;
+   -fx-font-weight: bold;
+}
+
+#activite3_hbox_clients{
+    -fx-background-color:
+    linear-gradient(#F08080, #F08080),
+    linear-gradient(#F08080 0%, #FA8072 20%, #E9967A 100%),
+    linear-gradient(#FFA07A 0%, #CD5C5C 50%);
+    -fx-border-color: #0059FF;
+    -fx-padding: 40 0 0 0;
+}
+
+
+/*--Style-4--*/
+
+#activite4_selected{
+           -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+           -fx-background-radius: 8;
+           -fx-background-color:
+               linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
+               #9d4024,
+               #d86e3a,
+               radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c);
+           -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+           -fx-font-weight: bold;
+           -fx-font-size: 1.1em;
+}
+
+#activite4_not_selected{
+              -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+              -fx-background-radius: 8;
+              -fx-background-color:
+                  linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
+                  #9d4024,
+                  #d86e3a,
+                  radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c);
+              -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+              -fx-font-weight: normal;
+              -fx-font-size: 1.1em;
+}
+
+#activite4_hbox_clients {
+    -fx-background-color:
+    linear-gradient(#f2f2f2, #d6d6d6),
+    linear-gradient(#dddddd 0%, #f6f6f6 0%);
+    -fx-border-color: #0059FF;
+    -fx-padding: 40 0 0 0;
+}
+
+/*.............................................................................................STYLE GUICHET.........*/
+
+/*Style par défault*/
+
+
+#guichet0_not_selected{
+   -fx-background-color:
+   linear-gradient(#27e5f5 , #25e0f0),
+   radial-gradient(center 50% -40%, radius 200%, #25e0f0 45%, #25e0f0 50%);
+   -fx-background-radius: 6, 5;
+   -fx-background-insets: 0, 1;
+   -fx-effect: dropshadow( three-pass-box , rgba(0,0,150,0.4) , 10, 0.0 , 0 , 1 );
+   -fx-text-fill: #25e0f0;
+   -fx-font-weight: normal;
+}
+
+#guichet0_selected{
+         -fx-background-color:
+         linear-gradient(#27e5f5 , #27e5f5),
+         radial-gradient(center 50% -40%, radius 200%, #27e5f5 45%, #27e5f5 50%);
+         -fx-background-radius: 6, 5;
+         -fx-background-insets: 0, 1;
+         -fx-effect: dropshadow( three-pass-box , rgba(0,0,150,0.4) , 10, 0.0 , 0 , 1 );
+         -fx-text-fill: #27e5f5;
+         -fx-font-weight: bold;
+}
+
+#guichet0_hbox_clients{
+    -fx-background-color:
+    linear-gradient(#f2f2f2, #d6d6d6),
+    linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+    linear-gradient(#dddddd 50%, #f6f6f6 100%);
+    -fx-border-color: #0059FF;
+    -fx-padding: 40 0 0 0;
+}
+
+/*--Style-1--*/
+
+#guichet1_selected{
+   -fx-background-color:
+   linear-gradient(#f2f2f2, #d6d6d6),
+   linear-gradient(#dddddd 50%, #f6f6f6 25%);
+   -fx-font-weight: bold;
+   -fx-effect: dropshadow( three-pass-box , rgba(0,255,0,0.8)  , 15, 0.0 , 0 , 1 );
+}
+
+#guichet1_not_selected{
+   -fx-background-color: linear-gradient(#f2f2f2, #d6d6d6), linear-gradient(#dddddd 50%, #f6f6f6 25%);
+   -fx-font-weight: normal;
+   -fx-effect: dropshadow( three-pass-box , rgba(0,255,0,0.8)  , 15, 0.0 , 0 , 1 );
+}
+
+#guichet1_hbox_clients {
+    -fx-background-color:
+    linear-gradient(#f2f2f2, #d6d6d6),
+    linear-gradient(#dddddd 0%, #f6f6f6 0%);
+    -fx-border-color: rgba(0,255,0,0.8);
+    -fx-padding: 40 0 0 0;
+}
+
+
+
+
+/*--Style-2--*/
+
+#guichet2_selected {
+    -fx-background-color:
+        linear-gradient( #41f025 ,  #41f025 ),
+        linear-gradient( #41f025 ,  #41f025 ),
+        linear-gradient( #41f025 ,  #41f025 ),
+        linear-gradient( #41f025  0%,  #41f025  50%,  #41f025  100%),
+        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 30;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: #654b00;
+    -fx-font-weight: bold;
+    -fx-padding: 0 20 0 20;
+}
+
+#guichet2_not_selected {
+    -fx-background-color:
+        linear-gradient( #41f025 ,  #41f025 ),
+        linear-gradient( #41f025 ,  #41f025 ),
+        linear-gradient( #41f025 ,  #41f025 ),
+        linear-gradient( #41f025  0%,  #41f025  50%,  #41f025  100%),
+        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 30;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: #654b00;
+    -fx-font-weight: normal;
+    -fx-padding: 0 20 0 20;
+}
+
+#guichet2_hbox_clients{
+    -fx-background-color:
+    linear-gradient(#f2f2f2, #d6d6d6),
+    linear-gradient(#dddddd 0%, #f6f6f6 0%);
+    -fx-border-color: #0059FF;
+    -fx-padding: 40 0 0 0;
+}
+
+
+/*--Style-3--*/
+
+#guichet3_not_selected{
+   -fx-background-color:
+   linear-gradient( #ffee00 ,  #ffee00 ),
+   radial-gradient(center 50% -40%, radius 200%,  #ffee00  45%,  #ffee00  50%);
+   -fx-background-radius: 6, 5;
+   -fx-background-insets: 0, 1;
+   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 10, 0.0 , 0 , 1 );
+   -fx-text-fill: #395306;
+   -fx-font-weight: normal;
+}
+
+#guichet3_selected{
+   -fx-background-color:
+   linear-gradient( #ffee00 ,  #ffee00 ),
+   radial-gradient(center 50% -40%, radius 200%,  #ffee00  45%,  #ffee00  50%);
+   -fx-background-radius: 6, 5;
+   -fx-background-insets: 0, 1;
+   -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 10, 0.0 , 0 , 1 );
+   -fx-text-fill: #395306;
+   -fx-font-weight: bold;
+}
+
+#guichet3_hbox_clients{
+    -fx-background-color:
+    linear-gradient( #ffb600 ,  #ffb600 ),
+    linear-gradient( #ffb600  0%,  #ffb600  20%,  #ffb600  100%),
+    linear-gradient( #ffb600  0%,  #ffb600  50%);
+    -fx-border-color: #0059FF;
+    -fx-padding: 40 0 0 0;
+}
+
+
+/*--Style-4--*/
+
+#guichet4_selected{
+           -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+           -fx-background-radius: 8;
+           -fx-background-color:
+               linear-gradient(from 0% 93% to 0% 100%,  #bd20ba  0%, #bd20ba  100%),
+                #bd20ba ,
+                #bd20ba ,
+               radial-gradient(center 50% 50%, radius 100%,  #bd20ba ,  #bd20ba );
+           -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+           -fx-font-weight: bold;
+           -fx-font-size: 1.1em;
+}
+
+#guichet4_not_selected{
+              -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+              -fx-background-radius: 8;
+              -fx-background-color:
+                  linear-gradient(from 0% 93% to 0% 100%,  #bd20ba  0%,  #bd20ba  100%),
+                  #bd20ba ,
+                   #bd20ba ,
+                  radial-gradient(center 50% 50%, radius 100%,  #bd20ba ,  #bd20ba );
+              -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+              -fx-font-weight: normal;
+              -fx-font-size: 1.1em;
+}
+
+#guichet4_hbox_clients {
+    -fx-background-color:
+    linear-gradient(#f2f2f2, #d6d6d6),
+    linear-gradient(#dddddd 0%, #f6f6f6 0%);
+    -fx-border-color: #0059FF;
+    -fx-padding: 40 0 0 0;
+}

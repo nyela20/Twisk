@@ -37,13 +37,19 @@ public class FabriqueNumero {
     }
 
     /**
+     * la fonction incrément +1 la valeur du numéro de librairie
+     */
+    public void incrementerlibrairenum(){
+        libnum++;
+    }
+
+    /**
      * retourne un numéro unique pour la librairie
      * @return un numéro unique pour la libraire
      */
     public int getNumerolibrairie(){
         assert(libnum > 0) :"le numéro de librairie est inférieur/égale à 0";
-        libnum++;
-        return libnum -1;
+        return libnum;
     }
 
     /**

@@ -81,8 +81,9 @@ public class KitC {
         }
     }
 
-    public void construireLaLibrairie(String tag) {
+    public void construireLaLibrairie() {
         try {
+            String tag = String.valueOf(FabriqueNumero.getInstance().getNumerolibrairie());
             Runtime runtime = Runtime.getRuntime();
             Process p = runtime.exec("gcc -shared /tmp/twisk/programmeC.o /tmp/twisk/codeNatif.o /tmp/twisk/client.o -o /tmp/twisk/libTwisk"+tag+".so");
             p.waitFor();

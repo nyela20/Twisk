@@ -1,6 +1,5 @@
 package twisk.monde;
 
-import twisk.Exceptions.ExceptionObjetNonTrouve;
 import twisk.outils.FabriqueNumero;
 
 import java.util.ArrayList;

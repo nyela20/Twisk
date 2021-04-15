@@ -1,6 +1,5 @@
 package twisk;
 
-import twisk.Exceptions.ExceptionObjetNonTrouve;
 import twisk.monde.*;
 import twisk.outils.ClassLoaderPerso;
 import twisk.simulation.Simulation;
@@ -11,14 +10,26 @@ import java.lang.reflect.Method;
 
 public class ClientTwisk{
 
+    private static void start(Monde monde,int nbclients) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+
+        /*-? la fonction pourrait être simplifier .... ou pas ? mais au moins elle est d'apparence claire. -*/
+        ClassLoaderPerso classLoaderPerso = new ClassLoaderPerso(ClientTwisk.class.getClassLoader());
+        Class<?>loadClass = classLoaderPerso.loadClass("twisk.simulation.Simulation");
+        Constructor<?> co = loadClass.getConstructor();
+        Object simulation = co.newInstance();
+        assert(simulation.getClass().equals(Simulation.class)) : "erreur newInstance() Simulation";
+        Method m1 = simulation.getClass().getMethod("setNbClients",int.class);
+        m1.invoke(simulation,nbclients);
+        Method m2 = simulation.getClass().getMethod("simuler",Monde.class);
+        m2.invoke(simulation, monde);
+        classLoaderPerso.finalize();
+    }
 
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
 
         /*----monde1---*/
         Monde monde = new Monde();
-        ClassLoaderPerso classLoaderPerso = new ClassLoaderPerso(monde.getClass().getClassLoader());
-        classLoaderPerso.loadClass("twisk.simulation.Simulation");
 
         Etape guichet_lion = new Guichet("Guichet_lion", 4);
         Etape guichet_girafe = new Guichet("Guichet_girafe", 4);
@@ -39,19 +50,11 @@ public class ClientTwisk{
         guichet_zebre.ajouterSuccesseur(plaine_zebre);
         plaine_zebre.ajouterSuccesseur(magasin_souvenir);
         monde.aCommeSortie(magasin_souvenir);
-
-       Simulation simulation = new Simulation() ;
-       simulation.setNbClients(5);
-       simulation.simuler(monde);
-
-       // start(monde,5);
+        start(monde,5);
 
 
         /*----monde2---*/
         Monde monde2 = new Monde();
-
-        ClassLoaderPerso classLoaderPerso2 = new ClassLoaderPerso(monde2.getClass().getClassLoader());
-        classLoaderPerso2.loadClass("twisk.simulation.Simulation");
 
         Activite zoo = new Activite("zoo", 2, 1);
         Etape Guichettob = new Guichet("guichet_tob", 4);
@@ -66,14 +69,31 @@ public class ClientTwisk{
         GuichetPiscine.ajouterSuccesseur(piscine);
         monde2.aCommeEntree(zoo);
         monde2.aCommeSortie(piscine);
+        start(monde2,15);
 
-        Simulation simulation2 = new Simulation() ;
-        simulation2.setNbClients(5);
-        simulation2.simuler(monde);
+        /*----monde3---*/
+        Monde monde3 = new Monde();
 
+        Etape guichet_lion2 = new Guichet("Guichet_lion2", 4);
+        Etape guichet_girafe2 = new Guichet("Guichet_girafe2", 4);
+        Etape plaine_girafe2 = new ActiviteRestreinte("plaine_girafe2", 2, 1);
+        Etape guichet_zebre2 = new Guichet("Guichet_zebre2", 4);
+        Etape fast_food2 = new Activite("fast_food2", 2, 1);
+        Etape plaine_zebre2 = new ActiviteRestreinte("plaine_zebre2", 2, 1);
+        Etape magasin_souvenir2 = new Activite("magasin_souvenir2", 2, 1);
+        Etape cage_lion2 = new ActiviteRestreinte("Cage_lion2", 5, 2);
 
-       // start(monde2,15);
-
+        monde3.ajouter(fast_food2, guichet_lion2, plaine_girafe2,cage_lion2, guichet_girafe2, guichet_zebre2, plaine_zebre2, magasin_souvenir2);
+        monde3.aCommeEntree(fast_food2);
+        fast_food2.ajouterSuccesseur(guichet_lion2);
+        guichet_lion2.ajouterSuccesseur(cage_lion2);
+        cage_lion2.ajouterSuccesseur(guichet_girafe2);
+        guichet_girafe2.ajouterSuccesseur(plaine_girafe2);
+        plaine_girafe2.ajouterSuccesseur(guichet_zebre2);
+        guichet_zebre2.ajouterSuccesseur(plaine_zebre2);
+        plaine_zebre2.ajouterSuccesseur(magasin_souvenir2);
+        monde3.aCommeSortie(magasin_souvenir2);
+        start(monde3,25);
     }
 }
 
