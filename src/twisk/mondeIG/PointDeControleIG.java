@@ -8,10 +8,22 @@ import java.util.Objects;
 
 public class PointDeControleIG  {
     private final Point centre = new Point();
-    private final String identifiant;
     private final EtapeIG etape;
     private final String position;
     private boolean estSelectionne;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PointDeControleIG)) return false;
+        PointDeControleIG that = (PointDeControleIG) o;
+        return estSelectionne == that.estSelectionne && centre.equals(that.centre) && etape.equals(that.etape) && position.equals(that.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(centre, etape, position, estSelectionne);
+    }
 
     /**
      * Constructeur d'un PointDeControleIG
@@ -21,7 +33,7 @@ public class PointDeControleIG  {
     public PointDeControleIG(EtapeIG etp, String pos){
         position = pos;
         etape = etp;
-        identifiant = FabriqueIdentifiant.getInstance().getPointDeControleIdentifiant();
+        String identifiant = FabriqueIdentifiant.getInstance().getPointDeControleIdentifiant();
         estSelectionne = false;
         assignerPosition(pos);
     }
@@ -33,23 +45,23 @@ public class PointDeControleIG  {
      */
     public void assignerPosition(String pos){
         switch (pos) {
-            case "haut" -> {
+            case "haut" :
                 centre.x = etape.getPosX() + etape.getLargeur() / 2;
                 centre.y = etape.getPosY();
-            }
-            case "bas" -> {
+
+            case "bas" :
                 centre.x = etape.getPosX() + etape.getLargeur() / 2;
                 centre.y = etape.getPosY() + etape.getHauteur();
-            }
-            case "droite" -> {
+
+            case "droite" :
                 centre.x = etape.getPosX() + etape.getLargeur();
                 centre.y = etape.getPosY() + etape.getHauteur() / 2;
-            }
-            case "gauche" -> {
+
+            case "gauche" :
                 centre.x = etape.getPosX();
                 centre.y = etape.getPosY() + etape.getHauteur() / 2;
-            }
-            default -> throw new IllegalStateException("Unexpected value: " + pos);
+        default :
+            throw new IllegalStateException("Unexpected value: " + pos);
         }
     }
 
@@ -111,16 +123,4 @@ public class PointDeControleIG  {
         return etape;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PointDeControleIG that)) return false;
-        return estSelectionne == that.estSelectionne && centre.equals(that.centre) && identifiant.equals(that.identifiant) && etape.equals(that.etape) && position.equals(that.position);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(centre, identifiant, etape, position, estSelectionne);
-    }
 }
