@@ -48,20 +48,28 @@ public class PointDeControleIG  {
             case "haut" :
                 centre.x = etape.getPosX() + etape.getLargeur() / 2;
                 centre.y = etape.getPosY();
+                break;
 
             case "bas" :
                 centre.x = etape.getPosX() + etape.getLargeur() / 2;
                 centre.y = etape.getPosY() + etape.getHauteur();
+                break;
+
 
             case "droite" :
                 centre.x = etape.getPosX() + etape.getLargeur();
                 centre.y = etape.getPosY() + etape.getHauteur() / 2;
+                break;
+
 
             case "gauche" :
                 centre.x = etape.getPosX();
                 centre.y = etape.getPosY() + etape.getHauteur() / 2;
-        default :
+                break;
+
+            default :
             throw new IllegalStateException("Unexpected value: " + pos);
+
         }
     }
 
