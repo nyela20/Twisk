@@ -43,7 +43,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
             }
             if (type.equals("Guichet")) {
                 String identifiant = FabriqueIdentifiant.getInstance().getIdentifiant();
-                GuichetIG guichet = new GuichetIG("Guichet", identifiant, 200, 75);
+                GuichetIG guichet = new GuichetIG("Guichet", identifiant, 200, 60);
                 TableauEtapesIG.put(guichet.getIdentifiant(), guichet);
                 notifierObservateur();
             }
@@ -263,12 +263,6 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
                 throw new ExceptionsInvaliditeSurLesArcs("Impossible de créer et arc, une Entrée ne peut pas être successeur d'une Sortie");
             }
             for (ArcIG arcIG : TableauArcsIG) {
-                if (arcIG.getPointDarrive().equals(arc.getpointDeDepart())
-                        || arcIG.getPointDarrive().equals(arc.getPointDarrive())
-                        || arcIG.getpointDeDepart().equals(arc.getPointDarrive())
-                        || arcIG.getpointDeDepart().equals(arc.getpointDeDepart())) {
-                    throw new ExceptionsInvaliditeSurLesArcs("Eviter de créer un arc à partir un des point déjà occupé. C'est pas joli.");
-                }
                 if (arcIG.aCommeDebut(arc.getEtapeDebut()) && arcIG.aCommeArrive(arc.getEtapeArrive())) {
                     throw new ExceptionsInvaliditeSurLesArcs("Impossible de créer cet arc, il existe déjà un arc qui relie ces deux étapes");
                 } else {

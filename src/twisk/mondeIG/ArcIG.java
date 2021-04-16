@@ -106,8 +106,7 @@ public class ArcIG {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ArcIG)) return false;
-        ArcIG arcIG = (ArcIG) o;
+        if (!(o instanceof ArcIG arcIG)) return false;
         return estSelectionne == arcIG.estSelectionne && pointDeDepart.equals(arcIG.pointDeDepart) && getPointDarrive().equals(arcIG.getPointDarrive()) && getEtapeArrive().equals(arcIG.getEtapeArrive()) && getEtapeDebut().equals(arcIG.getEtapeDebut()) && identifiant.equals(arcIG.identifiant);
     }
 

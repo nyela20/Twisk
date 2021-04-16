@@ -23,7 +23,7 @@ public class EcouteurMenuEcartTemps extends EcouteurAbstractMenu {
             if(super.getMonde().nombreActiviteSelectionne() > 1){
                 throw new ExceptionVueMenu("Il ya trop d'Etapes séléctionnés, il faut en séléctionner un seul pour cet action.");
             }
-            super.getBoiteDialogue().setHeaderText("Assigner un délai");
+            super.getBoiteDialogue().setHeaderText("Assigner un écart-temps");
             super.getBoiteDialogue().showAndWait();
             String delai = super.getBoiteDialogue().getEditor().getText();
             if(!estUnEntier(delai)){

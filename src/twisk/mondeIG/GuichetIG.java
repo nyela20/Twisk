@@ -18,7 +18,7 @@ public class GuichetIG extends EtapeIG{
 
     /**
      * assigne le nombre de jetons du guichet
-     * @param nombreDeJetons
+     * @param nombreDeJetons nbjetons
      */
     public void setNombreDeJetons(int nombreDeJetons){
         this.NombreDeJetons = nombreDeJetons;

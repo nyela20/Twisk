@@ -32,29 +32,24 @@ public class PointDeControleIG  {
      * @param pos la position sur l'Etape
      */
     public void assignerPosition(String pos){
-        switch(pos){
-            case "haut" :
-                centre.x = etape.getPosX()+etape.getLargeur()/2;
+        switch (pos) {
+            case "haut" -> {
+                centre.x = etape.getPosX() + etape.getLargeur() / 2;
                 centre.y = etape.getPosY();
-                break;
-
-            case "bas" :
-                centre.x = etape.getPosX()+etape.getLargeur()/2;
-                centre.y = etape.getPosY()+etape.getHauteur();
-                break;
-
-            case "droite" :
-                centre.x = etape.getPosX()+etape.getLargeur();
-                centre.y = etape.getPosY()+etape.getHauteur()/2;
-                break;
-
-            case "gauche" :
+            }
+            case "bas" -> {
+                centre.x = etape.getPosX() + etape.getLargeur() / 2;
+                centre.y = etape.getPosY() + etape.getHauteur();
+            }
+            case "droite" -> {
+                centre.x = etape.getPosX() + etape.getLargeur();
+                centre.y = etape.getPosY() + etape.getHauteur() / 2;
+            }
+            case "gauche" -> {
                 centre.x = etape.getPosX();
-                centre.y = etape.getPosY()+etape.getHauteur()/2;
-                break;
-
-            default:
-                throw new IllegalStateException("Unexpected value: " + pos);
+                centre.y = etape.getPosY() + etape.getHauteur() / 2;
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + pos);
         }
     }
 
@@ -120,8 +115,7 @@ public class PointDeControleIG  {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PointDeControleIG)) return false;
-        PointDeControleIG that = (PointDeControleIG) o;
+        if (!(o instanceof PointDeControleIG that)) return false;
         return estSelectionne == that.estSelectionne && centre.equals(that.centre) && identifiant.equals(that.identifiant) && etape.equals(that.etape) && position.equals(that.position);
     }
 

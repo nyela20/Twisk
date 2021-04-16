@@ -20,7 +20,7 @@ public abstract class EcouteurAbstractMenu implements EventHandler<ActionEvent> 
 
     /**
      * La fonction retourne vrai si le String est composé uniquement d'entier
-     * de [0 à 9], sinon faux
+     * de [0 à 9]*, sinon faux
      *
      * @param chaine la chaine à verifier
      * @return vrai si c'est un entier, sinon faux

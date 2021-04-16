@@ -12,7 +12,6 @@ public class ClientTwisk{
 
     private static void start(Monde monde,int nbclients) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
-        /*-? la fonction pourrait être simplifier .... ou pas ? mais au moins elle est d'apparence claire. -*/
         ClassLoaderPerso classLoaderPerso = new ClassLoaderPerso(ClientTwisk.class.getClassLoader());
         Class<?>loadClass = classLoaderPerso.loadClass("twisk.simulation.Simulation");
         Constructor<?> co = loadClass.getConstructor();

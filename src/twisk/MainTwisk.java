@@ -2,9 +2,12 @@ package twisk;
 
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import twisk.ecouteurs.EcouteurMenuRenommer;
+import twisk.keys.KeyEvents;
 import twisk.mondeIG.MondeIG;
 import twisk.vues.VueMenu;
 import twisk.vues.VueMondeIG;
@@ -23,18 +26,29 @@ public class MainTwisk extends Application {
         primaryStage.setTitle("twiskIG");
 
         BorderPane root = new BorderPane();
-        root.setBottom(new VueOutils(monde));
-        root.setTop(new VueMenu(monde));
-        root.setCenter(new VueMondeIG(monde));
+
+        VueOutils vueOutils = new VueOutils(monde);
+        root.setBottom(vueOutils);
+
+        VueMenu vueMenu = new VueMenu(monde);
+        root.setTop(vueMenu);
+
+        VueMondeIG vueMondeIG = new VueMondeIG(monde);
+        root.setCenter(vueMondeIG);
 
         Scene scene = new Scene(root, LargeurPanneauPrincipale, HauteurPanneauPrincipale);
+
+        scene.setOnKeyPressed(new KeyEvents(monde));
+
         scene.getStylesheets().addAll("twisk/ressources/css/stylesheet.css",
                 "twisk/ressources/css/stylesheetEtape.css","twisk/ressources/css/stylesheetArcs.css");
 
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
     public static void main(String[] args) {
         launch(args);
     }
+
 }

@@ -23,6 +23,7 @@ public class EcouterStartDragged implements EventHandler<MouseEvent> {
         identifiant = id;
     }
 
+
     @Override
     public void handle(MouseEvent mouseEvent) {
         Dragboard dragboard = vue.startDragAndDrop(TransferMode.MOVE);
