@@ -26,7 +26,6 @@ public class MainTwisk extends Application {
         primaryStage.setTitle("twiskIG");
 
         BorderPane root = new BorderPane();
-
         VueOutils vueOutils = new VueOutils(monde);
         root.setBottom(vueOutils);
 

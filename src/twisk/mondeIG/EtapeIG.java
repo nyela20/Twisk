@@ -17,7 +17,7 @@ public abstract class EtapeIG implements Iterable<PointDeControleIG>{
     private boolean estSelectionne;
     private boolean estUneEntree;
     private boolean estUneSortie;
-
+    private String Couleur;
 
     /**
      * Constructeur d'une EtapeIG
@@ -38,11 +38,12 @@ public abstract class EtapeIG implements Iterable<PointDeControleIG>{
         estSelectionne = false;
         estUneEntree = false;
         estUneSortie = false;
+        Couleur = "blanc";
         ajouterPointDeControle();
     }
 
     /**
-     *
+     * ajoute un PointDeControle à l'Etape
      */
     public void ajouterPointDeControle(){
         if(this.estUnGuichet()) {
@@ -78,7 +79,7 @@ public abstract class EtapeIG implements Iterable<PointDeControleIG>{
      * ajouter les 4 PointDeControles haut,bas,gauche et droite
      * d'une EtapeIG
      */
-    public void ajouterTousLesPointsDeControle(String type){
+    private void ajouterTousLesPointsDeControle(String type){
         assert(type.equals("Activite") || type.equals("Guichet")) : "Erreur type inconnu.";
         TabPointsDC.add( new PointDeControleIG(this,"droite"));
         TabPointsDC.add( new PointDeControleIG(this,"gauche"));
@@ -206,8 +207,32 @@ public abstract class EtapeIG implements Iterable<PointDeControleIG>{
         return TabPointsDC.size();
     }
 
+    /**
+     * retourne vrai si Activite sinon false
+     * @return  vrai si Activite sinon false
+     */
     public abstract boolean estUneActivite();
 
+    /**
+     * retourne vrai si Guichet sinon false
+     * @return  vrai si Guichet sinon false
+     */
     public abstract boolean estUnGuichet();
 
+    /**
+     * retourne la couleur de l'Etape
+     * @return la couleur de l'Etape
+     */
+    public String getCouleur(){
+        return Couleur;
+    }
+
+
+    /**
+     * assigne la couleur d'une Etape
+     * @param color la couleur
+     */
+    public void setCouleur(String color){
+        this.Couleur = color;
+    }
 }

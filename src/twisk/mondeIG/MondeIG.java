@@ -262,6 +262,9 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
             if (arc.getEtapeDebut().estUneSortie() && arc.getEtapeArrive().estUneEntree()) {
                 throw new ExceptionsInvaliditeSurLesArcs("Impossible de créer et arc, une Entrée ne peut pas être successeur d'une Sortie");
             }
+            if (arc.getEtapeDebut().estUnGuichet() && arc.getEtapeArrive().estUnGuichet()){
+                throw new ExceptionsInvaliditeSurLesArcs("Impossible de relier un Guichet à un autre Guichet.");
+            }
             for (ArcIG arcIG : TableauArcsIG) {
                 if (arcIG.aCommeDebut(arc.getEtapeDebut()) && arcIG.aCommeArrive(arc.getEtapeArrive())) {
                     throw new ExceptionsInvaliditeSurLesArcs("Impossible de créer cet arc, il existe déjà un arc qui relie ces deux étapes");
@@ -272,13 +275,19 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
                 }
             }
             TableauArcsIG.add(arc);
+            initDFS();
+            if (DFS(this.iterator().next())){
+                TableauArcsIG.remove(arc);
+                throw new ExceptionsInvaliditeSurLesArcs("Circuit détécté, les circuits ne sont pas gérés par Twisk.");
+            }
         }
         catch(Exception e){
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
         pt1.setEstSelectionne(false);
         pt2.setEstSelectionne(false);
     }
+
 
 
     /**
@@ -347,6 +356,54 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
         }
         notifierObservateur();
     }
+
+
+
+    /**
+     * retourne un Tableau d'EtapeIG qui sont les successeurs
+     * de l'Etape donnée en paramètre
+     * @param etapeIG l'Etape
+     * @return les successeurs de l'Etape
+     */
+    private ArrayList<EtapeIG> getSuccesseur(EtapeIG etapeIG){
+        ArrayList<EtapeIG> etapeIGArrayList = new ArrayList<>();
+        for(ArcIG arc : TableauArcsIG){
+            if(arc.aCommeDebut(etapeIG)){
+                etapeIGArrayList.add(arc.getEtapeArrive());
+            }
+        }
+        return etapeIGArrayList;
+    }
+
+    /**
+     * initialise le parcours en DFS
+     */
+    private void initDFS(){
+        for(EtapeIG etapeIG : this){
+            etapeIG.setCouleur("blanc");
+        }
+    }
+
+    /**
+     * PARCOURS EN PROFONDEUR POUR DETECTÉ LES CIRCUITS
+     * DFS récursif
+     * @param sommet sommet de départ
+     * @return vrai si il existe un circuit, sinon faux
+     */
+    private boolean DFS(EtapeIG sommet){
+        sommet.setCouleur("gris");
+        for(EtapeIG succ : getSuccesseur(sommet)){
+            if(succ.getCouleur() == "blanc"){
+                DFS(succ);
+            }
+            if(succ.getCouleur() == "gris"){
+                    return true;
+            }
+        }
+        sommet.setCouleur("noir");
+        return false;
+    }
+
 
     /**
      * la fonction vide le tableau de PointDeControle
