@@ -1,4 +1,4 @@
-package twisk.exceptionstwiskig;
+package twisk.exceptionstwisk;
 
 public class ExceptionEntreeSortieContradiction extends TwiskException{
 

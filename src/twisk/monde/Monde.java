@@ -1,5 +1,6 @@
 package twisk.monde;
 
+import twisk.exceptionstwisk.ExceptionObjetNonTrouve;
 import twisk.outils.FabriqueNumero;
 
 import java.util.ArrayList;
@@ -43,27 +44,27 @@ public class Monde implements Iterable<Etape> {
         }
     }
 
-    public int getnbJetonsNiemeEtape(int ieme) {
-        ArrayList<Guichet> etapes = new ArrayList<>();
-        for (int i = 0; i < gestioEtapes.nbEtapes(); i++) {
-            if (gestioEtapes.getIemeEtape(i).estUnGuichet()) {
-                etapes.add((Guichet) gestioEtapes.getIemeEtape(i));
-            }
-        }
-        return etapes.get(ieme).getNbJetons();
+    /**
+     * retourne le nombre de jetons de l'Etape
+     * dont le nom est donnée en paramètres
+     * @param nom le nom de l'Etape
+     * @return lenombre de jetons
+     * @throws ExceptionObjetNonTrouve lève un exception si l'Etape non trouvé
+     */
+    public int getnbJetonsNiemeEtape(String nom) throws ExceptionObjetNonTrouve {
+       for(Etape etape : this){
+           if(etape.getNom().equals(nom)){
+               assert(etape.estUnGuichet()) : "erreur l'étape n'est pas un guichet";
+               return ((Guichet) etape).getNbJetons();
+           }
+       }
+       throw new ExceptionObjetNonTrouve("guichet non trouvé");
     }
 
 
     public String getNomNiemeEtape(int ieme) {
-        if (ieme == 0) {
-            return sasEntree.getNom();
-        }
-        if (ieme == 1) {
-            return sasSortie.getNom();
-        }
-        //  return gestioEtapes.getIemeEtape(ieme - 2).getNom();
-
-
+        if (ieme == 0) { return sasEntree.getNom(); }
+        if (ieme == 1) { return sasSortie.getNom(); }
         for (int i = 2; i < nbEtapes() ; i++) {
             if (gestioEtapes.getIemeEtape(i-2).getNumeroEtape() == ieme) {
                 return gestioEtapes.getIemeEtape(i-2).getNom();
@@ -155,13 +156,14 @@ public class Monde implements Iterable<Etape> {
         }
 
 
+
         //------------------------------------------------------FONCTION SIMULER
 
         //Ecriture de la fonction Simuler
         affichage.append("void simulation(int ids){\n");
 
         affichage.append(sasEntree.toC());
-        sasEntree.toC();
+        //sasEntree.toC();
         affichage.append("}");
         //Fin
         return affichage.toString();
@@ -181,7 +183,6 @@ public class Monde implements Iterable<Etape> {
 
     /**
      * retourne l'itérateur de GestionEtapes
-     *
      * @return Iterator<Etape>
      */
     @Override

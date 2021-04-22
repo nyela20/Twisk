@@ -9,8 +9,8 @@ import javafx.scene.layout.VBox;
 import twisk.ecouteurs.EcouterStartDragged;
 import twisk.ecouteurs.EcouteurEtapes;
 import twisk.ecouteurs.EcouteurMenuRenommer;
-import twisk.mondeIG.EtapeIG;
-import twisk.mondeIG.MondeIG;
+import twisk.monde.EtapeIG;
+import twisk.monde.MondeIG;
 
 
 

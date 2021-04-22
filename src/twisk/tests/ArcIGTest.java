@@ -1,8 +1,8 @@
-package twisk.teststwiskig;
+package twisk.tests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import twisk.mondeIG.*;
+import twisk.monde.*;
 import twisk.outils.FabriqueIdentifiant;
 
 

@@ -2,8 +2,8 @@ package twisk.ecouteurs;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextInputDialog;
-import twisk.exceptionstwiskig.ExceptionVueMenu;
-import twisk.mondeIG.MondeIG;
+import twisk.exceptionstwisk.ExceptionVueMenu;
+import twisk.monde.MondeIG;
 
 public class EcouteurMenuDelai extends EcouteurAbstractMenu {
 

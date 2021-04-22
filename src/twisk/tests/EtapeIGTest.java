@@ -1,10 +1,10 @@
-package twisk.teststwiskig;
+package twisk.tests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import twisk.mondeIG.ActiviteIG;
-import twisk.mondeIG.EtapeIG;
-import twisk.mondeIG.MondeIG;
+import twisk.monde.ActiviteIG;
+import twisk.monde.EtapeIG;
+import twisk.monde.MondeIG;
 import twisk.outils.FabriqueIdentifiant;
 
 

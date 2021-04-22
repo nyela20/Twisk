@@ -1,4 +1,4 @@
-package twisk.testtwisk;
+package twisk.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 

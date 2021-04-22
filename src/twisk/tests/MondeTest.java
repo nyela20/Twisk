@@ -1,4 +1,4 @@
-package twisk.testtwisk;
+package twisk.tests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -128,6 +128,33 @@ class MondeTest {
         s.setNbClients(15);
         try {
             s.simuler(monde2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void toC3(){
+        Monde monde3 = new Monde();
+
+        Activite zoo = new Activite("zoo", 2, 1);
+        Activite zoocool = new Activite("zoocool",2,1);
+        Activite tob = new Activite("toboggan", 2, 1);
+        Etape GuichetPiscine = new Guichet("guichet_piscine", 3);
+        Activite piscine = new ActiviteRestreinte("piscine", 2, 1);
+
+        zoo.ajouterSuccesseur(zoocool);
+        tob.ajouterSuccesseur(GuichetPiscine);
+        GuichetPiscine.ajouterSuccesseur(piscine);
+        monde3.ajouter(tob,zoo,zoocool,GuichetPiscine,piscine);
+        monde3.aCommeSortie(piscine,zoocool);
+        monde3.aCommeEntree(zoo,tob);
+
+
+        Simulation s = new Simulation();
+        s.setNbClients(15);
+        try {
+            s.simuler(monde3);
         } catch (Exception e) {
             e.printStackTrace();
         }

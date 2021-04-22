@@ -10,8 +10,7 @@ import java.lang.reflect.Method;
 
 public class ClientTwisk{
 
-    private static void start(Monde monde,int nbclients) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-
+    private static void start(Monde monde,int nbclients) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException{
         ClassLoaderPerso classLoaderPerso = new ClassLoaderPerso(ClientTwisk.class.getClassLoader());
         Class<?>loadClass = classLoaderPerso.loadClass("twisk.simulation.Simulation");
         Constructor<?> co = loadClass.getConstructor();
@@ -27,11 +26,26 @@ public class ClientTwisk{
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
 
-        /*----monde1---*/
-        Monde monde = new Monde();
+        /*---monde0-(biffurcation)--*/
+        Monde monde0 = new Monde();
+
+        Etape parc = new Activite("parc",5,5);
+        Etape parc2 = new Activite("parc2",5,5);
+        Etape parc3 = new Activite("parc3",5,5);
+        monde0.ajouter(parc,parc2,parc3);
+        monde0.aCommeEntree(parc);
+        parc.ajouterSuccesseur(parc2);
+        parc.ajouterSuccesseur(parc3);
+        monde0.aCommeSortie(parc2);
+        monde0.aCommeSortie(parc3);
+        start(monde0,3);
+
+
+        /*----monde1--(biffurcation)-*/
+        Monde monde1 = new Monde();
 
         Etape guichet_lion = new Guichet("Guichet_lion", 4);
-        Etape guichet_girafe = new Guichet("Guichet_girafe", 4);
+        Etape guichet_girafe = new Guichet("Guichet_girafe", 2);
         Etape plaine_girafe = new ActiviteRestreinte("plaine_girafe", 2, 1);
         Etape guichet_zebre = new Guichet("Guichet_zebre", 4);
         Etape fast_food = new Activite("fast_food", 2, 1);
@@ -39,18 +53,20 @@ public class ClientTwisk{
         Etape magasin_souvenir = new Activite("magasin_souvenir", 2, 1);
         Etape cage_lion = new ActiviteRestreinte("Cage_lion", 5, 2);
 
-        monde.ajouter(fast_food, guichet_lion, plaine_girafe,cage_lion, guichet_girafe, guichet_zebre, plaine_zebre, magasin_souvenir);
-        monde.aCommeEntree(fast_food);
+        monde1.ajouter(guichet_girafe,guichet_lion,guichet_zebre,plaine_girafe,fast_food,plaine_zebre,magasin_souvenir,cage_lion);
+        monde1.aCommeEntree(fast_food);
+        fast_food.ajouterSuccesseur(guichet_girafe);
+        guichet_girafe.ajouterSuccesseur(plaine_girafe);
         fast_food.ajouterSuccesseur(guichet_lion);
         guichet_lion.ajouterSuccesseur(cage_lion);
-        cage_lion.ajouterSuccesseur(guichet_girafe);
-        guichet_girafe.ajouterSuccesseur(plaine_girafe);
-        plaine_girafe.ajouterSuccesseur(guichet_zebre);
+        fast_food.ajouterSuccesseur(guichet_zebre);
         guichet_zebre.ajouterSuccesseur(plaine_zebre);
-        plaine_zebre.ajouterSuccesseur(magasin_souvenir);
-        monde.aCommeSortie(magasin_souvenir);
-        start(monde,5);
-
+        fast_food.ajouterSuccesseur(magasin_souvenir);
+        monde1.aCommeSortie(magasin_souvenir);
+        monde1.aCommeSortie(plaine_girafe);
+        monde1.aCommeSortie(plaine_zebre);
+        monde1.aCommeSortie(cage_lion);
+        start(monde1,10);
 
         /*----monde2---*/
         Monde monde2 = new Monde();

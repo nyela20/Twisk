@@ -2,8 +2,8 @@ package twisk.ecouteurs;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import twisk.mondeIG.MondeIG;
-import twisk.mondeIG.PointDeControleIG;
+import twisk.monde.MondeIG;
+import twisk.monde.PointDeControleIG;
 
 public class EcouteurPointDeControle implements EventHandler<MouseEvent> {
     private final MondeIG monde;

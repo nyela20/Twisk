@@ -1,12 +1,12 @@
-package twisk.teststwiskig;
+package twisk.tests;
 
 
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import twisk.exceptionstwiskig.ExceptionVueMenu;
-import twisk.exceptionstwiskig.ExceptionsInvaliditeSurLesArcs;
-import twisk.mondeIG.*;
+import twisk.exceptionstwisk.ExceptionVueMenu;
+import twisk.exceptionstwisk.ExceptionsInvaliditeSurLesArcs;
+import twisk.monde.*;
 import twisk.outils.FabriqueIdentifiant;
 
 import java.util.Iterator;

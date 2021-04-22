@@ -1,4 +1,4 @@
-package twisk.testtwisk;
+package twisk.tests;
 
 import org.junit.jupiter.api.Test;
 import twisk.outils.FabriqueNumero;

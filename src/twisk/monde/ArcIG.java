@@ -1,4 +1,4 @@
-package twisk.mondeIG;
+package twisk.monde;
 
 import twisk.outils.FabriqueIdentifiant;
 
@@ -115,6 +115,4 @@ public class ArcIG {
     public int hashCode() {
         return Objects.hash(pointDeDepart, getPointDarrive(), getEtapeArrive(), getEtapeDebut(), estSelectionne, identifiant);
     }
-
-
 }

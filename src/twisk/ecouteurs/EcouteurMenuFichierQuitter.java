@@ -2,7 +2,7 @@ package twisk.ecouteurs;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import twisk.mondeIG.MondeIG;
+import twisk.monde.MondeIG;
 
 import javax.swing.*;
 

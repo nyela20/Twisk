@@ -1,8 +1,8 @@
 package twisk.vues;
 
 import javafx.scene.control.Label;
-import twisk.mondeIG.ActiviteIG;
-import twisk.mondeIG.MondeIG;
+import twisk.monde.ActiviteIG;
+import twisk.monde.MondeIG;
 
 
 /**/

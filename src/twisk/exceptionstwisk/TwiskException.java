@@ -1,4 +1,4 @@
-package twisk.exceptionstwiskig;
+package twisk.exceptionstwisk;
 
 import javafx.scene.control.Alert;
 

@@ -1,10 +1,11 @@
-package twisk.mondeIG;
+package twisk.monde;
 
 
 public class ActiviteIG extends EtapeIG {
 
     private int delai;
     private int ecarttemps;
+    private boolean estUneActiviteRestreinte;
     /**
      * Constructeur d'un ActiviteIG
      * @param nom son nom
@@ -24,8 +25,8 @@ public class ActiviteIG extends EtapeIG {
     }
 
     @Override
-    public boolean estUnGuichet() {
-        return false;
+    public boolean estUneActiviteRestreinte(){
+        return estUneActiviteRestreinte;
     }
 
     /**
@@ -59,5 +60,13 @@ public class ActiviteIG extends EtapeIG {
      */
     public int getEcarttemps() {
         return ecarttemps;
+    }
+
+    /**
+     * la fonction assigne l'activité à activité restreinte
+     * @param setTo un boléen
+     */
+    public void setEstUneActiviteRestreinte(boolean setTo) {
+        this.estUneActiviteRestreinte = setTo;
     }
 }

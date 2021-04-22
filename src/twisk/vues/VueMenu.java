@@ -4,7 +4,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import twisk.ecouteurs.*;
-import twisk.mondeIG.MondeIG;
+import twisk.monde.MondeIG;
 
 public class VueMenu extends MenuBar implements Observateur {
 

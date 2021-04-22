@@ -3,7 +3,7 @@ package twisk.ecouteurs;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextInputDialog;
-import twisk.mondeIG.MondeIG;
+import twisk.monde.MondeIG;
 
 public abstract class EcouteurAbstractMenu implements EventHandler<ActionEvent> {
     private final MondeIG monde;

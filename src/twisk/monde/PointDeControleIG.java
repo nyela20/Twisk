@@ -1,4 +1,4 @@
-package twisk.mondeIG;
+package twisk.monde;
 
 
 import twisk.outils.FabriqueIdentifiant;

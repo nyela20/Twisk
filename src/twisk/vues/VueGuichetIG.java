@@ -1,8 +1,8 @@
 package twisk.vues;
 
 import javafx.scene.control.Label;
-import twisk.mondeIG.GuichetIG;
-import twisk.mondeIG.MondeIG;
+import twisk.monde.GuichetIG;
+import twisk.monde.MondeIG;
 
 public class VueGuichetIG extends VueEtapeIG{
 

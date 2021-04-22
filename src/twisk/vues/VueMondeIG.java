@@ -1,26 +1,25 @@
 package twisk.vues;
 
-import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import twisk.ecouteurs.EcouteurSetDragOver;
 import twisk.ecouteurs.EcouteurDropped;
-import twisk.mondeIG.*;
+import twisk.monde.*;
 
 import java.util.Iterator;
 
 
 public class VueMondeIG extends Pane implements Observateur {
-    private final MondeIG monde;
+    private final MondeIG mondeIG;
 
     /**
      * Constructeur d'un VueMondeIG
      * @param mde le monde
      */
     public VueMondeIG(MondeIG mde) {
-        monde = mde;
-        monde.ajouter(this);
+        mondeIG = mde;
+        mondeIG.ajouter(this);
         setOnDragOver(new EcouteurSetDragOver());
-        setOnDragDropped(new EcouteurDropped(monde));
+        setOnDragDropped(new EcouteurDropped(mondeIG));
     }
 
 
@@ -32,25 +31,25 @@ public class VueMondeIG extends Pane implements Observateur {
     @Override
     public void reagir() {
         this.getChildren().clear();
-        this.setId("background"+monde.getIdentifiantStyle());
+        this.setId("background"+ mondeIG.getIdentifiantStyle());
 
-        Iterator<ArcIG> it = monde.iteratorArcIG();
+        Iterator<ArcIG> it = mondeIG.iteratorArcIG();
         while (it.hasNext()){
             ArcIG arc = it.next();
-            VueArcIG vuearc = new VueArcIG(monde,arc,monde.getIdentifiantStyle());
+            VueArcIG vuearc = new VueArcIG(mondeIG,arc, mondeIG.getIdentifiantStyle());
             this.getChildren().add(vuearc);
         }
 
-        for (EtapeIG values : this.monde) {
+        for (EtapeIG values : this.mondeIG) {
             VueEtapeIG vueEtapeIG = null;
             if(values.estUneActivite()) {
-                vueEtapeIG = new VueActiviteIG(monde, (ActiviteIG) values,monde.getIdentifiantStyle());
+                vueEtapeIG = new VueActiviteIG(mondeIG, (ActiviteIG) values, mondeIG.getIdentifiantStyle());
             }else if(values.estUnGuichet()){
-                vueEtapeIG = new VueGuichetIG(monde, (GuichetIG) values, monde.getIdentifiantStyle());
+                vueEtapeIG = new VueGuichetIG(mondeIG, (GuichetIG) values, mondeIG.getIdentifiantStyle());
             }
             this.getChildren().add(vueEtapeIG);
             for (PointDeControleIG pdc : values) {
-                VuePointDeControleIG vuePointDeControleIG = new VuePointDeControleIG(monde,pdc);
+                VuePointDeControleIG vuePointDeControleIG = new VuePointDeControleIG(mondeIG,pdc);
                 this.getChildren().add(vuePointDeControleIG);
             }
         }

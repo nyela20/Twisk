@@ -3,7 +3,7 @@ package twisk.vues;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
-import twisk.mondeIG.MondeIG;
+import twisk.monde.MondeIG;
 
 
 public class VueOutils extends TilePane implements Observateur {

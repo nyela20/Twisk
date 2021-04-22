@@ -1,13 +1,17 @@
-package twisk.mondeIG;
+package twisk.monde;
 
+
+import twisk.monde.Etape;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Random;
 
 
 public abstract class EtapeIG implements Iterable<PointDeControleIG>{
     private final ArrayList<PointDeControleIG> TabPointsDC;
+    private LinkedList<EtapeIG> ListeSuccesseur;
     private int posX;
     private int posY;
     private String nom;
@@ -17,7 +21,6 @@ public abstract class EtapeIG implements Iterable<PointDeControleIG>{
     private boolean estSelectionne;
     private boolean estUneEntree;
     private boolean estUneSortie;
-    private String Couleur;
 
     /**
      * Constructeur d'une EtapeIG
@@ -29,6 +32,7 @@ public abstract class EtapeIG implements Iterable<PointDeControleIG>{
     public EtapeIG(String nom,String idf, int larg, int haut) {
         Random random = new Random();
         TabPointsDC = new ArrayList<>(4);
+        ListeSuccesseur = new LinkedList<>();
         this.nom = nom;
         identifiant = idf;
         posX = random.nextInt(600);
@@ -38,9 +42,10 @@ public abstract class EtapeIG implements Iterable<PointDeControleIG>{
         estSelectionne = false;
         estUneEntree = false;
         estUneSortie = false;
-        Couleur = "blanc";
         ajouterPointDeControle();
     }
+
+
 
     /**
      * ajoute un PointDeControle à l'Etape
@@ -87,6 +92,31 @@ public abstract class EtapeIG implements Iterable<PointDeControleIG>{
             TabPointsDC.add( new PointDeControleIG(this,"haut"));
             TabPointsDC.add( new PointDeControleIG(this,"bas"));
         }
+    }
+
+    /**
+     * ajoute un successeur à l'Etape
+     * @param etapeIG
+     */
+    public void ajouterSuccesseur(EtapeIG etapeIG){
+        ListeSuccesseur.add(etapeIG);
+    }
+
+    /**
+     * retourne le successeur d'une EtapeIG (a modif)
+     * @return le successeur d'une EtapeIG
+     */
+    public EtapeIG getSuccesseur(){
+        return ListeSuccesseur.getFirst();
+    }
+
+
+
+    /**
+     * vide la tableau de successeur de l'Etape (à modifier bif)
+     */
+    public void supprimerSuccesseur(){
+        ListeSuccesseur.clear();
     }
 
     /**
@@ -208,31 +238,31 @@ public abstract class EtapeIG implements Iterable<PointDeControleIG>{
     }
 
     /**
-     * retourne vrai si Activite sinon false
-     * @return  vrai si Activite sinon false
+     * @return  false est une Activité
      */
-    public abstract boolean estUneActivite();
-
-    /**
-     * retourne vrai si Guichet sinon false
-     * @return  vrai si Guichet sinon false
-     */
-    public abstract boolean estUnGuichet();
-
-    /**
-     * retourne la couleur de l'Etape
-     * @return la couleur de l'Etape
-     */
-    public String getCouleur(){
-        return Couleur;
+    public boolean estUneActivite(){
+        return false;
     }
 
+    /**
+     * retourne le nombre de successeur d'une Etape
+     * @return le nombre de successeur 'une Etape
+     */
+    public int getNombreDeSuccesseur(){
+        return ListeSuccesseur.size();
+    }
 
     /**
-     * assigne la couleur d'une Etape
-     * @param color la couleur
+     * @return false est une ActiviteRestreinte
      */
-    public void setCouleur(String color){
-        this.Couleur = color;
+    public boolean estUneActiviteRestreinte(){
+        return false;
+    }
+
+    /**
+     * @return false est un Guichet
+     */
+    public boolean estUnGuichet(){
+        return false;
     }
 }

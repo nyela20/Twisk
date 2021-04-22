@@ -6,7 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import twisk.ecouteurs.*;
-import twisk.mondeIG.MondeIG;
+import twisk.monde.MondeIG;
 
 public class KeyEvents implements EventHandler<KeyEvent> {
     private final MondeIG mondeIG;

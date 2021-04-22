@@ -1,4 +1,4 @@
-package twisk.testtwisk;
+package twisk.tests;
 
 import twisk.monde.Activite;
 import twisk.monde.ActiviteRestreinte;

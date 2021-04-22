@@ -1,7 +1,7 @@
 package twisk.ecouteurs;
 
 import javafx.event.ActionEvent;
-import twisk.mondeIG.MondeIG;
+import twisk.monde.MondeIG;
 
 public class EcouteurMenuMondeEntree extends EcouteurAbstractMenu {
 

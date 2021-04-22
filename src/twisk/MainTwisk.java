@@ -8,7 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import twisk.ecouteurs.EcouteurMenuRenommer;
 import twisk.keys.KeyEvents;
-import twisk.mondeIG.MondeIG;
+import twisk.monde.MondeIG;
 import twisk.vues.VueMenu;
 import twisk.vues.VueMondeIG;
 import twisk.vues.VueOutils;

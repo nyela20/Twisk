@@ -1,4 +1,4 @@
-package twisk.mondeIG;
+package twisk.monde;
 
 public class GuichetIG extends EtapeIG{
 
@@ -31,12 +31,6 @@ public class GuichetIG extends EtapeIG{
     public int getNombreDeJetons(){
         return this.NombreDeJetons;
     }
-
-    @Override
-    public boolean estUneActivite() {
-        return false;
-    }
-
 
     @Override
     public boolean estUnGuichet() {

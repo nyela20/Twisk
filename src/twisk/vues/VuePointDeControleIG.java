@@ -3,8 +3,8 @@ package twisk.vues;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import twisk.ecouteurs.EcouteurPointDeControle;
-import twisk.mondeIG.MondeIG;
-import twisk.mondeIG.PointDeControleIG;
+import twisk.monde.MondeIG;
+import twisk.monde.PointDeControleIG;
 
 /**/
 

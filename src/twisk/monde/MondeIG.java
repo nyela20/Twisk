@@ -1,11 +1,8 @@
-package twisk.mondeIG;
+package twisk.monde;
 
 
 
-import twisk.exceptionstwiskig.ExceptionClasseMondeIG;
-import twisk.exceptionstwiskig.ExceptionEntreeSortieContradiction;
-import twisk.exceptionstwiskig.ExceptionVueMenu;
-import twisk.exceptionstwiskig.ExceptionsInvaliditeSurLesArcs;
+import twisk.exceptionstwisk.*;
 import twisk.outils.FabriqueIdentifiant;
 
 import java.util.ArrayList;
@@ -17,17 +14,121 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
     private final HashMap<String,EtapeIG> TableauEtapesIG = new HashMap<>();
     private final ArrayList<ArcIG> TableauArcsIG = new ArrayList<>();
     private final ArrayList<PointDeControleIG> TableauPointsDeControle = new ArrayList<>();
+    private final ArrayList<ActiviteIG> TableauActiviteRestreinte = new ArrayList<>();
     private int identifiantStyle;
 
     /**
      * Constructeur d'un MondeIG
      */
-    public MondeIG(){
+    public MondeIG() {
         ajouter("Activite");
         identifiantStyle = 0;
     }
-    
-    
+
+    public void simuler()throws ExceptionMondeIG {
+        verifierMondeIG();
+    }
+
+    /**
+     * vérifie que la composition du monIg est correcte
+     * @throws ExceptionMondeIG lève une exception si ce n'est pas le cas
+     */
+    private void verifierMondeIG() throws ExceptionMondeIG {
+        if(nbEntreeDansLeMonde() < 1){
+            throw new ExceptionMondeIG("Il n'y a pas d'entrée");
+        }
+        if(nbSortieDansLeMonde() < 1){
+            throw new ExceptionMondeIG("Il n'y a pas de sortie");
+        }
+        if(TableauArcsIG.size() < 1) {
+            throw new ExceptionMondeIG("Aucun arcs, monde invalide");
+        }
+        //il faut que l'entrée soit rélié à la sortie
+        for(EtapeIG etapeIG : this){
+            if(etapeIG.estUneEntree()){
+                if(!estConnexe(etapeIG)){
+                    throw new ExceptionMondeIG("Il n'y a pas de chemin entre l'entrée et la sortie");
+                }
+            }
+            //activité restreinte
+            if(etapeIG.estUnGuichet()) {
+                if (etapeIG.getSuccesseur().estUneActivite()) {
+                    TableauActiviteRestreinte.add((ActiviteIG) etapeIG);
+                }
+            }
+        }
+    }
+
+    /**
+     * La fonction créer un Monde et le retourne
+     * @return le mojde crée
+     */
+    public Monde creerMonde(){
+        return null;
+    }
+
+    /**
+     * verifie la validité des arcs avant de les créer
+     * @param pt1 le point de départ de l' ArcIG
+     * @param pt2 le point d'arrivée de l'ArcIG
+     * @throws ExceptionsInvaliditeSurLesArcs sur les arcs
+     */
+    private void verifierArcIG(PointDeControleIG pt1, PointDeControleIG pt2) throws ExceptionsInvaliditeSurLesArcs{
+            ArcIG arc = new ArcIG(pt1, pt2);
+            if(pt1.estSurLaMemeEtapeQue(pt2)) {
+                throw new ExceptionsInvaliditeSurLesArcs("Impossible de créer cet arc, les deux points sont sur la même étape");
+            }
+            if(arc.getEtapeDebut().estUneSortie() && arc.getEtapeArrive().estUneEntree()) {
+                throw new ExceptionsInvaliditeSurLesArcs("Impossible de créer et arc, une Entrée ne peut pas être successeur d'une Sortie");
+            }
+            if(arc.getEtapeDebut().estUnGuichet() && arc.getEtapeArrive().estUnGuichet()){
+                throw new ExceptionsInvaliditeSurLesArcs("Impossible de relier un Guichet à un autre Guichet.");
+            }
+            for(ArcIG arcIG : TableauArcsIG) {
+                if (arcIG.aCommeDebut(arc.getEtapeDebut()) && arcIG.aCommeArrive(arc.getEtapeArrive())) {
+                    throw new ExceptionsInvaliditeSurLesArcs("Impossible de créer cet arc, il existe déjà un arc qui relie ces deux étapes");
+                } else {
+                    if (arcIG.aCommeDebut(arc.getEtapeArrive()) && arcIG.aCommeArrive(arc.getEtapeDebut())) {
+                        throw new ExceptionsInvaliditeSurLesArcs("Impossible de créer cet arc, deux arcs sont symétriques");
+                    }
+                }
+            }
+    }
+
+
+    /**
+     * La fonction rajoute un ArcIG dans le nom
+     * @param pt1 le point de départ de l'ArcIG
+     * @param pt2 le point d'arrivé de l'ArcIG
+     * @throws ExceptionsInvaliditeSurLesArcs lève des exceptions si les arcs si suivent
+     * pas les règles.
+     */
+    public void ajouter(PointDeControleIG pt1, PointDeControleIG pt2) throws ExceptionsInvaliditeSurLesArcs {
+        try {
+            ArcIG arc = new ArcIG(pt1, pt2);
+            verifierArcIG(pt1,pt2);
+            TableauArcsIG.add(arc);
+            arc.getEtapeDebut().ajouterSuccesseur(arc.getEtapeArrive());
+        }catch (ExceptionsInvaliditeSurLesArcs invaliditeSurLesArcs){
+            System.err.println(invaliditeSurLesArcs.getMessage());
+        }
+        pt1.setEstSelectionne(false);
+        pt2.setEstSelectionne(false);
+    }
+
+    /**
+     * la fonction verifie qu'il existe un chemin entre l'entrée et la sortie
+     * @param entree l'Etape d'entree
+     * @return vrai si le chemin existe, sinon faux
+     */
+    private boolean estConnexe(EtapeIG entree){
+        if(entree.estUneSortie()){
+            return true;
+        }
+        estConnexe(entree.getSuccesseur());
+        return false;
+    }
+
 
     /**
      * la fonction ajoute une Activite dans le monde
@@ -41,13 +142,14 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
                 TableauEtapesIG.put(activite.getIdentifiant(), activite);
                 notifierObservateur();
             }
-            if (type.equals("Guichet")) {
+            if (type.equals("Guichet")){
                 String identifiant = FabriqueIdentifiant.getInstance().getIdentifiant();
                 GuichetIG guichet = new GuichetIG("Guichet", identifiant, 200, 60);
                 TableauEtapesIG.put(guichet.getIdentifiant(), guichet);
                 notifierObservateur();
             }
     }
+
 
     /**
      * la fonction déplace une EtapeIG d'un point à un autre
@@ -65,15 +167,15 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
      * en paramètre.
      * @param idf l'identifiant de l'EtapeIG que l'on cherche
      * @return cet identifiant si trouvé
-     * @throws ExceptionClasseMondeIG sinon si non trouvé throw une Exception
+     * @throws ExceptionMondeIG sinon si non trouvé throw une Exception
      */
-    public EtapeIG getEtape(String idf) throws ExceptionClasseMondeIG {
+    public EtapeIG getEtape(String idf) throws ExceptionMondeIG {
         for(EtapeIG etapeIG: TableauEtapesIG.values()){
             if(etapeIG.getIdentifiant().equals(idf)){
                 return etapeIG;
             }
         }
-        throw new ExceptionClasseMondeIG("Aucune étape portant cet idenfiant n'est trouvé");
+        throw new ExceptionMondeIG("Aucune étape portant cet idenfiant n'est trouvé");
     }
 
     /**
@@ -105,7 +207,6 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
                 etape.setEstSelectionne(false);
             }
         }
-
         for (ArcIG arc : TableauArcsIG) {
             if (arc.estSelectionne()) {
                 arc.setEstSelectionne(false);
@@ -170,6 +271,8 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
                     }
                 }
                 it.remove();
+                etape.supprimerSuccesseur();
+                System.out.println(etape.getNombreDeSuccesseur());
                 viderTableauPointsDeControle();
             }
         }
@@ -179,6 +282,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
             ArcIG arc = iterarc.next();
             if (arc.estSelectionne()) {
                 iterarc.remove();
+                arc.getEtapeDebut().supprimerSuccesseur();
             }
         }
         notifierObservateur();
@@ -247,54 +351,10 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
     }
 
     /**
-     * La fonction rajoute un ArcIG dans le nom
-     * @param pt1 le point de départ de l'ArcIG
-     * @param pt2 le point d'aarivé de l'ArcIG
-     * @throws ExceptionsInvaliditeSurLesArcs lève des exceptions si les arcs si suivent
-     * pas les règles.
-     */
-    public void ajouter(PointDeControleIG pt1, PointDeControleIG pt2) throws ExceptionsInvaliditeSurLesArcs {
-        try {
-            ArcIG arc = new ArcIG(pt1, pt2);
-            if (pt1.estSurLaMemeEtapeQue(pt2)) {
-                throw new ExceptionsInvaliditeSurLesArcs("Impossible de créer cet arc, les deux points sont sur la même étape");
-            }
-            if (arc.getEtapeDebut().estUneSortie() && arc.getEtapeArrive().estUneEntree()) {
-                throw new ExceptionsInvaliditeSurLesArcs("Impossible de créer et arc, une Entrée ne peut pas être successeur d'une Sortie");
-            }
-            if (arc.getEtapeDebut().estUnGuichet() && arc.getEtapeArrive().estUnGuichet()){
-                throw new ExceptionsInvaliditeSurLesArcs("Impossible de relier un Guichet à un autre Guichet.");
-            }
-            for (ArcIG arcIG : TableauArcsIG) {
-                if (arcIG.aCommeDebut(arc.getEtapeDebut()) && arcIG.aCommeArrive(arc.getEtapeArrive())) {
-                    throw new ExceptionsInvaliditeSurLesArcs("Impossible de créer cet arc, il existe déjà un arc qui relie ces deux étapes");
-                } else {
-                    if (arcIG.aCommeDebut(arc.getEtapeArrive()) && arcIG.aCommeArrive(arc.getEtapeDebut())) {
-                        throw new ExceptionsInvaliditeSurLesArcs("Impossible de créer cet arc, deux arcs sont symétriques");
-                    }
-                }
-            }
-            TableauArcsIG.add(arc);
-            initDFS();
-            if (DFS(this.iterator().next())){
-                TableauArcsIG.remove(arc);
-                throw new ExceptionsInvaliditeSurLesArcs("Circuit détécté, les circuits ne sont pas gérés par Twisk.");
-            }
-        }
-        catch(Exception e){
-            System.err.println(e.getMessage());
-        }
-        pt1.setEstSelectionne(false);
-        pt2.setEstSelectionne(false);
-    }
-
-
-
-    /**
      * assigne un délai à une EtapeIG séléctionnée
      * @param delai le nouveau délai
      */
-    public void assignerDelaiAEtape(int delai) throws ExceptionVueMenu {
+    public void assignerDelaiAEtape(int delai) throws ExceptionVueMenu{
             for (EtapeIG etapeIG : this) {
                 if (etapeIG.estSelectionne()) {
                     etapeIG.setEstSelectionne(false);
@@ -355,53 +415,6 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
             }
         }
         notifierObservateur();
-    }
-
-
-
-    /**
-     * retourne un Tableau d'EtapeIG qui sont les successeurs
-     * de l'Etape donnée en paramètre
-     * @param etapeIG l'Etape
-     * @return les successeurs de l'Etape
-     */
-    private ArrayList<EtapeIG> getSuccesseur(EtapeIG etapeIG){
-        ArrayList<EtapeIG> etapeIGArrayList = new ArrayList<>();
-        for(ArcIG arc : TableauArcsIG){
-            if(arc.aCommeDebut(etapeIG)){
-                etapeIGArrayList.add(arc.getEtapeArrive());
-            }
-        }
-        return etapeIGArrayList;
-    }
-
-    /**
-     * initialise le parcours en DFS
-     */
-    private void initDFS(){
-        for(EtapeIG etapeIG : this){
-            etapeIG.setCouleur("blanc");
-        }
-    }
-
-    /**
-     * PARCOURS EN PROFONDEUR POUR DETECTÉ LES CIRCUITS
-     * DFS récursif
-     * @param sommet sommet de départ
-     * @return vrai si il existe un circuit, sinon faux
-     */
-    private boolean DFS(EtapeIG sommet){
-        sommet.setCouleur("gris");
-        for(EtapeIG succ : getSuccesseur(sommet)){
-            if(succ.getCouleur() == "blanc"){
-                DFS(succ);
-            }
-            if(succ.getCouleur() == "gris"){
-                    return true;
-            }
-        }
-        sommet.setCouleur("noir");
-        return false;
     }
 
 
@@ -470,5 +483,25 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
     public void setIdentifiantStyle(int newstyle){
         identifiantStyle = newstyle;
         notifierObservateur();
+    }
+
+    public int nbEntreeDansLeMonde(){
+        int nbEntree = 0;
+        for(EtapeIG etapeIG : this){
+            if(etapeIG.estUneEntree()){
+                nbEntree++;
+            }
+        }
+        return nbEntree;
+    }
+
+    public  int nbSortieDansLeMonde(){
+        int nbSortie = 0;
+        for(EtapeIG etapeIG : this){
+            if(etapeIG.estUneSortie()){
+                nbSortie++;
+            }
+        }
+        return nbSortie;
     }
 }

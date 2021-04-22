@@ -1,4 +1,4 @@
-package twisk.exceptionstwiskig;
+package twisk.exceptionstwisk;
 
 public class ExceptionsInvaliditeSurLesArcs extends TwiskException{
 

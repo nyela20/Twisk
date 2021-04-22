@@ -5,25 +5,25 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import twisk.ecouteurs.EcouteurArcs;
-import twisk.mondeIG.ArcIG;
-import twisk.mondeIG.MondeIG;
+import twisk.monde.ArcIG;
+import twisk.monde.MondeIG;
 
 public class VueArcIG extends Pane implements Observateur {
     private final int identifiantStyle;
 
     /**
      * Constructeur d'une VueArcIG
-     * @param mde le monde
+     * @param mondeIG le monde
      * @param a l'ArcIG
      * @param style l'identifiant du style
      */
-    public VueArcIG(MondeIG mde, ArcIG a, int style) {
+    public VueArcIG(MondeIG mondeIG, ArcIG a, int style) {
         identifiantStyle = style;
         Line ligne = dessinerUneLigne(a);
         Polygon tete = dessinerUnTriangle(ligne,a);
         this.getChildren().addAll(ligne,tete);
         this.setPickOnBounds(false);
-        this.setOnMouseClicked(new EcouteurArcs(mde,a));
+        this.setOnMouseClicked(new EcouteurArcs(mondeIG,a));
     }
 
     /**

@@ -36,7 +36,7 @@ public class Simulation {
      * Lance la simulation du monde
      * @param monde le monde à simuler
      */
-    public void simuler(Monde monde) {
+    public void simuler(Monde monde) throws ExceptionObjetNonTrouve {
 
         FabriqueNumero.getInstance().incrementerlibrairenum();
         String libnum= String.valueOf(FabriqueNumero.getInstance().getNumerolibrairie());
@@ -53,10 +53,13 @@ public class Simulation {
 
         int NB_GUICHETS = monde.nbGuichet();
         int NB_ETAPES = monde.nbEtapes();
-
+        int j=0;
         int[] TableauDeJetons = new int[monde.nbGuichet()];
-        for (int i = 0; i < NB_GUICHETS; i++) {
-            TableauDeJetons[i] = monde.getnbJetonsNiemeEtape(i);
+        for( int i=0; i < NB_ETAPES; i++) {
+            if (monde.getEtape(monde.getNomNiemeEtape(i)).estUnGuichet()) {
+                    TableauDeJetons[j] = monde.getnbJetonsNiemeEtape(monde.getNomNiemeEtape(i));
+                    j++;
+            }
         }
         int[] tableauClientsStep = start_simulation(NB_ETAPES, NB_GUICHETS, NB_CLIENTS, TableauDeJetons);
         //ajouter les clients dans le monde

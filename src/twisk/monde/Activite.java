@@ -1,5 +1,7 @@
 package twisk.monde;
 
+import java.util.Iterator;
+
 public class Activite extends Etape {
 
     private final int temps;
@@ -31,6 +33,7 @@ public class Activite extends Etape {
 
     /**
      * retourne l'ecart temps
+     *
      * @return ecaartTemps
      */
     public int getEcartTemps() {
@@ -39,6 +42,7 @@ public class Activite extends Etape {
 
     /**
      * retourne temps
+     *
      * @return temps
      */
     public int getTemps() {
@@ -70,7 +74,7 @@ public class Activite extends Etape {
         return false;
     }
 
-    public void ajouterSuccesseur(Etape...etapes){
+    public void ajouterSuccesseur(Etape... etapes) {
         super.ajouterSuccesseur(etapes);
     }
 
@@ -78,19 +82,34 @@ public class Activite extends Etape {
      * retourne une etape en langugae C
      */
     public String toC() {
-
-        Etape succ = iterator().next();
-        return "\ndelai(" + temps + "," + ecartTemps + ");\n" +
-                "transfert(" + getNom() + "," + succ.getNom() + ");\n" + succ.toC() ;
+        StringBuilder affichage = new StringBuilder();
+        if (this.nbSuccesseurs() == 1) {
+            Etape succ = iterator().next();
+            affichage.append("\ndelai(" + temps + "," + ecartTemps + ");\n");
+            affichage.append("transfert(" + getNom() + "," + succ.getNom() + ");\n" + succ.toC());
+        }
+        //bifurcation
+        if (this.nbSuccesseurs() > 1) {
+            Iterator<Etape> iterator = this.iterator();
+            affichage.append("\nint nb = (int)((rand()/(float) RAND_MAX) *" + nbSuccesseurs() + ");\n");
+                affichage.append("switch(nb){\n");
+                    for (int i = 0; i < nbSuccesseurs(); i++) {
+                        Etape succ = iterator.next();
+                        affichage.append("case " + i + ":\n");
+                        affichage.append("delai(" + temps + "," + ecartTemps + ");\n");
+                        affichage.append("transfert(" + getNom() + "," + succ.getNom() + ");" + succ.toC() + "break;\n");
+                    }
+                affichage.append("}\n");
+        }
+        return affichage.toString();
     }
-    /**
-     * retourne le nom de l'activité
-     *
-     * @return String, le nom de l'activité
-     */
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 
-}
+        /**
+         * retourne le nom de l'activité
+         * @return String, le nom de l'activité
+         */
+        @Override
+        public String toString(){
+            return super.toString();
+        }
+    }

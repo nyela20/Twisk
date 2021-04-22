@@ -1,4 +1,4 @@
-package twisk.testtwisk;
+package twisk.tests;
 
 class ActiviteRestreinteTest extends ActiviteTest {
 }

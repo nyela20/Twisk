@@ -2,8 +2,8 @@ package twisk.ecouteurs;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import twisk.mondeIG.ArcIG;
-import twisk.mondeIG.MondeIG;
+import twisk.monde.ArcIG;
+import twisk.monde.MondeIG;
 
 public class EcouteurArcs implements EventHandler<MouseEvent> {
     private final MondeIG monde;
@@ -12,11 +12,11 @@ public class EcouteurArcs implements EventHandler<MouseEvent> {
 
     /**
      * Constructeur d'un ecouteur pour les ArcsIGs
-     * @param mde le monde
+     * @param mondeIG le monde
      * @param a l'arc
      */
-    public EcouteurArcs(MondeIG mde, ArcIG a){
-        monde = mde;
+    public EcouteurArcs(MondeIG mondeIG, ArcIG a){
+        monde = mondeIG;
         arc = a;
     }
 
