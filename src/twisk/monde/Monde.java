@@ -3,7 +3,6 @@ package twisk.monde;
 import twisk.exceptionstwisk.ExceptionObjetNonTrouve;
 import twisk.outils.FabriqueNumero;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Monde implements Iterable<Etape> {
@@ -55,12 +54,11 @@ public class Monde implements Iterable<Etape> {
        for(Etape etape : this){
            if(etape.getNom().equals(nom)){
                assert(etape.estUnGuichet()) : "erreur l'étape n'est pas un guichet";
-               return ((Guichet) etape).getNbJetons();
+               return ((Guichet) etape).getNombreDeJetons();
            }
        }
        throw new ExceptionObjetNonTrouve("guichet non trouvé");
     }
-
 
     public String getNomNiemeEtape(int ieme) {
         if (ieme == 0) { return sasEntree.getNom(); }

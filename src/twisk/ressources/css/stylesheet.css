@@ -1,5 +1,10 @@
 /*--STYLE-DES-BOUTONS---*/
 
+#buttonSimulation0 {
+   -fx-background-color: red;
+    -fx-text-fill: black;
+}
+
 #buttonActivite0 {
    -fx-background-color: #fffd1d;
     -fx-text-fill: black;

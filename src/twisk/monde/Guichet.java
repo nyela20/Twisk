@@ -5,7 +5,7 @@ import twisk.outils.FabriqueNumero;
 
 public class Guichet extends Etape {
 
-    private final int nbJetons;
+    private int nombreDeJetons;
     private final int noSemaphore;
 
     /**
@@ -15,7 +15,7 @@ public class Guichet extends Etape {
      */
     public Guichet(String nom){
         super(nom);
-        this.nbJetons = 3;
+        this.nombreDeJetons = 3;
         this.noSemaphore = FabriqueNumero.getInstance().getNumeroSemaphore();
     }
 
@@ -27,7 +27,7 @@ public class Guichet extends Etape {
      */
     public Guichet(String nom, int nbJetons){
         super(nom);
-        this.nbJetons = nbJetons;
+        this.nombreDeJetons = nbJetons;
         this.noSemaphore = FabriqueNumero.getInstance().getNumeroSemaphore();
     }
 
@@ -42,10 +42,9 @@ public class Guichet extends Etape {
         return noSemaphore;
     }
 
-    public int getNbJetons() {
-        return nbJetons;
+    public int getNombreDeJetons() {
+        return nombreDeJetons;
     }
-
 
     /**
      * retourne un booléen

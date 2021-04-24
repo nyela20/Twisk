@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 public class Activite extends Etape {
 
-    private final int temps;
+    private int temps;
     private final int ecartTemps;
 
     /**
@@ -69,6 +69,14 @@ public class Activite extends Etape {
         return false;
     }
 
+    /**
+     * la fonction assigne un temps à l'Activité
+     * @param nouveauTemps
+     */
+    public void setTemps(int nouveauTemps){
+        temps = nouveauTemps;
+    }
+
     @Override
     public boolean estUneActiviteRestreinte() {
         return false;
@@ -85,19 +93,19 @@ public class Activite extends Etape {
         StringBuilder affichage = new StringBuilder();
         if (this.nbSuccesseurs() == 1) {
             Etape succ = iterator().next();
-            affichage.append("\ndelai(" + temps + "," + ecartTemps + ");\n");
-            affichage.append("transfert(" + getNom() + "," + succ.getNom() + ");\n" + succ.toC());
+            affichage.append("\ndelai(").append(temps).append(",").append(ecartTemps).append(");\n");
+            affichage.append("transfert(").append(getNom()).append(",").append(succ.getNom()).append(");\n").append(succ.toC());
         }
         //bifurcation
         if (this.nbSuccesseurs() > 1) {
             Iterator<Etape> iterator = this.iterator();
-            affichage.append("\nint nb = (int)((rand()/(float) RAND_MAX) *" + nbSuccesseurs() + ");\n");
+            affichage.append("\nint nb = (int)((rand()/(float) RAND_MAX) *").append(nbSuccesseurs()).append(");\n");
                 affichage.append("switch(nb){\n");
                     for (int i = 0; i < nbSuccesseurs(); i++) {
                         Etape succ = iterator.next();
-                        affichage.append("case " + i + ":\n");
-                        affichage.append("delai(" + temps + "," + ecartTemps + ");\n");
-                        affichage.append("transfert(" + getNom() + "," + succ.getNom() + ");" + succ.toC() + "break;\n");
+                        affichage.append("case ").append(i).append(":\n");
+                        affichage.append("delai(").append(temps).append(",").append(ecartTemps).append(");\n");
+                        affichage.append("transfert(").append(getNom()).append(",").append(succ.getNom()).append(");").append(succ.toC()).append("break;\n");
                     }
                 affichage.append("}\n");
         }

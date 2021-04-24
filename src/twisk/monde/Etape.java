@@ -70,7 +70,6 @@ public abstract class Etape implements Iterable<Etape> {
     public abstract boolean estUneActiviteRestreinte();
 
     /**
-     *
      * @return le nom de l'etape
      */
     public String getNom(){

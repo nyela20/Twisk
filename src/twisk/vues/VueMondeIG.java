@@ -48,7 +48,8 @@ public class VueMondeIG extends Pane implements Observateur {
                 vueEtapeIG = new VueGuichetIG(mondeIG, (GuichetIG) values, mondeIG.getIdentifiantStyle());
             }
             this.getChildren().add(vueEtapeIG);
-            for (PointDeControleIG pdc : values) {
+            for (Iterator<PointDeControleIG> iter = values.pointDeControleIGIterator(); iter.hasNext(); ) {
+                PointDeControleIG pdc = iter.next();
                 VuePointDeControleIG vuePointDeControleIG = new VuePointDeControleIG(mondeIG,pdc);
                 this.getChildren().add(vuePointDeControleIG);
             }

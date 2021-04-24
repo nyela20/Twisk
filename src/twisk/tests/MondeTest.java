@@ -2,6 +2,7 @@ package twisk.tests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import twisk.exceptionstwisk.ExceptionObjetNonTrouve;
 import twisk.monde.*;
 import twisk.outils.FabriqueNumero;
 import twisk.simulation.Simulation;
@@ -146,8 +147,15 @@ class MondeTest {
         zoo.ajouterSuccesseur(zoocool);
         tob.ajouterSuccesseur(GuichetPiscine);
         GuichetPiscine.ajouterSuccesseur(piscine);
-        monde3.ajouter(tob,zoo,zoocool,GuichetPiscine,piscine);
-        monde3.aCommeSortie(piscine,zoocool);
+        monde3.ajouter(tob);
+        monde3.aCommeEntree(tob);
+        monde3.ajouter(zoo);
+        monde3.aCommeEntree(zoo);
+        monde3.ajouter(zoocool);
+        monde3.aCommeSortie(zoocool);
+        monde3.ajouter(GuichetPiscine);
+        monde3.ajouter(piscine);
+        monde3.aCommeSortie(piscine);
         monde3.aCommeEntree(zoo,tob);
 
 
@@ -159,4 +167,23 @@ class MondeTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    void toC4() throws ExceptionObjetNonTrouve {
+        Monde monde = new Monde();
+        Etape lolo = new Activite("lolo", 5, 2);
+        monde.ajouter(lolo);
+        Etape popo = new ActiviteRestreinte("popo", 5, 2);
+        monde.ajouter(popo);
+        Etape guichet = new Guichet("guichet", 4 );
+        monde.ajouter(guichet);
+        monde.aCommeSortie(popo);
+        lolo.ajouterSuccesseur(guichet);
+        monde.aCommeEntree(lolo);
+        guichet.ajouterSuccesseur(popo);
+        Simulation simulation = new Simulation();
+        simulation.setNbClients(3);
+        simulation.simuler(monde);
+    }
+
 }

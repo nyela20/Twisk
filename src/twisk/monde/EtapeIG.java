@@ -1,17 +1,15 @@
 package twisk.monde;
 
 
-import twisk.monde.Etape;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 
 
-public abstract class EtapeIG implements Iterable<PointDeControleIG>{
+public abstract class EtapeIG implements Iterable<EtapeIG>{
     private final ArrayList<PointDeControleIG> TabPointsDC;
-    private LinkedList<EtapeIG> ListeSuccesseur;
+    private final LinkedList<EtapeIG> ListeSuccesseur;
     private int posX;
     private int posY;
     private String nom;
@@ -96,21 +94,19 @@ public abstract class EtapeIG implements Iterable<PointDeControleIG>{
 
     /**
      * ajoute un successeur à l'Etape
-     * @param etapeIG
+     * @param etapeIG l'Etape
      */
     public void ajouterSuccesseur(EtapeIG etapeIG){
         ListeSuccesseur.add(etapeIG);
     }
 
-    /**
-     * retourne le successeur d'une EtapeIG (a modif)
-     * @return le successeur d'une EtapeIG
-     */
-    public EtapeIG getSuccesseur(){
-        return ListeSuccesseur.getFirst();
+
+    @Override
+    public Iterator<EtapeIG> iterator(){
+        return ListeSuccesseur.iterator();
     }
 
-
+    public Iterator<PointDeControleIG> pointDeControleIGIterator(){ return TabPointsDC.iterator();}
 
     /**
      * vide la tableau de successeur de l'Etape (à modifier bif)
@@ -151,10 +147,6 @@ public abstract class EtapeIG implements Iterable<PointDeControleIG>{
         return estUneSortie;
     }
 
-    @Override
-    public Iterator<PointDeControleIG> iterator() {
-        return TabPointsDC.iterator() ;
-    }
 
     /**
      * renomme une EtapeIG
@@ -245,14 +237,6 @@ public abstract class EtapeIG implements Iterable<PointDeControleIG>{
     }
 
     /**
-     * retourne le nombre de successeur d'une Etape
-     * @return le nombre de successeur 'une Etape
-     */
-    public int getNombreDeSuccesseur(){
-        return ListeSuccesseur.size();
-    }
-
-    /**
      * @return false est une ActiviteRestreinte
      */
     public boolean estUneActiviteRestreinte(){
@@ -264,5 +248,13 @@ public abstract class EtapeIG implements Iterable<PointDeControleIG>{
      */
     public boolean estUnGuichet(){
         return false;
+    }
+
+    /**
+     * retourne le nombre de successeur de l'Etape
+     * @return le nombre de successeur de l'Etape
+     */
+    public int nombreDeSuccesseur(){
+        return ListeSuccesseur.size();
     }
 }

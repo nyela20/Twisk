@@ -67,7 +67,7 @@ public class Simulation {
 
         //---------- Affiche les clients en début de simulation------------
         System.out.print("les clients : ");
-        for (int i = 0; i < NB_CLIENTS - 1; i++) {
+        for (int i = 0; i < tableauClientsStep.length - 1; i++){
             System.out.print(tableauClientsStep[i] + " ");
         }
         System.out.print(tableauClientsStep[NB_CLIENTS - 1] + "\n\n");

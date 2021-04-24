@@ -17,16 +17,24 @@ public class ActiviteIG extends EtapeIG {
         super(nom,idf, larg, haut);
         delai = 0;
         ecarttemps = 0;
+        estUneActiviteRestreinte = false;
     }
 
+
     @Override
-    public boolean estUneActivite() {
-        return true;
-    }
+    public boolean estUneActivite() { return true; }
 
     @Override
     public boolean estUneActiviteRestreinte(){
         return estUneActiviteRestreinte;
+    }
+
+    /**
+     * la fonction assigne l'activité à activité restreinte
+     * @param setTo un boléen
+     */
+    public void setEstUneActiviteRestreinte(boolean setTo) {
+        this.estUneActiviteRestreinte = setTo;
     }
 
     /**
@@ -62,11 +70,5 @@ public class ActiviteIG extends EtapeIG {
         return ecarttemps;
     }
 
-    /**
-     * la fonction assigne l'activité à activité restreinte
-     * @param setTo un boléen
-     */
-    public void setEstUneActiviteRestreinte(boolean setTo) {
-        this.estUneActiviteRestreinte = setTo;
-    }
+
 }
