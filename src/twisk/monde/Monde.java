@@ -50,7 +50,7 @@ public class Monde implements Iterable<Etape> {
      * @return lenombre de jetons
      * @throws ExceptionObjetNonTrouve lève un exception si l'Etape non trouvé
      */
-    public int getnbJetonsNiemeEtape(String nom) throws ExceptionObjetNonTrouve {
+    public int getnombreDeJetonsEtape(String nom) throws ExceptionObjetNonTrouve {
        for(Etape etape : this){
            if(etape.getNom().equals(nom)){
                assert(etape.estUnGuichet()) : "erreur l'étape n'est pas un guichet";
@@ -90,7 +90,6 @@ public class Monde implements Iterable<Etape> {
             }
         }
         return null;
-      //  throw new ExceptionObjetNonTrouve("Aucun etape trouvé portant ce nom");
     }
 
     /**

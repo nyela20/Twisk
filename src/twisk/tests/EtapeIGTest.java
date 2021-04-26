@@ -1,3 +1,4 @@
+/*
 package twisk.tests;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,6 +23,7 @@ class EtapeIGTest {
 
     @BeforeEach
     void setup(){
+
         parcAsterix = new MondeIG();
         String idf = FabriqueIdentifiant.getInstance().getIdentifiant();
         Discobelix = new ActiviteIG("Discobelix",idf,100,75);
@@ -65,3 +67,5 @@ class EtapeIGTest {
     }
 
 }
+
+ */

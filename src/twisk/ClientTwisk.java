@@ -27,25 +27,25 @@ public class ClientTwisk{
 
 
         /*---monde0-(biffurcation)--*/
-        Monde monde0 = new Monde();
 
-        Etape parc = new Activite("parc",5,5);
-        Etape parc2 = new Activite("parc2",5,5);
-        Etape parc3 = new Activite("parc3",5,5);
-        monde0.ajouter(parc,parc2,parc3);
-        monde0.aCommeEntree(parc);
-        parc.ajouterSuccesseur(parc2);
-        parc.ajouterSuccesseur(parc3);
-        monde0.aCommeSortie(parc2);
-        monde0.aCommeSortie(parc3);
-        start(monde0,3);
+        Monde monde = new Monde();
+        Etape lolo = new Activite("lolo", 4, 2);
+        Etape guichet = new Guichet("guichet", 6 );
+        Etape popo = new ActiviteRestreinte("popo", 6, 2);
+        monde.ajouter(lolo,guichet,popo);
+        guichet.ajouterSuccesseur(popo);
+        monde.aCommeSortie(popo);
+        lolo.ajouterSuccesseur(guichet);
+        monde.aCommeEntree(lolo);
+        start(monde,3);
+
 
 
         /*----monde1--(biffurcation)-*/
         Monde monde1 = new Monde();
 
         Etape guichet_lion = new Guichet("Guichet_lion", 4);
-        Etape guichet_girafe = new Guichet("Guichet_girafe", 2);
+        Etape guichet_girafe = new Guichet("Guichet_girafe", 4);
         Etape plaine_girafe = new ActiviteRestreinte("plaine_girafe", 2, 1);
         Etape guichet_zebre = new Guichet("Guichet_zebre", 4);
         Etape fast_food = new Activite("fast_food", 2, 1);

@@ -14,6 +14,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Random;
 
 
 public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
@@ -26,7 +27,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
      * Constructeur d'un MondeIG
      */
     public MondeIG() {
-        ajouter("Activite");
+      //  ajouter("Activite");
         identifiantStyle = 0;
     }
 
@@ -63,16 +64,9 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
             if (!verifieNombreSucceseurGuichet()) {
                 throw new ExceptionMondeIG("Monde : invalide : Un des guichets possède >1 successeurs");
             }
-            if (!verifieValeurTemps()) {
-                throw new ExceptionMondeIG("Monde invalide : Valeur délai d'une des activités <= 0");
-            }
-            if (!verifieValeurEcartTemps()) {
-                throw new ExceptionMondeIG("Monde invalide : Valeur ecart-temps d'une des activités <= 0");
-            }
             if (!verifieValeurNombreDeJetons()) {
                 throw new ExceptionMondeIG("Monde invalide : Valeur nombre de jetons d'un des guichets <= 0");
             }
-
             //il faut que l'entrée soit rélié à la sortie
             //il faut vérifier que le monde est connexe
     }
@@ -81,58 +75,34 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
      * La fonction créer un Monde et le retourne
      * @return le mojde crée
      */
-    public Monde creerMonde() throws ExceptionObjetNonTrouve {
+    public Monde creerMonde() {
         Monde monde = new Monde();
-
-       // System.out.println("Monde monde = new Monde();");
-
-        CorrespondanceEtapes correspondanceEtapes = new CorrespondanceEtapes();
-        for (EtapeIG etapeIG : this){
-            if (etapeIG.estUnGuichet()) {
-                Etape guichet = new Guichet(etapeIG.getNom(), ((GuichetIG) etapeIG).getNombreDeJetons());
-
-           //     System.out.println("Etape guichet = new Guichet("+ guichet.getNom()+", "+ ((Guichet) guichet).getNombreDeJetons() +" );");
-
-                correspondanceEtapes.ajouter(etapeIG,guichet);
+        CorrespondanceEtapes correspondancesEtapes = new CorrespondanceEtapes();
+        for (EtapeIG etapeIG : TableauEtapesIG.values()) {
+            Etape etape = null;
+            if (etapeIG.estUneActiviteRestreinte()) {
+                etape = new ActiviteRestreinte(etapeIG.getNom(), ((ActiviteIG) etapeIG).getDelai(), ((ActiviteIG) etapeIG).getEcarttemps());
+            } else if (etapeIG.estUneActivite()) {
+                etape = new Activite(etapeIG.getNom(), ((ActiviteIG) etapeIG).getDelai(), ((ActiviteIG) etapeIG).getEcarttemps());
+            } else if (etapeIG.estUnGuichet()) {
+                etape = new Guichet(etapeIG.getNom(), ((GuichetIG) etapeIG).getNombreDeJetons());
             }
-            if (etapeIG.estUneActivite()){
-                assert(etapeIG.getClass().equals(ActiviteIG.class));
-                if (etapeIG.estUneActiviteRestreinte()) {
-                    Etape popo = new ActiviteRestreinte(etapeIG.getNom(), ((ActiviteIG) etapeIG).getDelai(), ((ActiviteIG) etapeIG).getEcarttemps());
-
-            //        System.out.println("Etape popo = new ActiviteRestreinte("+ popo.getNom() + ", "+ ((ActiviteRestreinte)popo).getTemps() + ", " + ((ActiviteRestreinte)popo).getEcartTemps() + ");");
-
-                    correspondanceEtapes.ajouter(etapeIG,popo);
-                } else {
-                    Etape lolo = new Activite(etapeIG.getNom(), ((ActiviteIG) etapeIG).getDelai(), ((ActiviteIG) etapeIG).getEcarttemps());
-
-            //        System.out.println("Etape lolo = new Activite("+ lolo.getNom() + ", "+ ((Activite)lolo).getTemps() + ", " + ((Activite)lolo).getEcartTemps() + ");");
-                    correspondanceEtapes.ajouter(etapeIG,lolo);
-                }
-            }
-        }
-        for (Etape etape : correspondanceEtapes) {
-            for(EtapeIG succ : correspondanceEtapes.getKey(etape)){
-                etape.ajouterSuccesseur(correspondanceEtapes.get(succ));
-
-        //        System.out.println(etape.getNom() +  ".ajouterSuccesseur(" + correspondanceEtapes.get(succ).getNom() + ");");
-
-            }
-            monde.ajouter(etape);
-            if(correspondanceEtapes.getKey(etape).estUneEntree()){
+            if (etapeIG.estUneEntree()) {
                 monde.aCommeEntree(etape);
-
-         //       System.out.println("monde.aCommeEntree("+etape.getNom()+");");
-
-            }
-            if(correspondanceEtapes.getKey(etape).estUneSortie()){
+            } else if (etapeIG.estUneSortie()) {
                 monde.aCommeSortie(etape);
-
-        //        System.out.println("monde.aCommeSortie("+etape.getNom()+");");
+            }
+            correspondancesEtapes.ajouter(etapeIG, etape);
+        }
+        for (EtapeIG etapeIG : TableauEtapesIG.values()) {
+            monde.ajouter(correspondancesEtapes.get(etapeIG));
+            for (EtapeIG successeur : etapeIG) {
+                correspondancesEtapes.get(etapeIG).ajouterSuccesseur(correspondancesEtapes.get(successeur));
             }
         }
         return monde;
     }
+
 
     /**
      * verifie la validité des arcs avant de les créer
@@ -177,7 +147,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
             TableauArcsIG.add(arc);
             arc.getEtapeDebut().ajouterSuccesseur(arc.getEtapeArrive());
         }catch (ExceptionsInvaliditeSurLesArcs invaliditeSurLesArcs){
-            System.err.println(invaliditeSurLesArcs.getMessage());
+            System.out.println(invaliditeSurLesArcs.getMessage());
         }
         pt1.setEstSelectionne(false);
         pt2.setEstSelectionne(false);
@@ -189,15 +159,23 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
      */
     public void ajouter(String type){
         assert(type.equals("Activite") || type.equals("Guichet")) : "Erreur type inconnu.";
-            if (type.equals("Activite")) {
-                String identifiant = FabriqueIdentifiant.getInstance().getIdentifiant();
-                ActiviteIG activite = new ActiviteIG(identifiant, identifiant, 175, 75);
+        String identifiant = FabriqueIdentifiant.getInstance().getIdentifiant();
+
+        /*nom d'étape aléatoire*/
+        Random rand = new Random();
+        String nom="";
+        for(int i = 0 ; i < 5 ; i++){
+            char c = (char)(rand.nextInt(26) + 97);
+            nom += c;
+        }
+
+        if (type.equals("Activite")) {
+                ActiviteIG activite = new ActiviteIG(nom, identifiant, 175, 75);
                 TableauEtapesIG.put(activite.getIdentifiant(), activite);
                 notifierObservateur();
             }
             if (type.equals("Guichet")){
-                String identifiant = FabriqueIdentifiant.getInstance().getIdentifiant();
-                GuichetIG guichet = new GuichetIG(identifiant, identifiant, 200, 60);
+                GuichetIG guichet = new GuichetIG(nom, identifiant, 200, 60);
                 TableauEtapesIG.put(guichet.getIdentifiant(), guichet);
                 notifierObservateur();
             }
@@ -584,36 +562,6 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG> {
             }
         }
         return false;
-    }
-
-    /**
-     * retourne vrai si la valeur des écart-temps est valide,sinon faux
-     * @return vrai si la valeur des écart-temps est valide,sinon faux
-     */
-    public boolean verifieValeurEcartTemps(){
-        for(EtapeIG etapeIG : this){
-            if(etapeIG.estUneActivite()){
-                if( ((ActiviteIG)etapeIG).getEcarttemps() <= 0 ){
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    /**
-     * retourne vrai si la valeur des temps est valide,sinon faux
-     * @return vrai si la valeur des temps est valide,sinon faux
-     */
-    public boolean verifieValeurTemps(){
-        for(EtapeIG etapeIG : this){
-            if(etapeIG.estUneActivite()){
-                if( ((ActiviteIG)etapeIG).getDelai() <= 0 ){
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 
     /**

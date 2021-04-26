@@ -1,6 +1,8 @@
 package twisk.monde;
 
 
+import java.util.Random;
+
 public class ActiviteIG extends EtapeIG {
 
     private int delai;
@@ -15,8 +17,9 @@ public class ActiviteIG extends EtapeIG {
      */
     public ActiviteIG(String nom,String idf, int larg, int haut) {
         super(nom,idf, larg, haut);
-        delai = 0;
-        ecarttemps = 0;
+        Random random = new Random();
+        delai =  random.nextInt(10);
+        ecarttemps = random.nextInt(10);
         estUneActiviteRestreinte = false;
     }
 

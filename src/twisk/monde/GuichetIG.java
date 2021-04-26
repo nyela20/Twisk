@@ -1,5 +1,7 @@
 package twisk.monde;
 
+import java.util.Random;
+
 public class GuichetIG extends EtapeIG{
 
     private int NombreDeJetons;
@@ -13,7 +15,8 @@ public class GuichetIG extends EtapeIG{
      */
     public GuichetIG(String nom,String idf, int larg, int haut) {
         super(nom,idf, larg, haut);
-        NombreDeJetons = 0;
+        Random random = new Random();
+        NombreDeJetons = random.nextInt(5);
     }
 
     /**

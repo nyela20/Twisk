@@ -57,9 +57,13 @@ public class Simulation {
         int[] TableauDeJetons = new int[monde.nbGuichet()];
         for( int i=0; i < NB_ETAPES; i++) {
             if (monde.getEtape(monde.getNomNiemeEtape(i)).estUnGuichet()) {
-                    TableauDeJetons[j] = monde.getnbJetonsNiemeEtape(monde.getNomNiemeEtape(i));
+                    TableauDeJetons[j] = monde.getnombreDeJetonsEtape(monde.getNomNiemeEtape(i));
                     j++;
             }
+        }
+        System.out.println("nb etapes " + NB_ETAPES + " nbguichet "+ NB_GUICHETS +" nbclient " +  NB_CLIENTS );
+        for(int i = 0; i< TableauDeJetons.length;i++ ) {
+            System.out.println(("tab[" + i + "] = " + TableauDeJetons[i]));
         }
         int[] tableauClientsStep = start_simulation(NB_ETAPES, NB_GUICHETS, NB_CLIENTS, TableauDeJetons);
         //ajouter les clients dans le monde

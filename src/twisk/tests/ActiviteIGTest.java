@@ -1,3 +1,4 @@
+/*
 package twisk.tests;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -17,3 +18,4 @@ public class ActiviteIGTest extends EtapeIGTest {
     @Test
     void renommer(){ }
 }
+ */

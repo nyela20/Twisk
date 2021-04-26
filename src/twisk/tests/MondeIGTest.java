@@ -1,3 +1,4 @@
+/*
 package twisk.tests;
 
 
@@ -269,11 +270,5 @@ class MondeIGTest {
         ActiviteIG activiteIG = (ActiviteIG) parcAsterix.iterator().next();
         assert(activiteIG.getEcarttemps() == 45) : "Erreur la fonction n'assigne pas d'écart temps à l'Etape";
     }
-
-
-
-
-
-
-
 }
+ */
