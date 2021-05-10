@@ -3,8 +3,8 @@ package twisk.ecouteurs;
 import javafx.event.EventHandler;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
-import twisk.monde.EtapeIG;
-import twisk.monde.MondeIG;
+import twisk.mondeIG.EtapeIG;
+import twisk.mondeIG.MondeIG;
 
 public class EcouteurDropped implements EventHandler<DragEvent> {
     private final MondeIG monde;

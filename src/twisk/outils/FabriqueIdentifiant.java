@@ -11,7 +11,7 @@ public class FabriqueIdentifiant {
     /**
      * Constructeur d'une InstanceUnique qui fabrique des Identifiants
      */
-    FabriqueIdentifiant(){
+    private FabriqueIdentifiant(){
             this.noEtape = 0;this.noEtapePointDC = 0;
             this.noArcs = 0;
         }

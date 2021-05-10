@@ -1,9 +1,8 @@
 package twisk.ecouteurs;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.TextInputDialog;
-import twisk.exceptionstwisk.ExceptionVueMenu;
-import twisk.monde.MondeIG;
+import twisk.exceptionstwiskIG.ExceptionVueMenu;
+import twisk.mondeIG.MondeIG;
 
 
 public class EcouteurMenuEcartTemps extends EcouteurAbstractMenu {
@@ -25,11 +24,11 @@ public class EcouteurMenuEcartTemps extends EcouteurAbstractMenu {
             }
             super.getBoiteDialogue().setHeaderText("Assigner un écart-temps");
             super.getBoiteDialogue().showAndWait();
-            String delai = super.getBoiteDialogue().getEditor().getText();
-            if(!estUnEntier(delai)){
-                throw new ExceptionVueMenu("Type de valeur invalide. entier uniquement");
+            String ecarttemps = super.getBoiteDialogue().getEditor().getText();
+            if(estUnEntier(ecarttemps) || Integer.parseInt(ecarttemps) <= 0){
+                throw new ExceptionVueMenu("Valeur invalide.");
             }else {
-                super.getMonde().assignerEcartTempsAEtape(Integer.parseInt(delai));
+                super.getMonde().assignerEcartTempsAEtape(Integer.parseInt(ecarttemps));
             }
         }catch(ExceptionVueMenu e){
             System.out.println(e.getMessage());

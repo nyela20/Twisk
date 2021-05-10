@@ -5,8 +5,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import twisk.ecouteurs.EcouteurArcs;
-import twisk.monde.ArcIG;
-import twisk.monde.MondeIG;
+import twisk.mondeIG.ArcIG;import twisk.mondeIG.MondeIG;
 
 public class VueArcIG extends Pane implements Observateur {
     private final int identifiantStyle;

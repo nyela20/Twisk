@@ -1,11 +1,9 @@
 package twisk.vues;
 
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
 import twisk.ecouteurs.EcouteurSimulation;
-import twisk.exceptionstwisk.ExceptionObjetNonTrouve;
-import twisk.monde.MondeIG;
+import twisk.mondeIG.MondeIG;
 
 
 public class VueOutils extends TilePane implements Observateur {

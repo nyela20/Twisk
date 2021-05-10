@@ -3,7 +3,9 @@ package twisk.vues;
 import javafx.scene.layout.Pane;
 import twisk.ecouteurs.EcouteurSetDragOver;
 import twisk.ecouteurs.EcouteurDropped;
-import twisk.monde.*;
+import twisk.exceptionstwiskIG.ExceptionMondeIG;
+import twisk.mondeIG.*;
+import twisk.simulation.Client;
 
 import java.util.Iterator;
 
@@ -33,6 +35,7 @@ public class VueMondeIG extends Pane implements Observateur {
         this.getChildren().clear();
         this.setId("background"+ mondeIG.getIdentifiantStyle());
 
+        //DESSIN ARCS
         Iterator<ArcIG> it = mondeIG.iteratorArcIG();
         while (it.hasNext()){
             ArcIG arc = it.next();
@@ -40,7 +43,9 @@ public class VueMondeIG extends Pane implements Observateur {
             this.getChildren().add(vuearc);
         }
 
-        for (EtapeIG values : this.mondeIG) {
+
+        //DESSIN ETAPES
+        for (EtapeIG values : mondeIG){
             VueEtapeIG vueEtapeIG = null;
             if(values.estUneActivite()) {
                 vueEtapeIG = new VueActiviteIG(mondeIG, (ActiviteIG) values, mondeIG.getIdentifiantStyle());
@@ -48,6 +53,16 @@ public class VueMondeIG extends Pane implements Observateur {
                 vueEtapeIG = new VueGuichetIG(mondeIG, (GuichetIG) values, mondeIG.getIdentifiantStyle());
             }
             this.getChildren().add(vueEtapeIG);
+            //DESSIN DES CLIENTS
+            Iterator<Client> iterateurClients = mondeIG.iteratorClients();
+            while (iterateurClients.hasNext()) {
+                Client client = iterateurClients.next();
+                if(client.estDans(values.getNom())){
+                    VueClientIG vueClientIG = new VueClientIG(client);
+                    vueEtapeIG.getChildren().add(vueClientIG);
+                }
+            }
+            //DESSIN POINTS DE CONTROLES
             for (Iterator<PointDeControleIG> iter = values.pointDeControleIGIterator(); iter.hasNext(); ) {
                 PointDeControleIG pdc = iter.next();
                 VuePointDeControleIG vuePointDeControleIG = new VuePointDeControleIG(mondeIG,pdc);

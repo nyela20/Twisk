@@ -2,17 +2,16 @@ package twisk.ecouteurs;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import twisk.monde.MondeIG;
+import twisk.mondeIG.MondeIG;
 
 import javax.swing.*;
 
 public class EcouteurMenuFichierQuitter extends EcouteurAbstractMenu {
-
     /**
      * Ecouteur qui sert à Quitter l'interface graphique
      */
-    public EcouteurMenuFichierQuitter(){
-        super(new MondeIG());
+    public EcouteurMenuFichierQuitter(MondeIG mde){
+        super(mde);
     }
 
     @Override

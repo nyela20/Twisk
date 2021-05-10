@@ -1,7 +1,7 @@
 package twisk.simulation;
 
+import twisk.exceptionstwiskIG.ExceptionMondeIG;
 import twisk.monde.Etape;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 

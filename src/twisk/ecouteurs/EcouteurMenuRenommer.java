@@ -1,8 +1,7 @@
 package twisk.ecouteurs;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.TextInputDialog;
-import twisk.monde.MondeIG;
+import twisk.mondeIG.MondeIG;
 
 public class EcouteurMenuRenommer extends EcouteurAbstractMenu {
 

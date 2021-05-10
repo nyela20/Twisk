@@ -20,24 +20,29 @@ public class ClientTwisk{
         m1.invoke(simulation,nbclients);
         Method m2 = simulation.getClass().getMethod("simuler",Monde.class);
         m2.invoke(simulation, monde);
-        classLoaderPerso.finalize();
     }
 
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+
+
 
 
         /*---monde0-(biffurcation)--*/
 
         Monde monde = new Monde();
         Etape lolo = new Activite("lolo", 4, 2);
-        Etape guichet = new Guichet("guichet", 6 );
-        Etape popo = new ActiviteRestreinte("popo", 6, 2);
-        monde.ajouter(lolo,guichet,popo);
-        guichet.ajouterSuccesseur(popo);
-        monde.aCommeSortie(popo);
-        lolo.ajouterSuccesseur(guichet);
-        monde.aCommeEntree(lolo);
-        start(monde,3);
+        Etape dodo = new Activite("dodo", 6,2 );
+        Etape popo = new Activite("popo", 6, 2);
+        Etape koko = new Activite("koko", 6, 2);
+        monde.ajouter(lolo,dodo,popo,koko);
+        dodo.ajouterSuccesseur(koko);
+        monde.aCommeSortie(lolo);
+        monde.aCommeSortie(koko);
+        popo.ajouterSuccesseur(lolo);
+        popo.ajouterSuccesseur(dodo);
+        monde.aCommeEntree(dodo);
+        monde.aCommeEntree(popo);
+        start(monde,15);
 
 
 
@@ -73,17 +78,17 @@ public class ClientTwisk{
 
         Activite zoo = new Activite("zoo", 2, 1);
         Etape Guichettob = new Guichet("guichet_tob", 4);
-        Activite tob = new ActiviteRestreinte("toboggan", 2, 1);
+        Activite toboggan = new ActiviteRestreinte("toboggan", 2, 1);
         Etape GuichetPiscine = new Guichet("guichet_piscine", 3);
-        Activite piscine = new ActiviteRestreinte("piscine", 5,2 );
+        Activite piscineActivite = new ActiviteRestreinte("piscine", 5,2 );
 
-        monde2.ajouter(tob, zoo, Guichettob, GuichetPiscine, piscine);
+        monde2.ajouter(toboggan, zoo, Guichettob, GuichetPiscine, piscineActivite);
         zoo.ajouterSuccesseur(Guichettob);
-        Guichettob.ajouterSuccesseur(tob);
-        tob.ajouterSuccesseur(GuichetPiscine);
-        GuichetPiscine.ajouterSuccesseur(piscine);
+        Guichettob.ajouterSuccesseur(toboggan);
+        toboggan.ajouterSuccesseur(GuichetPiscine);
+        GuichetPiscine.ajouterSuccesseur(piscineActivite);
         monde2.aCommeEntree(zoo);
-        monde2.aCommeSortie(piscine);
+        monde2.aCommeSortie(piscineActivite);
         start(monde2,15);
 
         /*----monde3---*/

@@ -1,9 +1,7 @@
 package twisk.monde;
 
-import twisk.exceptionstwisk.ExceptionObjetNonTrouve;
-
+import twisk.mondeIG.EtapeIG;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class CorrespondanceEtapes{
     private final HashMap<EtapeIG,Etape> tableauEtapes = new HashMap<>();

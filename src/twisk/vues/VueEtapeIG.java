@@ -1,16 +1,13 @@
 package twisk.vues;
 
-import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import twisk.ecouteurs.EcouterStartDragged;
 import twisk.ecouteurs.EcouteurEtapes;
-import twisk.ecouteurs.EcouteurMenuRenommer;
-import twisk.monde.EtapeIG;
-import twisk.monde.MondeIG;
+import twisk.mondeIG.EtapeIG;
+import twisk.mondeIG.MondeIG;
 
 
 

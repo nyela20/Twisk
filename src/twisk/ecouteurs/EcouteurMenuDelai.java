@@ -1,9 +1,8 @@
 package twisk.ecouteurs;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.TextInputDialog;
-import twisk.exceptionstwisk.ExceptionVueMenu;
-import twisk.monde.MondeIG;
+import twisk.exceptionstwiskIG.ExceptionVueMenu;
+import twisk.mondeIG.MondeIG;
 
 public class EcouteurMenuDelai extends EcouteurAbstractMenu {
 
@@ -26,8 +25,8 @@ public class EcouteurMenuDelai extends EcouteurAbstractMenu {
             super.getBoiteDialogue().setHeaderText("Assigner un délai");
             super.getBoiteDialogue().showAndWait();
             String delai = super.getBoiteDialogue().getEditor().getText();
-            if(!estUnEntier(delai)){
-                throw new ExceptionVueMenu("Type de valeur invalide. entier uniquement");
+            if(estUnEntier(delai) || Integer.parseInt(delai) <= 0){
+                throw new ExceptionVueMenu("Valeur invalide.");
             }else {
                 super.getMonde().assignerDelaiAEtape(Integer.parseInt(delai));
             }

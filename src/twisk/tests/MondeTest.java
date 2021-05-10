@@ -2,7 +2,7 @@ package twisk.tests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import twisk.exceptionstwisk.ExceptionObjetNonTrouve;
+import twisk.exceptionstwiskIG.ExceptionObjetNonTrouve;
 import twisk.monde.*;
 import twisk.outils.FabriqueNumero;
 import twisk.simulation.Simulation;

@@ -3,7 +3,7 @@ package twisk.ecouteurs;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextInputDialog;
-import twisk.monde.MondeIG;
+import twisk.mondeIG.MondeIG;
 
 public abstract class EcouteurAbstractMenu implements EventHandler<ActionEvent> {
     private final MondeIG monde;
@@ -29,9 +29,9 @@ public abstract class EcouteurAbstractMenu implements EventHandler<ActionEvent> 
         try {
             Integer.parseInt(chaine);
         } catch (NumberFormatException e) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**

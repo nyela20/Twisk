@@ -16,6 +16,10 @@ public class Client {
         this.rang = rang;
     }
 
+    public boolean estDans(String nomEtape){
+        return etapeClient.getNom().equals(nomEtape);
+    }
+
     public int getNumeroClient(){
         return numeroClient;
     }

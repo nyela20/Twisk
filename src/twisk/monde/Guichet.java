@@ -5,7 +5,7 @@ import twisk.outils.FabriqueNumero;
 
 public class Guichet extends Etape {
 
-    private int nombreDeJetons;
+    private final int nombreDeJetons;
     private final int noSemaphore;
 
     /**

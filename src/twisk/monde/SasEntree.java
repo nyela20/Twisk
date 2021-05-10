@@ -1,5 +1,7 @@
 package twisk.monde;
 
+import java.util.Iterator;
+
 public class SasEntree extends Activite {
 
     /**
@@ -16,11 +18,23 @@ public class SasEntree extends Activite {
 
     @Override
     public String toC() {
-
-        Etape succ = iterator().next();
-        return "entrer(" + getNom() + ");\n" +
-                "delai(" + getTemps() + "," + getEcartTemps() + ");\n" +
-                "transfert(" + getNom() + "," + succ.getNom() + ");" + succ.toC();
+        StringBuilder affichage = new StringBuilder();
+        if (nbSuccesseurs() == 1) {
+            Etape succ = iterator().next();
+            affichage.append("entrer(").append(getNom()).append(");\n").append("delai(").append(getTemps()).append(",").append(getEcartTemps()).append(");\n").append("transfert(").append(getNom()).append(",").append(succ.getNom()).append(");").append(succ.toC());
+        }
+        if (nbSuccesseurs() > 1) {
+            Iterator<Etape> iterator = this.iterator();
+            affichage.append("\nint nb = (int)((rand()/(float) RAND_MAX) *").append(nbSuccesseurs()).append(");\n");
+            affichage.append("switch(nb){\n");
+            for (int i = 0; i < nbSuccesseurs(); i++) {
+                Etape succ = iterator.next();
+                affichage.append("case ").append(i).append(":\n");
+                affichage.append("entrer(").append(getNom()).append(");\n").append("delai(").append(getTemps()).append(",").append(getEcartTemps()).append(");\n").append("transfert(").append(getNom()).append(",").append(succ.getNom()).append(");").append(succ.toC()).append("break;\n");
+            }
+            affichage.append("}\n");
+        }
+        return affichage.toString();
     }
 
     @Override

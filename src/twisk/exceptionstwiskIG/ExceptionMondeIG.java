@@ -1,4 +1,4 @@
-package twisk.exceptionstwisk;
+package twisk.exceptionstwiskIG;
 
 public class ExceptionMondeIG extends TwiskException{
 
@@ -8,6 +8,6 @@ public class ExceptionMondeIG extends TwiskException{
      * @param message le message de l'exception
      */
     public ExceptionMondeIG(String message) {
-        super(message);
+        super(message,"IG");
     }
 }

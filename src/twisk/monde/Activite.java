@@ -71,7 +71,7 @@ public class Activite extends Etape {
 
     /**
      * la fonction assigne un temps à l'Activité
-     * @param nouveauTemps
+     * @param nouveauTemps le nouveau temps
      */
     public void setTemps(int nouveauTemps){
         temps = nouveauTemps;
@@ -91,13 +91,13 @@ public class Activite extends Etape {
      */
     public String toC() {
         StringBuilder affichage = new StringBuilder();
-        if (this.nbSuccesseurs() == 1) {
+        if (nbSuccesseurs() == 1) {
             Etape succ = iterator().next();
             affichage.append("\ndelai(").append(temps).append(",").append(ecartTemps).append(");\n");
             affichage.append("transfert(").append(getNom()).append(",").append(succ.getNom()).append(");\n").append(succ.toC());
         }
         //bifurcation
-        if (this.nbSuccesseurs() > 1) {
+        if (nbSuccesseurs() > 1) {
             Iterator<Etape> iterator = this.iterator();
             affichage.append("\nint nb = (int)((rand()/(float) RAND_MAX) *").append(nbSuccesseurs()).append(");\n");
                 affichage.append("switch(nb){\n");

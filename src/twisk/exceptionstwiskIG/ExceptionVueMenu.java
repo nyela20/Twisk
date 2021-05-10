@@ -1,4 +1,4 @@
-package twisk.exceptionstwisk;
+package twisk.exceptionstwiskIG;
 
 public class ExceptionVueMenu extends TwiskException {
 
@@ -8,6 +8,6 @@ public class ExceptionVueMenu extends TwiskException {
      * @param message le message de l'exception
      */
     public ExceptionVueMenu(String message) {
-        super(message);
+        super(message,"IG");
     }
 }

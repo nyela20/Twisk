@@ -1,4 +1,4 @@
-package twisk.exceptionstwisk;
+package twisk.exceptionstwiskIG;
 
 public class ExceptionsInvaliditeSurLesArcs extends TwiskException{
 
@@ -8,6 +8,6 @@ public class ExceptionsInvaliditeSurLesArcs extends TwiskException{
      * @param message le message de l'exception
      */
     public ExceptionsInvaliditeSurLesArcs(String message){
-        super(message);
+        super(message,"IG");
     }
 }

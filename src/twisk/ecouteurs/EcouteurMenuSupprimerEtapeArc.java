@@ -1,7 +1,7 @@
 package twisk.ecouteurs;
 
 import javafx.event.ActionEvent;
-import twisk.monde.MondeIG;
+import twisk.mondeIG.MondeIG;
 
 public class EcouteurMenuSupprimerEtapeArc extends EcouteurAbstractMenu {
 

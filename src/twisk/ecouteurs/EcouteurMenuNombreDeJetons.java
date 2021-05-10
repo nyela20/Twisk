@@ -1,9 +1,8 @@
 package twisk.ecouteurs;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.TextInputDialog;
-import twisk.exceptionstwisk.ExceptionVueMenu;
-import twisk.monde.MondeIG;
+import twisk.exceptionstwiskIG.ExceptionVueMenu;
+import twisk.mondeIG.MondeIG;
 
 public class EcouteurMenuNombreDeJetons extends EcouteurAbstractMenu {
 
@@ -20,8 +19,8 @@ public class EcouteurMenuNombreDeJetons extends EcouteurAbstractMenu {
             super.getBoiteDialogue().setHeaderText("Combien de jetons ?");
             super.getBoiteDialogue().showAndWait();
             String nombreDeJetons = super.getBoiteDialogue().getEditor().getText();
-            if (!estUnEntier(nombreDeJetons)) {
-                throw new ExceptionVueMenu("Type de valeur invalide. entier uniquement");
+            if (estUnEntier(nombreDeJetons)  || Integer.parseInt(nombreDeJetons) <= 0) {
+                throw new ExceptionVueMenu("Valeur invalide.");
             } else {
                 super.getMonde().assignerNombreDeJetonsAEtape(Integer.parseInt(nombreDeJetons));
             }

@@ -1,19 +1,28 @@
 package twisk.simulation;
 
-import twisk.exceptionstwisk.ExceptionObjetNonTrouve;
+import twisk.exceptionstwiskIG.ExceptionObjetNonTrouve;
 import twisk.monde.Monde;
+import twisk.mondeIG.SujetObserve;
 import twisk.outils.FabriqueNumero;
 import twisk.outils.KitC;
 
+import java.util.Iterator;
 
-public class Simulation {
+
+public class Simulation extends SujetObserve implements Iterable<Client>{
 
 
-    private int NB_CLIENTS;
+    private int nbClients;
     private final GestionnaireClients gestionnaireClients;
 
     public Simulation() {
+        super();
         gestionnaireClients = new GestionnaireClients();
+    }
+
+    @Override
+    public Iterator<Client> iterator() {
+        return gestionnaireClients.iterator();
     }
 
 
@@ -23,12 +32,12 @@ public class Simulation {
      */
     public void setNbClients(int nbClients) {
         assert (nbClients > 0) : "erreur valeur nbclients.";
-        this.NB_CLIENTS = nbClients;
+        this.nbClients = nbClients;
     }
 
-    public native int[] start_simulation(int NB_ETAPES, int NB_GUICHET, int NB_CLIENTS, int[] tabJeton);
+    public native int[] start_simulation(int nbEtapes, int nbGuichet, int nbClients, int[] tabJeton);
 
-    public native int[] ou_sont_les_clients(int NB_ETAPES, int NB_GUICHET);
+    public native int[] ou_sont_les_clients(int nbEtapes, int nbGuichet);
 
     public native void nettoyage();
 
@@ -51,21 +60,21 @@ public class Simulation {
 
         //--------------Ecriture du code MAIN.C
 
-        int NB_GUICHETS = monde.nbGuichet();
-        int NB_ETAPES = monde.nbEtapes();
+        int nbGuichets = monde.nbGuichet();
+        int nbEtapes = monde.nbEtapes();
         int j=0;
         int[] TableauDeJetons = new int[monde.nbGuichet()];
-        for( int i=0; i < NB_ETAPES; i++) {
+        for( int i=0; i < nbEtapes; i++) {
             if (monde.getEtape(monde.getNomNiemeEtape(i)).estUnGuichet()) {
                     TableauDeJetons[j] = monde.getnombreDeJetonsEtape(monde.getNomNiemeEtape(i));
                     j++;
             }
         }
-        System.out.println("nb etapes " + NB_ETAPES + " nbguichet "+ NB_GUICHETS +" nbclient " +  NB_CLIENTS );
+        System.out.println("nb etapes " + nbEtapes + " nbguichet "+ nbGuichets +" nbclient " + nbClients);
         for(int i = 0; i< TableauDeJetons.length;i++ ) {
             System.out.println(("tab[" + i + "] = " + TableauDeJetons[i]));
         }
-        int[] tableauClientsStep = start_simulation(NB_ETAPES, NB_GUICHETS, NB_CLIENTS, TableauDeJetons);
+        int[] tableauClientsStep = start_simulation(nbEtapes, nbGuichets, nbClients, TableauDeJetons);
         //ajouter les clients dans le monde
         gestionnaireClients.setClients(tableauClientsStep);
 
@@ -74,19 +83,19 @@ public class Simulation {
         for (int i = 0; i < tableauClientsStep.length - 1; i++){
             System.out.print(tableauClientsStep[i] + " ");
         }
-        System.out.print(tableauClientsStep[NB_CLIENTS - 1] + "\n\n");
+        System.out.print(tableauClientsStep[nbClients - 1] + "\n\n");
 
         //----------  Affiche les clients au fur et à mesure de la simulation------------
         boolean findeBoucle = false;
         while (!findeBoucle) {
-            if (ou_sont_les_clients(NB_ETAPES, NB_CLIENTS)[monde.getSasSortieNumeroEtape() * NB_CLIENTS + 1] == NB_CLIENTS) {
+            if (ou_sont_les_clients(nbEtapes, nbClients)[monde.getSasSortieNumeroEtape() * nbClients + 1] == nbClients) {
                 findeBoucle = true;
             }
-            int[] tabEmplaceClients = ou_sont_les_clients(NB_ETAPES, NB_CLIENTS);
-            affichage_tab_deplacementClients(tabEmplaceClients, NB_ETAPES, monde);
+            int[] tabEmplaceClients = ou_sont_les_clients(nbEtapes, nbClients);
+            affichage_tab_deplacementClients(tabEmplaceClients, nbEtapes, monde);
             try {
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
+            } catch (InterruptedException e){
                 e.printStackTrace();
             }
         }
@@ -99,22 +108,22 @@ public class Simulation {
      * @param tab       un tableau contenant le numéro des clients
      * @param nb_etapes le nombre d'étape(s) dans le monde
      * @param monde     le monde
-     * @throws ExceptionObjetNonTrouve lance un exception dans le getter
      */
+
     public void affichage_tab_deplacementClients(int[] tab, int nb_etapes, Monde monde){
         for (int i = 0; i < nb_etapes; i++) {
-            System.out.print("Etape " + i + " (" + monde.getNomNiemeEtape(i) + ") " + tab[(i * (NB_CLIENTS + 1))] + " clients :\t");
-            for (int j = 1; j <= tab[(i * (NB_CLIENTS + 1))]; j++) {
-                if (tab[(i * (NB_CLIENTS + 1) + j)] != 0) {
-                    Client clientinterm = gestionnaireClients.getClient(tab[(i * (NB_CLIENTS + 1) + j)]);
+            System.out.print("Etape " + i + " (" + monde.getNomNiemeEtape(i) + ") " + tab[(i * (nbClients + 1))] + " clients :\t");
+            for (int j = 1; j <= tab[(i * (nbClients + 1))]; j++) {
+                if (tab[(i * (nbClients + 1) + j)] != 0) {
+                    Client clientinterm = gestionnaireClients.getClient(tab[(i * (nbClients + 1) + j)]);
                     clientinterm.allerA(monde.getEtape(monde.getNomNiemeEtape(i)), 0);
-                    System.out.print(tab[(i * (NB_CLIENTS + 1) + j)] + " ");
-                  //System.out.println("\nle client numéro: " + tab[(i * (NB_CLIENTS + 1) + j)] + " ");
-                  //System.out.println("est à l'étape " + clientinterm.getEtapeClient());
+                    System.out.print(tab[(i * (nbClients + 1) + j)] + " ");
                 }
             }
             System.out.println();
         }
         System.out.println();
     }
+
+
 }

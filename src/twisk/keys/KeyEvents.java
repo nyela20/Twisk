@@ -6,7 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import twisk.ecouteurs.*;
-import twisk.monde.MondeIG;
+import twisk.mondeIG.MondeIG;
 
 public class KeyEvents implements EventHandler<KeyEvent> {
     private final MondeIG mondeIG;
@@ -47,7 +47,7 @@ public class KeyEvents implements EventHandler<KeyEvent> {
                     new EcouteurMenuMondeSortie(mondeIG).handle(new ActionEvent());
                 }
                 if(keyEvent.getCode() == KeyCode.ESCAPE){
-                    new EcouteurMenuFichierQuitter().handle(new ActionEvent());
+                    new EcouteurMenuFichierQuitter(mondeIG).handle(new ActionEvent());
                 }
             }
         }
