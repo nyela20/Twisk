@@ -5,10 +5,7 @@ import javafx.scene.layout.Pane;
 import twisk.ecouteurs.EcouteurSetDragOver;
 import twisk.ecouteurs.EcouteurDropped;
 import twisk.mondeIG.*;
-import twisk.simulation.Client;
-
 import java.util.Iterator;
-import java.util.Random;
 
 
 public class VueMondeIG extends Pane implements Observateur {
@@ -47,7 +44,6 @@ public class VueMondeIG extends Pane implements Observateur {
                 panneau.getChildren().add(vuearc);
             }
 
-
             //DESSIN ETAPES
             for (EtapeIG values : mondeIG) {
                 VueEtapeIG vueEtapeIG = null;
@@ -59,25 +55,7 @@ public class VueMondeIG extends Pane implements Observateur {
                 assert vueEtapeIG != null;
                 panneau.getChildren().add(vueEtapeIG);
                 //DESSIN DES CLIENTS
-
-                Random r = new Random();
-                int c = r.nextInt(5);
-                int f=0;
-                for (int i = 0; i < c; i++) {
-                    vueEtapeIG.getChildren().add(new VueClientIG());
-                }
-
-                /*
-                while (iterateurClients.hasNext()) {
-                    Client client = iterateurClients.next();
-                    if (client.estDans(values.getNom())) {
-                        VueClientIG vueClientIG = new VueClientIG();
-                        vueEtapeIG.getChildren().add(vueClientIG);
-                    } else {
-                        System.out.println("LE CLIENTS NEST PAS DEDANS !!!!!!\n");
-                    }
-                }
-                 */
+                vueEtapeIG.ajouterVueClientIG(values.getNombreDeClients());
                 //DESSIN POINTS DE CONTROLES
                 for (Iterator<PointDeControleIG> iter = values.pointDeControleIGIterator(); iter.hasNext(); ) {
                     PointDeControleIG pdc = iter.next();

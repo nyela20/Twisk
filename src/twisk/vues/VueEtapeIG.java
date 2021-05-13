@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import twisk.ecouteurs.EcouterStartDragged;
 import twisk.ecouteurs.EcouteurEtapes;
 import twisk.mondeIG.EtapeIG;
@@ -86,7 +87,7 @@ public abstract class VueEtapeIG extends VBox implements Observateur {
      * La fonction ajoute des VueClientsIG dans le composant
      * @param nbClients nombre de clients à ajouter
      */
-    public abstract void ajouterVueClientIG(int nbClients, HBox caseClients);
+    public abstract void ajouterVueClientIG(int nbClients);
 
 
     @Override

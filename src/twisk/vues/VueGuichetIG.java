@@ -25,7 +25,7 @@ public class VueGuichetIG extends VueEtapeIG{
 
 
     @Override
-    public void ajouterVueClientIG(int nbClients, HBox caseClients) {
+    public void ajouterVueClientIG(int nbClients) {
 
     }
 

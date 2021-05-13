@@ -8,6 +8,7 @@ import twisk.mondeIG.MondeIG;
 
 /**/
 public class VueActiviteIG extends VueEtapeIG implements Observateur {
+    private final HBox boiteClients;
 
     /**
      * Constructeur d'une VueActiviteIG
@@ -20,15 +21,14 @@ public class VueActiviteIG extends VueEtapeIG implements Observateur {
         Label labelTitre = new Label(activite.getNom() + " : " + activite.getDelai() + " ± " + activite.getEcarttemps() + " temps\n\n");
         this.getChildren().add(labelTitre);
         idSelectionne(activite,style,"activite");
-        ajouterHbox(1, style, activite);
+        boiteClients = ajouterHbox(1, style, activite);
     }
 
 
     @Override
-    public void ajouterVueClientIG(int nbClients, HBox caseClients) {
+    public void ajouterVueClientIG(int nbClients) {
         for(int i =0; i < nbClients ; i++ ) {
-            VueClientIG vueClientIG = new VueClientIG();
-            caseClients.getChildren().add(vueClientIG);
+            boiteClients.getChildren().add(new VueClientIG());
         }
     }
 

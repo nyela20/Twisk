@@ -3,7 +3,6 @@ package twisk.simulation;
 import javafx.concurrent.Task;
 import twisk.exceptionstwiskIG.ExceptionObjetNonTrouve;
 import twisk.monde.Monde;
-import twisk.mondeIG.MondeIG;
 import twisk.mondeIG.SujetObserve;
 import twisk.outils.FabriqueNumero;
 import twisk.outils.GestionnaireThreads;
@@ -18,13 +17,10 @@ public class Simulation extends SujetObserve implements Iterable<Client>{
     private int nbClients;
     private final GestionnaireClients gestionnaireClients;
 
-    public Simulation(MondeIG mondeIG) {
+    public Simulation() {
         super();
-        ajouter(mondeIG);
         gestionnaireClients = new GestionnaireClients();
     }
-
-
 
     @Override
     public Iterator<Client> iterator() {
@@ -103,10 +99,11 @@ public class Simulation extends SujetObserve implements Iterable<Client>{
                         int[] tabEmplaceClients = ou_sont_les_clients(nbEtapes, nbClients);
                         affichage_tab_deplacementClients(tabEmplaceClients, nbEtapes, monde);
                         try {
-                            Thread.sleep(1000);
+                            Thread.sleep(500);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+
                         notifierObservateur();
                     }
                     nettoyage();
@@ -129,7 +126,8 @@ public class Simulation extends SujetObserve implements Iterable<Client>{
 
     public void affichage_tab_deplacementClients(int[] tab, int nb_etapes, Monde monde){
         for (int i = 0; i < nb_etapes; i++) {
-            System.out.print("Etape " + i + " (" + monde.getNomNiemeEtape(i) + ") " + tab[(i * (nbClients + 1))] + " clients :\t");
+            int nombreDeClientsDansEtape = tab[(i * (nbClients + 1))];
+            System.out.print("Etape " + i + " (" + monde.getNomNiemeEtape(i) + ") " + nombreDeClientsDansEtape + " clients :\t");
             for (int j = 1; j <= tab[(i * (nbClients + 1))]; j++) {
                 if (tab[(i * (nbClients + 1) + j)] != 0) {
                     Client clientinterm = gestionnaireClients.getClient(tab[(i * (nbClients + 1) + j)]);
@@ -138,9 +136,12 @@ public class Simulation extends SujetObserve implements Iterable<Client>{
                 }
             }
             System.out.println();
+            monde.getEtape(monde.getNomNiemeEtape(i)).setNbClients(nombreDeClientsDansEtape);
         }
         System.out.println();
     }
+
+
 
 
 }

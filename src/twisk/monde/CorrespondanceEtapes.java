@@ -20,4 +20,10 @@ public class CorrespondanceEtapes{
         }
         return null;
     }
+
+    public void mettreaJour(){
+        for(EtapeIG etapeIG : tableauEtapes.keySet()){
+            etapeIG.setNombreDeClients(get(etapeIG).getNombreDeClients());
+        }
+    }
 }
