@@ -36,7 +36,7 @@ public abstract class VueEtapeIG extends VBox implements Observateur {
      * @param style l'identifiant de style de la vue
      * @param etape l'Etape
      */
-    public void ajouterHbox(int nombreHbox,int style,EtapeIG etape){
+    public HBox ajouterHbox(int nombreHbox,int style,EtapeIG etape){
         HBox caseClients = new HBox();
         if(etape.estUnGuichet()) {
             for (int i = 0; i < nombreHbox ; i++) {
@@ -49,6 +49,7 @@ public abstract class VueEtapeIG extends VBox implements Observateur {
             caseClients.setId("activite" + style + "_hbox_clients");
         }
         this.getChildren().add(caseClients);
+        return caseClients;
     }
 
     /**
@@ -80,6 +81,12 @@ public abstract class VueEtapeIG extends VBox implements Observateur {
             this.getChildren().add(new ImageView(new Image("twisk/ressources/images/logosortie.png", 20, 20, true, true)));
         }
     }
+
+    /**
+     * La fonction ajoute des VueClientsIG dans le composant
+     * @param nbClients nombre de clients à ajouter
+     */
+    public abstract void ajouterVueClientIG(int nbClients, HBox caseClients);
 
 
     @Override

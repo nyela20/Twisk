@@ -8,7 +8,7 @@ import twisk.simulation.Client;
 
 public class VueClientIG extends Circle implements Observateur{
 
-    public VueClientIG (Client client){
+    public VueClientIG (){
         double taille = 5;
         this.setRadius(taille);
         this.setFill(Color.ORANGE);

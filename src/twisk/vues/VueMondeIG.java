@@ -1,13 +1,14 @@
 package twisk.vues;
 
+import javafx.application.Platform;
 import javafx.scene.layout.Pane;
 import twisk.ecouteurs.EcouteurSetDragOver;
 import twisk.ecouteurs.EcouteurDropped;
-import twisk.exceptionstwiskIG.ExceptionMondeIG;
 import twisk.mondeIG.*;
 import twisk.simulation.Client;
 
 import java.util.Iterator;
+import java.util.Random;
 
 
 public class VueMondeIG extends Pane implements Observateur {
@@ -27,47 +28,68 @@ public class VueMondeIG extends Pane implements Observateur {
 
 
     /**
-     * La fonciton reagir sert à rafraichir l'Ecran
+     * La fonction reagir sert à rafraichir l'Ecran
      * apres chaque modification constaté dans le mondeIG
      */
     @Override
     public void reagir() {
-        this.getChildren().clear();
-        this.setId("background"+ mondeIG.getIdentifiantStyle());
+        Pane panneau = this;
+        Runnable command = () -> {
+            System.out.println("le monde se change\n");
+            panneau.getChildren().clear();
+            panneau.setId("background" + mondeIG.getIdentifiantStyle());
 
-        //DESSIN ARCS
-        Iterator<ArcIG> it = mondeIG.iteratorArcIG();
-        while (it.hasNext()){
-            ArcIG arc = it.next();
-            VueArcIG vuearc = new VueArcIG(mondeIG,arc, mondeIG.getIdentifiantStyle());
-            this.getChildren().add(vuearc);
-        }
-
-
-        //DESSIN ETAPES
-        for (EtapeIG values : mondeIG){
-            VueEtapeIG vueEtapeIG = null;
-            if(values.estUneActivite()) {
-                vueEtapeIG = new VueActiviteIG(mondeIG, (ActiviteIG) values, mondeIG.getIdentifiantStyle());
-            }else if(values.estUnGuichet()){
-                vueEtapeIG = new VueGuichetIG(mondeIG, (GuichetIG) values, mondeIG.getIdentifiantStyle());
+            //DESSIN ARCS
+            Iterator<ArcIG> it = mondeIG.iteratorArcIG();
+            while (it.hasNext()) {
+                ArcIG arc = it.next();
+                VueArcIG vuearc = new VueArcIG(mondeIG, arc, mondeIG.getIdentifiantStyle());
+                panneau.getChildren().add(vuearc);
             }
-            this.getChildren().add(vueEtapeIG);
-            //DESSIN DES CLIENTS
-            Iterator<Client> iterateurClients = mondeIG.iteratorClients();
-            while (iterateurClients.hasNext()) {
-                Client client = iterateurClients.next();
-                if(client.estDans(values.getNom())){
-                    VueClientIG vueClientIG = new VueClientIG(client);
-                    vueEtapeIG.getChildren().add(vueClientIG);
+
+
+            //DESSIN ETAPES
+            for (EtapeIG values : mondeIG) {
+                VueEtapeIG vueEtapeIG = null;
+                if (values.estUneActivite()) {
+                    vueEtapeIG = new VueActiviteIG(mondeIG, (ActiviteIG) values, mondeIG.getIdentifiantStyle());
+                } else if (values.estUnGuichet()) {
+                    vueEtapeIG = new VueGuichetIG(mondeIG, (GuichetIG) values, mondeIG.getIdentifiantStyle());
+                }
+                assert vueEtapeIG != null;
+                panneau.getChildren().add(vueEtapeIG);
+                //DESSIN DES CLIENTS
+
+                Random r = new Random();
+                int c = r.nextInt(5);
+                int f=0;
+                for (int i = 0; i < c; i++) {
+                    vueEtapeIG.getChildren().add(new VueClientIG());
+                }
+
+                /*
+                while (iterateurClients.hasNext()) {
+                    Client client = iterateurClients.next();
+                    if (client.estDans(values.getNom())) {
+                        VueClientIG vueClientIG = new VueClientIG();
+                        vueEtapeIG.getChildren().add(vueClientIG);
+                    } else {
+                        System.out.println("LE CLIENTS NEST PAS DEDANS !!!!!!\n");
+                    }
+                }
+                 */
+                //DESSIN POINTS DE CONTROLES
+                for (Iterator<PointDeControleIG> iter = values.pointDeControleIGIterator(); iter.hasNext(); ) {
+                    PointDeControleIG pdc = iter.next();
+                    VuePointDeControleIG vuePointDeControleIG = new VuePointDeControleIG(mondeIG, pdc);
+                    panneau.getChildren().add(vuePointDeControleIG);
                 }
             }
-            //DESSIN POINTS DE CONTROLES
-            for (Iterator<PointDeControleIG> iter = values.pointDeControleIGIterator(); iter.hasNext(); ) {
-                PointDeControleIG pdc = iter.next();
-                VuePointDeControleIG vuePointDeControleIG = new VuePointDeControleIG(mondeIG,pdc);
-                this.getChildren().add(vuePointDeControleIG);
-            }
+        };
+        if(Platform.isFxApplicationThread()){
+            command.run();
+        }else {
+            Platform.runLater(command);
         }
     }
 }

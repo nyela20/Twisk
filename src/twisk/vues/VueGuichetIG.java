@@ -1,6 +1,7 @@
 package twisk.vues;
 
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import twisk.mondeIG.GuichetIG;
 import twisk.mondeIG.MondeIG;
 
@@ -22,6 +23,11 @@ public class VueGuichetIG extends VueEtapeIG{
         ajouterHbox(9,style,guichet);
     }
 
+
+    @Override
+    public void ajouterVueClientIG(int nbClients, HBox caseClients) {
+
+    }
 
     @Override
     public void reagir(){ }

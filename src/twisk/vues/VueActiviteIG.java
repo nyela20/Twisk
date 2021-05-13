@@ -1,13 +1,13 @@
 package twisk.vues;
 
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import twisk.mondeIG.ActiviteIG;
 import twisk.mondeIG.MondeIG;
 
 
 /**/
 public class VueActiviteIG extends VueEtapeIG implements Observateur {
-
 
     /**
      * Constructeur d'une VueActiviteIG
@@ -20,9 +20,17 @@ public class VueActiviteIG extends VueEtapeIG implements Observateur {
         Label labelTitre = new Label(activite.getNom() + " : " + activite.getDelai() + " ± " + activite.getEcarttemps() + " temps\n\n");
         this.getChildren().add(labelTitre);
         idSelectionne(activite,style,"activite");
-        ajouterHbox(1,style,activite);
+        ajouterHbox(1, style, activite);
     }
 
+
+    @Override
+    public void ajouterVueClientIG(int nbClients, HBox caseClients) {
+        for(int i =0; i < nbClients ; i++ ) {
+            VueClientIG vueClientIG = new VueClientIG();
+            caseClients.getChildren().add(vueClientIG);
+        }
+    }
 
     @Override
     public void reagir(){ }
