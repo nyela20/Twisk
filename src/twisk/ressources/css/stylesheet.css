@@ -6,7 +6,7 @@
 }
 
 #buttonActivite0 {
-   -fx-background-color: #fffd1d;
+   -fx-background-color: #FFDEAD;
     -fx-text-fill: black;
 }
 
@@ -29,7 +29,7 @@
 }
 
 #buttonGuichet0 {
-    -fx-background-color: #27e5f5;
+    -fx-background-color: #90EE90;
     -fx-text-fill: black;
 }
 

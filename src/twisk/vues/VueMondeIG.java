@@ -32,7 +32,6 @@ public class VueMondeIG extends Pane implements Observateur {
     public void reagir() {
         Pane panneau = this;
         Runnable command = () -> {
-            System.out.println("le monde se change\n");
             panneau.getChildren().clear();
             panneau.setId("background" + mondeIG.getIdentifiantStyle());
 

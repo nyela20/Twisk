@@ -6,8 +6,8 @@
 
 #activite0_not_selected{
    -fx-background-color:
-      linear-gradient(#fffd37 , #fffd37),
-      radial-gradient(center 50% -40%, radius 200%, #fffd37 100%, #fffd37 100%);
+      linear-gradient(#FFDEAD , #FFDEAD),
+      radial-gradient(center 50% -40%, radius 200%, #FFDEAD 100%, #FFDEAD 100%);
       -fx-background-radius: 6, 5;
       -fx-background-insets: 0, 1;
       -fx-effect: dropshadow( three-pass-box , rgba(0,0,150,0.4) , 10, 0.0 , 0 , 1 );
@@ -17,11 +17,11 @@
 
 #activite0_selected{
         -fx-background-color:
-           linear-gradient(#fffd37 ,#fffd37),
-           radial-gradient(center 50% -40%, radius 200%, #fffd37 45%, #fffd37 50%);
+           linear-gradient(#FFDEAD ,#FFDEAD),
+           radial-gradient(center 50% -40%, radius 200%, #FFDEAD 45%, #FFDEAD 50%);
            -fx-background-radius: 6, 5;
            -fx-background-insets: 0, 1;
-           -fx-effect: dropshadow( three-pass-box , #fffd37 , 20, 0.0 , 0 , 1 );
+           -fx-effect: dropshadow( three-pass-box , #FFDEAD , 20, 0.0 , 0 , 1 );
            -fx-text-fill: #25e0f0;
            -fx-font-weight: bold;
 }
@@ -33,7 +33,7 @@
         linear-gradient(#dddddd 50%, #f6f6f6 100%);
         -fx-background-radius: 6, 5;
         -fx-background-insets: 0, 1;
-        -fx-border-color: #fffd37;
+        -fx-border-color: #FFDEAD;
         -fx-padding: 40 0 0 0;
 }
 
@@ -170,23 +170,23 @@
 
 #guichet0_not_selected{
    -fx-background-color:
-   linear-gradient(#27e5f5 , #25e0f0),
-   radial-gradient(center 50% -40%, radius 200%, #25e0f0 45%, #25e0f0 50%);
+   linear-gradient(#90EE90 , #90EE90),
+   radial-gradient(center 50% -40%, radius 200%, #90EE90 45%, #90EE90 50%);
    -fx-background-radius: 6, 5;
    -fx-background-insets: 0, 1;
-   -fx-effect: dropshadow( three-pass-box , rgba(0,0,150,0.4) , 10, 0.0 , 0 , 1 );
-   -fx-text-fill: #25e0f0;
+   -fx-effect: dropshadow( three-pass-box , #90EE90 , 10, 0.0 , 0 , 1 );
+   -fx-text-fill: #90EE90;
    -fx-font-weight: normal;
 }
 
 #guichet0_selected{
          -fx-background-color:
-         linear-gradient(#27e5f5 , #27e5f5),
-         radial-gradient(center 50% -40%, radius 200%, #27e5f5 45%, #27e5f5 50%);
+         linear-gradient(#90EE90,#90EE90),
+         radial-gradient(center 50% -40%, radius 200%, #90EE90 45%,#90EE90 50%);
          -fx-background-radius: 6, 5;
          -fx-background-insets: 0, 1;
-         -fx-effect: dropshadow( three-pass-box , #27e5f5 , 20, 0.0 , 0 , 1 );
-         -fx-text-fill: #27e5f5;
+         -fx-effect: dropshadow( three-pass-box , #90EE90 , 20, 0.0 , 0 , 1 );
+         -fx-text-fill: #90EE90;
          -fx-font-weight: bold;
 }
 
@@ -195,7 +195,7 @@
          linear-gradient(#25e0f0, #25e0f0),
          linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
          linear-gradient(#dddddd 50%, #f6f6f6 100%);
-         -fx-border-color: #25e0f0;
+         -fx-border-color: #90EE90;
          -fx-background-radius: 6, 5;
          -fx-background-insets: 0, 1;
          -fx-padding: 20 20 0 0;
