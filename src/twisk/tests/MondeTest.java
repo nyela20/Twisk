@@ -1,13 +1,12 @@
-/*
 package twisk.tests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import twisk.exceptionstwiskIG.ExceptionObjetNonTrouve;
 import twisk.monde.*;
 import twisk.outils.FabriqueNumero;
 import twisk.simulation.Simulation;
 
+import java.io.IOException;
 
 
 class MondeTest {
@@ -170,13 +169,13 @@ class MondeTest {
     }
 
     @Test
-    void toC4() throws ExceptionObjetNonTrouve {
+    void toC4() {
         Monde monde = new Monde();
         Etape lolo = new Activite("lolo", 5, 2);
         monde.ajouter(lolo);
         Etape popo = new ActiviteRestreinte("popo", 5, 2);
         monde.ajouter(popo);
-        Etape guichet = new Guichet("guichet", 4 );
+        Etape guichet = new Guichet("guichet", 4);
         monde.ajouter(guichet);
         monde.aCommeSortie(popo);
         lolo.ajouterSuccesseur(guichet);
@@ -184,8 +183,10 @@ class MondeTest {
         guichet.ajouterSuccesseur(popo);
         Simulation simulation = new Simulation();
         simulation.setNbClients(3);
-        simulation.simuler(monde);
+        try {
+            simulation.simuler(monde);
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
-
 }
-*/

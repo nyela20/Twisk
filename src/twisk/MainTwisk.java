@@ -11,10 +11,13 @@ import twisk.vues.VueMenu;
 import twisk.vues.VueMondeIG;
 import twisk.vues.VueOutils;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
 
 
-public class MainTwisk extends Application {
-    int LargeurPanneauPrincipale = 750;
+public class MainTwisk extends Application  {
+    int LargeurPanneauPrincipale = 850;
     int HauteurPanneauPrincipale = 750;
 
     @Override
@@ -35,7 +38,15 @@ public class MainTwisk extends Application {
 
         Scene scene = new Scene(root, LargeurPanneauPrincipale, HauteurPanneauPrincipale);
 
+        //évenements
         scene.setOnKeyPressed(new KeyEvents(monde));
+        primaryStage.setOnCloseRequest(windowEvent -> {
+            try {
+                monde.stopSimulation();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         scene.getStylesheets().addAll("twisk/ressources/css/stylesheet.css",
                 "twisk/ressources/css/stylesheetEtape.css","twisk/ressources/css/stylesheetArcs.css");

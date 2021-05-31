@@ -2,9 +2,10 @@ package twisk.mondeIG;
 
 import twisk.outils.FabriqueIdentifiant;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class ArcIG {
+public class ArcIG implements Serializable {
     private final PointDeControleIG pointDeDepart;
     private final PointDeControleIG pointDarrive;
     private final EtapeIG etapeArrive;

@@ -25,7 +25,7 @@ public class EcouteurMenuDelai extends EcouteurAbstractMenu {
             super.getBoiteDialogue().setHeaderText("Assigner un délai");
             super.getBoiteDialogue().showAndWait();
             String delai = super.getBoiteDialogue().getEditor().getText();
-            if(estUnEntier(delai) || Integer.parseInt(delai) <= 0){
+            if(!(estUnEntier(delai)) || Integer.parseInt(delai) <= 0){
                 throw new ExceptionVueMenu("Valeur invalide.");
             }else {
                 super.getMonde().assignerDelaiAEtape(Integer.parseInt(delai));

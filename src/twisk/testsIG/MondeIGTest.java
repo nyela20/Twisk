@@ -4,8 +4,8 @@ package twisk.testsIG;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import twisk.exceptionstwiskIG.ExceptionArcIG;
 import twisk.exceptionstwiskIG.ExceptionVueMenu;
-import twisk.exceptionstwiskIG.ExceptionsInvaliditeSurLesArcs;
 import twisk.mondeIG.*;
 import twisk.outils.FabriqueIdentifiant;
 
@@ -33,13 +33,13 @@ class MondeIGTest {
     @BeforeEach
     void setUp() {
         parcAsterix = new MondeIG();
-        String idf = FabriqueIdentifiant.getInstance().getIdentifiant();
+        String idf = FabriqueIdentifiant.getInstance().getIdentifiantActivite();
         Ozlris = new ActiviteIG("Ozlris",idf,100,75);
-        idf = FabriqueIdentifiant.getInstance().getIdentifiant();
+        idf = FabriqueIdentifiant.getInstance().getIdentifiantActivite();
         PegaseExpress = new ActiviteIG("PegaseExpress",idf,100,75);
-        idf = FabriqueIdentifiant.getInstance().getIdentifiant();
+        idf = FabriqueIdentifiant.getInstance().getIdentifiantActivite();
         Tonnerre_de_Zeus = new ActiviteIG("Tonnerre_de_Zeus",idf,100,75);
-        idf = FabriqueIdentifiant.getInstance().getIdentifiant();
+        idf = FabriqueIdentifiant.getInstance().getIdentifiantActivite();
         Le_Grand_Splatch = new ActiviteIG("Le_Grand_Splatch",idf,100,75);
 
         pdcUn = new PointDeControleIG(Le_Grand_Splatch, "droite");
@@ -86,7 +86,7 @@ class MondeIGTest {
             parcAsterix.ajouter(pdcUn, pdcTrois);
             parcAsterix.ajouter(pdcQuatre, pdcCinq);
             parcAsterix.ajouter(pdcSix, pdcDeux);
-        }catch(ExceptionsInvaliditeSurLesArcs e){
+        }catch(ExceptionArcIG e){
             e.printStackTrace();
         }
             Iterator<ArcIG> it = parcAsterix.iteratorArcIG();
@@ -117,7 +117,7 @@ class MondeIGTest {
         assert(parcAsterix.sizeTableauArcIG() == 0) : "A l'initialisation le monde ne possède aucun Arc";
         try {
             parcAsterix.ajouter(pdcUn,pdcTrois);
-        } catch (ExceptionsInvaliditeSurLesArcs e) {
+        } catch (ExceptionArcIG e) {
             e.printStackTrace();
         }
         assert (parcAsterix.sizeTableauArcIG() == 1) : "La fonction rajouter ne rajoute pas d'arc dans le monde";
@@ -173,7 +173,7 @@ class MondeIGTest {
         //test effacer selection Arc
         try {
             parcAsterix.ajouter(pdcUn,pdcTrois);
-        } catch (ExceptionsInvaliditeSurLesArcs exceptionsInvaliditeSurLesArcs) {
+        } catch (ExceptionArcIG exceptionsInvaliditeSurLesArcs) {
             exceptionsInvaliditeSurLesArcs.printStackTrace();
         }
         parcAsterix.iteratorArcIG().next().setEstSelectionne(true);
@@ -208,7 +208,7 @@ class MondeIGTest {
         try {
             parcAsterix.ajouter(pdcUn,pdcTrois);
             parcAsterix.ajouter(pdcQuatre,pdcCinq);
-        } catch (ExceptionsInvaliditeSurLesArcs e) {
+        } catch (ExceptionArcIG e) {
             e.printStackTrace();
         }
         int j=0;
@@ -269,4 +269,6 @@ class MondeIGTest {
         ActiviteIG activiteIG = (ActiviteIG) parcAsterix.iterator().next();
         assert(activiteIG.getEcarttemps() == 45) : "Erreur la fonction n'assigne pas d'écart temps à l'Etape";
     }
+
+
 }

@@ -2,7 +2,9 @@ package twisk.simulation;
 
 import twisk.monde.Etape;
 
-public class Client {
+import java.io.Serializable;
+
+public class Client implements Serializable {
     private final int numeroClient;
     private int rang;
     private Etape etapeClient;

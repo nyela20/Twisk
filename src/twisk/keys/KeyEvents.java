@@ -18,11 +18,20 @@ public class KeyEvents implements EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent keyEvent) {
         if (keyEvent.isControlDown()) {
+            if(keyEvent.getCode() == KeyCode.ESCAPE){
+                new EcouteurMenuFichierQuitter(mondeIG).handle(new ActionEvent());
+            }
             if (keyEvent.getCode() == KeyCode.R) {
                 new EcouteurMenuRenommer(mondeIG).handle(new ActionEvent());
             }
             if (keyEvent.getCode() == KeyCode.F) {
                 new EcouteurMenuEffacerLaSelection(mondeIG).handle(new ActionEvent());
+            }
+            if (keyEvent.getCode() == KeyCode.Q) {
+                new EcouteurSauvegarderMonde(mondeIG).handle(new ActionEvent());
+            }
+            if (keyEvent.getCode() == KeyCode.O) {
+                new EcouteurOuvrirMonde(mondeIG).handle(new ActionEvent());
             }
             if (keyEvent.getCode() == KeyCode.D){
                 new EcouteurMenuDelai(mondeIG).handle(new ActionEvent());
@@ -32,6 +41,9 @@ public class KeyEvents implements EventHandler<KeyEvent> {
             }
             if (keyEvent.getCode() == KeyCode.J){
                 new EcouteurMenuNombreDeJetons(mondeIG).handle(new ActionEvent());
+            }
+            if (keyEvent.getCode() ==KeyCode.N){
+                mondeIG.toutSupprimer();
             }
             if (keyEvent.getCode() == KeyCode.A){
                 mondeIG.ajouter("Activite");
@@ -45,9 +57,6 @@ public class KeyEvents implements EventHandler<KeyEvent> {
                 }
                 if(keyEvent.getCode() == KeyCode.S){
                     new EcouteurMenuMondeSortie(mondeIG).handle(new ActionEvent());
-                }
-                if(keyEvent.getCode() == KeyCode.ESCAPE){
-                    new EcouteurMenuFichierQuitter(mondeIG).handle(new ActionEvent());
                 }
             }
         }

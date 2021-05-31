@@ -3,8 +3,7 @@
 
 /* -------------------------------------------------------------------------------------------------------------------------------- */
 // Export de la fonction start_simulation de C en java
-JNIEXPORT jintArray JNICALL Java_twisk_simulation_Simulation_start_1simulation (JNIEnv *env, jobject obj, jint nbEtapes, jint nbGuichets, jint nbClients, jintArray tabJetonsGuichet)
-{
+JNIEXPORT jintArray JNICALL Java_twisk_simulation_Simulation_start_1simulation (JNIEnv *env, jobject obj, jint nbEtapes, jint nbGuichets, jint nbClients, jintArray tabJetonsGuichet){
   // récupération du tableau d'entiers passé en argument de la fonction
   jint *tab = (*env)->GetIntArrayElements(env, tabJetonsGuichet, 0);
 

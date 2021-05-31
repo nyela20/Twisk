@@ -4,8 +4,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
-import twisk.ecouteurs.EcouterStartDragged;
+import twisk.ecouteurs.EcouteurStartDragged;
 import twisk.ecouteurs.EcouteurEtapes;
 import twisk.mondeIG.EtapeIG;
 import twisk.mondeIG.MondeIG;
@@ -25,7 +24,7 @@ public abstract class VueEtapeIG extends VBox implements Observateur {
         setPrefWidth(etp.getLargeur());
         setPrefHeight(etp.getHauteur());
         relocate(etp.getPosX(), etp.getPosY());
-        setOnDragDetected(new EcouterStartDragged(this, etp.getIdentifiant()));
+        setOnDragDetected(new EcouteurStartDragged(this, etp.getIdentifiant()));
         setOnMouseClicked(new EcouteurEtapes(mde,etp));
         idEntreeSortie(etp);
     }
@@ -75,19 +74,21 @@ public abstract class VueEtapeIG extends VBox implements Observateur {
      * @param etape l'Etape
      */
     public void idEntreeSortie(EtapeIG etape){
+        HBox boiteLogo = new HBox();
         if(etape.estUneEntree()){
-            this.getChildren().add(new ImageView(new Image("twisk/ressources/images/logoentree.png", 20, 20, true, true)));
+            boiteLogo.getChildren().add(new ImageView(new Image("twisk/ressources/images/logoentree.png", 20, 20, true, true)));
         }
         if(etape.estUneSortie()){
-            this.getChildren().add(new ImageView(new Image("twisk/ressources/images/logosortie.png", 20, 20, true, true)));
+            boiteLogo.getChildren().add(new ImageView(new Image("twisk/ressources/images/logosortie.png", 20, 20, true, true)));
         }
+        getChildren().add(boiteLogo);
     }
 
     /**
      * La fonction ajoute des VueClientsIG dans le composant
-     * @param nbClients nombre de clients à ajouter
+     * @param vueClientIG  composant client à ajouter
      */
-    public abstract void ajouterVueClientIG(int nbClients);
+    public abstract void ajouterVueClientIG(VueClientIG vueClientIG);
 
 
     @Override

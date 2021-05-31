@@ -5,13 +5,20 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
-public class KitC {
+public class KitC implements Serializable {
 
-
-    public KitC() {
+    public void kill(int[] TabPid) {
+        try {
+            Runtime runtime = Runtime.getRuntime();
+            for (int pid : TabPid) {
+                Process p = runtime.exec("kill -9 " + pid);
+                p.waitFor();
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void creerEnvironnement() {

@@ -24,17 +24,17 @@ class EtapeIGTest {
     void setup(){
 
         parcAsterix = new MondeIG();
-        String idf = FabriqueIdentifiant.getInstance().getIdentifiant();
+        String idf = FabriqueIdentifiant.getInstance().getIdentifiantActivite();
         Discobelix = new ActiviteIG("Discobelix",idf,100,75);
-        idf = FabriqueIdentifiant.getInstance().getIdentifiant();
+        idf = FabriqueIdentifiant.getInstance().getIdentifiantActivite();
         PegaseExpress = new ActiviteIG( "PegaseExpress",idf,100,75);
-        idf = FabriqueIdentifiant.getInstance().getIdentifiant();
+        idf = FabriqueIdentifiant.getInstance().getIdentifiantActivite();
         Goudurix = new ActiviteIG("Goudurix",idf,100,75);
-        idf = FabriqueIdentifiant.getInstance().getIdentifiant();
+        idf = FabriqueIdentifiant.getInstance().getIdentifiantActivite();
         Ozlris = new ActiviteIG("Ozliris",idf,100,75);
-        idf = FabriqueIdentifiant.getInstance().getIdentifiant();
+        idf = FabriqueIdentifiant.getInstance().getIdentifiantActivite();
         Tonnerre_de_Zeus = new ActiviteIG("Tonnerre_de_Zeus",idf,100,75);
-        idf = FabriqueIdentifiant.getInstance().getIdentifiant();
+        idf = FabriqueIdentifiant.getInstance().getIdentifiantActivite();
         Le_Grand_Splatch = new ActiviteIG("Le_Grand_Splatch",idf,100,75);
     }
 

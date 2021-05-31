@@ -1,24 +1,27 @@
 package twisk.ecouteurs;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import twisk.exceptionstwiskIG.ExceptionMondeIG;
-import twisk.exceptionstwiskIG.ExceptionObjetNonTrouve;
+import javafx.scene.control.Button;
 import twisk.mondeIG.MondeIG;
 
-import java.lang.reflect.InvocationTargetException;
+public class EcouteurSimulation extends EcouteurAbstractMenu {
+    private final Button boutonSimuler;
 
-public class EcouteurSimulation implements EventHandler<ActionEvent> {
-    private final MondeIG mondeIG;
-
-    public EcouteurSimulation(MondeIG mdeIG){ mondeIG = mdeIG; }
+    public EcouteurSimulation(MondeIG monde, Button boutonSimuler) {
+        super(monde);
+        this.boutonSimuler = boutonSimuler;
+    }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        try {
-            mondeIG.simuler();
-        } catch (Exception exceptionMondeIG) {
-            exceptionMondeIG.printStackTrace();
+        if (getMonde().estModeCreation()) {
+            try {
+                getMonde().simuler();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }else{
+            getMonde().stopSimulation();
         }
     }
 }

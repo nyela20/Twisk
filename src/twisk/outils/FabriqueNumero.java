@@ -11,9 +11,9 @@ public class FabriqueNumero {
      * Constructeur du Singleton
      */
     private FabriqueNumero() {
-        this.cptEtape = 0;
-        this.cptSemaphore = 1;
-        this.libnum = 1;
+        cptEtape = 0;
+        cptSemaphore = 1;
+        libnum = 1;
     }
 
     /**
@@ -35,6 +35,7 @@ public class FabriqueNumero {
         cptEtape++;
         return cptEtape - 1;
     }
+
 
     /**
      * la fonction incrément +1 la valeur du numéro de librairie

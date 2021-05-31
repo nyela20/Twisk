@@ -5,6 +5,7 @@ import javafx.scene.layout.Pane;
 import twisk.ecouteurs.EcouteurSetDragOver;
 import twisk.ecouteurs.EcouteurDropped;
 import twisk.mondeIG.*;
+import twisk.simulation.Client;
 import java.util.Iterator;
 
 
@@ -21,7 +22,6 @@ public class VueMondeIG extends Pane implements Observateur {
         setOnDragOver(new EcouteurSetDragOver());
         setOnDragDropped(new EcouteurDropped(mondeIG));
     }
-
 
 
     /**
@@ -53,13 +53,27 @@ public class VueMondeIG extends Pane implements Observateur {
                 }
                 assert vueEtapeIG != null;
                 panneau.getChildren().add(vueEtapeIG);
+
                 //DESSIN DES CLIENTS
-                vueEtapeIG.ajouterVueClientIG(values.getNombreDeClients());
+                try {
+                    for (Iterator<Client> iter = mondeIG.iteratorClient(); iter.hasNext(); ) {
+                        Client client = iter.next();
+                        if (client.estDans(values.getNom())) {
+                            VueClientIG vueClientIG = new VueClientIG(client);
+                            vueEtapeIG.ajouterVueClientIG(vueClientIG);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 //DESSIN POINTS DE CONTROLES
-                for (Iterator<PointDeControleIG> iter = values.pointDeControleIGIterator(); iter.hasNext(); ) {
-                    PointDeControleIG pdc = iter.next();
-                    VuePointDeControleIG vuePointDeControleIG = new VuePointDeControleIG(mondeIG, pdc);
-                    panneau.getChildren().add(vuePointDeControleIG);
+                if(mondeIG.estModeCreation()) {
+                    for (Iterator<PointDeControleIG> iter = values.pointDeControleIGIterator(); iter.hasNext(); ) {
+                        PointDeControleIG pdc = iter.next();
+                        VuePointDeControleIG vuePointDeControleIG = new VuePointDeControleIG(mondeIG, pdc);
+                        panneau.getChildren().add(vuePointDeControleIG);
+                    }
                 }
             }
         };

@@ -10,7 +10,6 @@ public abstract class Etape implements Iterable<Etape> {
     private final int numeroEtape;
     private final String nom;
     private final GestionnaireSuccesseurs gestionSucc;
-    private int nombreDeClients;
 
 
     /**
@@ -22,23 +21,6 @@ public abstract class Etape implements Iterable<Etape> {
         this.nom = nom;
         this.gestionSucc = new GestionnaireSuccesseurs();
         this.numeroEtape = FabriqueNumero.getInstance().getNumeroEtape();
-        nombreDeClients = 0;
-    }
-
-    /**
-     * assigne un nombre de Clients à une Etape
-     * @param nbClients le nombre de Clients
-     */
-    public void setNbClients(int nbClients){
-        nombreDeClients = nbClients;
-    }
-
-    /**
-     * retourne le nomre de clients dans un Etape
-     * @return le nombre de clients dans une Etape
-     */
-    public int getNombreDeClients() {
-        return nombreDeClients;
     }
 
     /**

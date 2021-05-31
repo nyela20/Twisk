@@ -8,7 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import twisk.vues.VueEtapeIG;
 
-public class EcouterStartDragged implements EventHandler<MouseEvent> {
+public class EcouteurStartDragged implements EventHandler<MouseEvent> {
     private final VueEtapeIG vue;
     private final String identifiant;
 
@@ -18,7 +18,7 @@ public class EcouterStartDragged implements EventHandler<MouseEvent> {
      * @param vueetp le node à "drag"
      * @param id identifiant unique de EtapeIG
      */
-    public EcouterStartDragged(VueEtapeIG vueetp, String id){
+    public EcouteurStartDragged(VueEtapeIG vueetp, String id){
         vue = vueetp;
         identifiant = id;
     }

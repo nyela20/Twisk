@@ -1,29 +1,38 @@
 package twisk.vues;
 
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import twisk.ecouteurs.EcouteurPointDeControle;
-import twisk.mondeIG.MondeIG;
 import twisk.simulation.Client;
 
-import java.awt.*;
-import java.util.Random;
 
-public class VueClientIG extends Circle implements Observateur{
+public class VueClientIG extends StackPane implements Observateur{
+    private final int rang;
 
 
-    public VueClientIG (){
-        double taille = 5;
-        Random rand = new Random();
-        int r = rand.nextInt(255);
-        int g = rand.nextInt(255);
-        int b = rand.nextInt(255);
-        Color couleur = Color.rgb(r,g,b);
-        this.setRadius(taille);
-        this.setFill(couleur);
+    public VueClientIG (Client client){
+        Text text = new Text(String.valueOf(client.getRang()));
+        text.setFont(Font.font(4));
+        if(client.getRang() < 9) {
+            rang = client.getRang();
+        }else{
+            rang = 1;
+        }
+        Circle cercle = new Circle();
+        cercle.setRadius(6);
+        cercle.setFill(Color.LIME);
+        this.getChildren().addAll(cercle, text);
+    }
+
+
+    public int getRang() {
+        return rang;
     }
 
     @Override
-    public void reagir() { }
+    public void reagir(){
+
+    }
 }

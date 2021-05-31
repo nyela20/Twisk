@@ -26,12 +26,12 @@ public class PointDeControleIGTest {
     @BeforeEach
     void setUp(){
         monde = new MondeIG();
-        String idf = FabriqueIdentifiant.getInstance().getIdentifiant();
+        String idf = FabriqueIdentifiant.getInstance().getIdentifiantActivite();
         Tonnerre_de_Zeus = new ActiviteIG("Tonnerre_de_Zeus",idf,100,75);
         pdcUn = new PointDeControleIG(Tonnerre_de_Zeus, "haut");
         pdcDeux = new PointDeControleIG(Tonnerre_de_Zeus, "bas");
 
-        idf = FabriqueIdentifiant.getInstance().getIdentifiant();
+        idf = FabriqueIdentifiant.getInstance().getIdentifiantActivite();
         Goudurix = new ActiviteIG("Goudurix",idf,100,75);
         pdcTrois = new PointDeControleIG(Goudurix, "gauche");
         pdcQuatre = new PointDeControleIG(Goudurix, "droite");
@@ -51,7 +51,7 @@ public class PointDeControleIGTest {
         assert(pdcUn.estSelectionne()) : "Le pdc est pas censé être seléctionné";
         try {
             monde.ajouter(pdcUn, pdcQuatre);
-        }catch(ExceptionsInvaliditeSurLesArcs e){
+        }catch(ExceptionArcIG e){
             e.printStackTrace();
         }
         assert(!pdcUn.estSelectionne()) : "Après avoir créer un arc ses pdc ne sont plus censé seléctionné";

@@ -1,10 +1,12 @@
 package twisk.simulation;
 
 import twisk.monde.Etape;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class GestionnaireClients implements Iterable<Client> {
+public class GestionnaireClients implements Iterable<Client>, Serializable {
 
     private final ArrayList<Client> gestionnaireClients;
     private int nombreDeClients;

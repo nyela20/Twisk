@@ -10,15 +10,14 @@ public abstract class TwiskException extends Exception {
      *
      * @param message le message de l'exception
      */
-    public TwiskException(String message, String type) {
+    public TwiskException(String message) {
         super(message);
-        if (type.equals("IG")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeight(500);
-            alert.setWidth(500);
-            alert.setContentText(message);
-            alert.showAndWait();
-        }
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setResizable(true);
+        alert.getDialogPane().setMinHeight(200);
+        alert.getDialogPane().setMinWidth(750);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
 

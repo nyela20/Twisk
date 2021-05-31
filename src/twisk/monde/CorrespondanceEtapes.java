@@ -1,9 +1,11 @@
 package twisk.monde;
 
 import twisk.mondeIG.EtapeIG;
+
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class CorrespondanceEtapes{
+public class CorrespondanceEtapes implements Serializable {
     private final HashMap<EtapeIG,Etape> tableauEtapes = new HashMap<>();
 
     public CorrespondanceEtapes(){ }
@@ -19,11 +21,5 @@ public class CorrespondanceEtapes{
             }
         }
         return null;
-    }
-
-    public void mettreaJour(){
-        for(EtapeIG etapeIG : tableauEtapes.keySet()){
-            etapeIG.setNombreDeClients(get(etapeIG).getNombreDeClients());
-        }
     }
 }

@@ -29,9 +29,9 @@ public abstract class EcouteurAbstractMenu implements EventHandler<ActionEvent> 
         try {
             Integer.parseInt(chaine);
         } catch (NumberFormatException e) {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     /**

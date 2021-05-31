@@ -26,7 +26,7 @@ public class VuePointDeControleIG extends Circle implements Observateur {
         this.setCenterX(pdc.getx());
         this.setCenterY(pdc.gety());
         this.setRadius(taille);
-        this.setFill(Color.valueOf("#FA8072"));
+        this.setFill(Color.ORANGERED);
     }
 
     @Override

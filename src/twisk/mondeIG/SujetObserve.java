@@ -1,10 +1,13 @@
 package twisk.mondeIG;
 
+import org.junit.jupiter.api.condition.OS;
+import twisk.simulation.Client;
 import twisk.vues.Observateur;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public abstract class SujetObserve {
+public abstract class SujetObserve{
     private final ArrayList<Observateur> ObservateurVue = new ArrayList<>();
 
     public SujetObserve(){ }

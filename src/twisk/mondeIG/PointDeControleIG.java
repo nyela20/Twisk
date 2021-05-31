@@ -1,17 +1,27 @@
 package twisk.mondeIG;
 
 
-import twisk.outils.FabriqueIdentifiant;
-
 import java.awt.*;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class PointDeControleIG  {
+public class PointDeControleIG implements Serializable {
     private final Point centre = new Point();
     private final EtapeIG etape;
     private final String position;
     private boolean estSelectionne;
 
+    /**
+     * Constructeur d'un PointDeControleIG
+     * @param etp l'Etape rataché à cet pointDeControle
+     * @param pos la position sur cet EtapeIG
+     */
+    public PointDeControleIG(EtapeIG etp, String pos){
+        position = pos;
+        etape = etp;
+        estSelectionne = false;
+        assignerPosition(pos);
+    }
 
     /**
      * modifie l'Etat de séléction d'un PointDeControle
@@ -50,7 +60,7 @@ public class PointDeControleIG  {
      * "haut, "bas, "gauche", "droite"
      * @return position
      */
-    public String getCote(){
+    public String getPosition(){
         return position;
     }
 
@@ -84,18 +94,7 @@ public class PointDeControleIG  {
         return Objects.hash(centre, etape, position, estSelectionne);
     }
 
-    /**
-     * Constructeur d'un PointDeControleIG
-     * @param etp l'Etape rataché à cet pointDeControle
-     * @param pos la position sur cet EtapeIG
-     */
-    public PointDeControleIG(EtapeIG etp, String pos){
-        position = pos;
-        etape = etp;
-        String identifiant = FabriqueIdentifiant.getInstance().getPointDeControleIdentifiant();
-        estSelectionne = false;
-        assignerPosition(pos);
-    }
+
 
 
     /**

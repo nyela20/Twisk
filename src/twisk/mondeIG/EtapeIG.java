@@ -1,14 +1,15 @@
 package twisk.mondeIG;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 
 
-public abstract class EtapeIG implements Iterable<EtapeIG>{
-    private final ArrayList<PointDeControleIG> TabPointsDC;
+public abstract class EtapeIG implements Iterable<EtapeIG>, Serializable {
+    private final ArrayList<PointDeControleIG> TabpointDeControleIG;
     private final LinkedList<EtapeIG> ListeSuccesseur;
     private int posX;
     private int posY;
@@ -19,7 +20,6 @@ public abstract class EtapeIG implements Iterable<EtapeIG>{
     private boolean estSelectionne;
     private boolean estUneEntree;
     private boolean estUneSortie;
-    private int nombreDeClients;
 
     /**
      * Constructeur d'une EtapeIG
@@ -30,7 +30,7 @@ public abstract class EtapeIG implements Iterable<EtapeIG>{
      */
     public EtapeIG(String nom,String idf, int larg, int haut) {
         Random random = new Random();
-        TabPointsDC = new ArrayList<>(4);
+        TabpointDeControleIG = new ArrayList<>(4);
         ListeSuccesseur = new LinkedList<>();
         this.nom = nom;
         identifiant = idf;
@@ -44,13 +44,6 @@ public abstract class EtapeIG implements Iterable<EtapeIG>{
         ajouterPointDeControle();
     }
 
-    public void setNombreDeClients(int nombreDeClients) {
-        this.nombreDeClients = nombreDeClients;
-    }
-
-    public int getNombreDeClients() {
-        return nombreDeClients;
-    }
 
     /**
      * assigne une EtapeIG en entrée ou inversement
@@ -133,6 +126,7 @@ public abstract class EtapeIG implements Iterable<EtapeIG>{
         return posY;
     }
 
+
     /**
      * retourne la valeur de la largeur d'une EtapeIG
      * @return largeur
@@ -199,15 +193,17 @@ public abstract class EtapeIG implements Iterable<EtapeIG>{
      * retourne le nombre de PointDeCOntrole d'une Etape
      * @return la taille du tableau de PointDeControle en mémoire
      */
-    public int nombreDePointDeControle(){ return TabPointsDC.size(); }
+    public int nombreDePointDeControle(){ return TabpointDeControleIG.size(); }
 
 
     /**
-     * vide la tableau de successeur de l'Etape (à modifier bif)
+     * supprimer un successeur spécifique
+     * @param succ le successeur
      */
-    public void supprimerSuccesseur(){
-        ListeSuccesseur.clear();
+    public void supprimerSuccesseur(EtapeIG succ){
+        ListeSuccesseur.remove(succ);
     }
+
 
     /**
      * Déplace une étape d'un point à un autre
@@ -218,6 +214,21 @@ public abstract class EtapeIG implements Iterable<EtapeIG>{
         posX = (int) x;
         posY = (int) y;
         repositionnerTousLesPDC();
+    }
+
+    /**
+     * La fonction vérifie que l'Entrée en bien relié à la sortie
+     * @param etapeIG l'Etape de départ
+     * @return vrai si est connexe
+     */
+    public boolean estAccessibleDepuis(EtapeIG etapeIG) {
+        if (nom.equals(etapeIG.nom)) {
+            return true;
+        }
+        for (EtapeIG succ : etapeIG) {
+            return estAccessibleDepuis(succ);
+        }
+        return false;
     }
 
     /**
@@ -237,8 +248,8 @@ public abstract class EtapeIG implements Iterable<EtapeIG>{
      * (est utilisé après avoir déplacé une Etape)
      */
     public void repositionnerTousLesPDC(){
-        for(PointDeControleIG points : TabPointsDC){
-            points.assignerPosition(points.getCote());
+        for(PointDeControleIG points : TabpointDeControleIG){
+            points.assignerPosition(points.getPosition());
         }
     }
 
@@ -248,18 +259,33 @@ public abstract class EtapeIG implements Iterable<EtapeIG>{
      */
     private void ajouterTousLesPointsDeControle(String type){
         assert(type.equals("Activite") || type.equals("Guichet")) : "Erreur type inconnu.";
-        TabPointsDC.add( new PointDeControleIG(this,"droite"));
-        TabPointsDC.add( new PointDeControleIG(this,"gauche"));
+        TabpointDeControleIG.add( new PointDeControleIG(this,"droite"));
+        TabpointDeControleIG.add( new PointDeControleIG(this,"gauche"));
         if(type.equals("Activite")){
-            TabPointsDC.add( new PointDeControleIG(this,"haut"));
-            TabPointsDC.add( new PointDeControleIG(this,"bas"));
+            TabpointDeControleIG.add( new PointDeControleIG(this,"haut"));
+            TabpointDeControleIG.add( new PointDeControleIG(this,"bas"));
         }
     }
+
+    /**
+     * retourne un PointDeControle de l'EtapeIG
+     * @param position le position du pointDeControle
+     * @return un PointdeControle de l'EtapeIG
+     */
+    public PointDeControleIG getPointDeControle(String position){
+        for(PointDeControleIG pointDeControleIG : TabpointDeControleIG){
+            if(pointDeControleIG.getPosition().equals(position)){
+                return pointDeControleIG;
+            }
+        }
+        return null;
+    }
+
 
     @Override
     public Iterator<EtapeIG> iterator(){
         return ListeSuccesseur.iterator();
     }
 
-    public Iterator<PointDeControleIG> pointDeControleIGIterator(){ return TabPointsDC.iterator();}
+    public Iterator<PointDeControleIG> pointDeControleIGIterator(){ return TabpointDeControleIG.iterator();}
 }

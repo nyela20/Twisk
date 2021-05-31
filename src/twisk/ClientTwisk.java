@@ -1,6 +1,8 @@
 package twisk;
 
 import twisk.monde.*;
+import twisk.mondeIG.EtapeIG;
+import twisk.mondeIG.GuichetIG;
 import twisk.outils.ClassLoaderPerso;
 import twisk.simulation.Simulation;
 
@@ -25,25 +27,20 @@ public class ClientTwisk{
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
 
-
-
-        /*---monde0-(biffurcation)--*/
-
-        Monde monde = new Monde();
-        Etape lolo = new Activite("lolo", 4, 2);
-        Etape dodo = new Activite("dodo", 6,2 );
-        Etape popo = new Activite("popo", 6, 2);
-        Etape koko = new Activite("koko", 6, 2);
-        monde.ajouter(lolo,dodo,popo,koko);
-        dodo.ajouterSuccesseur(koko);
-        monde.aCommeSortie(lolo);
-        monde.aCommeSortie(koko);
-        popo.ajouterSuccesseur(lolo);
-        popo.ajouterSuccesseur(dodo);
-        monde.aCommeEntree(dodo);
-        monde.aCommeEntree(popo);
-        start(monde,15);
-
+        Monde monde0 = new Monde();
+        Guichet guichet = new Guichet("guichet",1);
+        Guichet guichet2 = new Guichet("guichet2",1);
+        ActiviteRestreinte tob2 = new ActiviteRestreinte("tob2",2,1);
+        ActiviteRestreinte tob = new ActiviteRestreinte("tob",2,1);
+        Activite piscine = new Activite("piscine ",2,1);
+        monde0.ajouter(tob,guichet2,tob2,piscine,guichet);
+        monde0.aCommeEntree(piscine);
+        monde0.aCommeSortie(tob2);
+        guichet.ajouterSuccesseur(tob);
+        tob.ajouterSuccesseur(guichet2);
+        guichet2.ajouterSuccesseur(tob2);
+        piscine.ajouterSuccesseur(guichet);
+        start(monde0,20);
 
 
         /*----monde1--(biffurcation)-*/
@@ -71,7 +68,7 @@ public class ClientTwisk{
         monde1.aCommeSortie(plaine_girafe);
         monde1.aCommeSortie(plaine_zebre);
         monde1.aCommeSortie(cage_lion);
-        start(monde1,10);
+        start(monde1,30);
 
         /*----monde2---*/
         Monde monde2 = new Monde();

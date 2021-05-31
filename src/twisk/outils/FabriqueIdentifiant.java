@@ -4,17 +4,20 @@ package twisk.outils;
 
 public class FabriqueIdentifiant {
         private static final FabriqueIdentifiant instance = new FabriqueIdentifiant();
-        private int noEtape;
+        private int noAct;
+        private int noGui;
         private int noEtapePointDC;
         private int noArcs;
 
     /**
      * Constructeur d'une InstanceUnique qui fabrique des Identifiants
      */
-    private FabriqueIdentifiant(){
-            this.noEtape = 0;this.noEtapePointDC = 0;
-            this.noArcs = 0;
-        }
+    private FabriqueIdentifiant() {
+        noAct = 0;
+        noEtapePointDC = 0;
+        noArcs = 0;
+        noGui = 0;
+    }
 
     /**
      * retourne l'instance du Singleton
@@ -22,32 +25,37 @@ public class FabriqueIdentifiant {
      */
     public static FabriqueIdentifiant getInstance(){
             return instance;
-        }
+    }
 
     /**
      * retourne un identifiant unique
      * @return noEtape
      */
-    public String getIdentifiant(){
-            this.noEtape++ ;
-            return "Activite" + (this.noEtape - 1);
-        }
+    public String getIdentifiantActivite() {
+        noAct++;
+        return "Activite" + (noAct - 1);
+    }
+
+    public String getIdentifiantGuichet() {
+        noGui++;
+        return "Guichet" + (noGui -1);
+    }
 
     /**
      * retourne un identifiant de PointDeControle unique
      * @return noEtapePointDC
      */
     public String getPointDeControleIdentifiant(){
-            this.noEtapePointDC++;
-            return "PointDC" + (this.noEtapePointDC - 1);
-        }
+            noEtapePointDC++;
+            return "PointDC" + (noEtapePointDC - 1);
+    }
 
     /**
      * retourne un identifiant d'ArcIG unique
      * @return noArcs
      */
     public String getIdendifiantArcs(){
-            this.noArcs++;
-            return String.valueOf(this.noArcs -1);
-        }
+            noArcs++;
+            return String.valueOf(noArcs -1);
+    }
 }

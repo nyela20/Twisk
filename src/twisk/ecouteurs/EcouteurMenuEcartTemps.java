@@ -25,7 +25,7 @@ public class EcouteurMenuEcartTemps extends EcouteurAbstractMenu {
             super.getBoiteDialogue().setHeaderText("Assigner un écart-temps");
             super.getBoiteDialogue().showAndWait();
             String ecarttemps = super.getBoiteDialogue().getEditor().getText();
-            if(estUnEntier(ecarttemps) || Integer.parseInt(ecarttemps) <= 0){
+            if(!(estUnEntier(ecarttemps)) || Integer.parseInt(ecarttemps) <= 0){
                 throw new ExceptionVueMenu("Valeur invalide.");
             }else {
                 super.getMonde().assignerEcartTempsAEtape(Integer.parseInt(ecarttemps));

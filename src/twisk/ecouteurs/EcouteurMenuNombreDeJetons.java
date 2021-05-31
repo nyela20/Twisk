@@ -19,7 +19,7 @@ public class EcouteurMenuNombreDeJetons extends EcouteurAbstractMenu {
             super.getBoiteDialogue().setHeaderText("Combien de jetons ?");
             super.getBoiteDialogue().showAndWait();
             String nombreDeJetons = super.getBoiteDialogue().getEditor().getText();
-            if (estUnEntier(nombreDeJetons)  || Integer.parseInt(nombreDeJetons) <= 0) {
+            if (!(estUnEntier(nombreDeJetons))  || Integer.parseInt(nombreDeJetons) <= 0) {
                 throw new ExceptionVueMenu("Valeur invalide.");
             } else {
                 super.getMonde().assignerNombreDeJetonsAEtape(Integer.parseInt(nombreDeJetons));

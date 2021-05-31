@@ -2,11 +2,11 @@
 
 /*--ligne séléctionnée style---*/
 #ligne_selected{
-    -fx-stroke-width: 5;
+    -fx-stroke-width: 7;
     -fx-stroke: red;
 }
 #polygonfleche_selected{
-    -fx-stroke-width: 5;
+    -fx-stroke-width: 7;
     -fx-stroke: red;
     -fx-fill: red;
 }
@@ -15,13 +15,13 @@
 
 #ligne0_not_selected{
     -fx-stroke-width: 5;
-    -fx-stroke: #FA8072;
+    -fx-stroke: #00bfffDB;
 }
 
 #polygonfleche0_not_selected{
     -fx-stroke-width: 5;
-    -fx-stroke: #FA8072;
-    -fx-fill: #FA8072;
+    -fx-stroke: #00bfffDB;
+    -fx-fill: #00bfffDB;
 }
 
 /*--Style-1-light-mode-*/
