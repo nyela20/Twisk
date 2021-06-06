@@ -7,6 +7,7 @@ import javafx.scene.shape.Polygon;
 import twisk.ecouteurs.EcouteurArcs;
 import twisk.mondeIG.ArcIG;import twisk.mondeIG.MondeIG;
 
+
 public class VueArcIG extends Pane implements Observateur {
     private final int identifiantStyle;
 
@@ -31,7 +32,7 @@ public class VueArcIG extends Pane implements Observateur {
      * @param arc l'arc
      * @return Line
      */
-    public Line dessinerUneLigne(ArcIG arc) {
+    public Line dessinerUneLigne(ArcIG arc){
         Line ligne = new Line();
         ligne.setStartX(arc.getpointDeDepart().getx());
         ligne.setStartY(arc.getpointDeDepart().gety());
@@ -40,8 +41,8 @@ public class VueArcIG extends Pane implements Observateur {
         ligne.setStrokeWidth(5);
         if(arc.estSelectionne()) {
             ligne.setId("ligne_selected");
-        }else{
-            ligne.setId("ligne"+ identifiantStyle +"_not_selected");
+        }else {
+            ligne.setId("ligne" + identifiantStyle + "_not_selected");
         }
         return ligne;
     }
@@ -52,7 +53,7 @@ public class VueArcIG extends Pane implements Observateur {
      * @param arc l'arc
      * @return Polygon
      */
-    public Polygon dessinerUnTriangle(Line ligne,ArcIG arc) {
+    public Polygon dessinerUnTriangle(Line ligne,ArcIG arc){
         Polygon tete = new Polygon();
         Point2D pS = new Point2D(ligne.getStartX(), ligne.getStartY());
         Point2D pE = new Point2D(ligne.getEndX(), ligne.getEndY());

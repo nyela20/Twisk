@@ -12,7 +12,6 @@ import twisk.mondepredefinis.Monde2;
 import twisk.simulation.Client;
 import twisk.simulation.Simulation;
 import twisk.vues.Observateur;
-
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -27,7 +26,6 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
     private final HashMap<String, EtapeIG> TableauEtapesIG = new HashMap<>();
     private final ArrayList<ArcIG> TableauArcsIG = new ArrayList<>();
     private final ArrayList<PointDeControleIG> TableauPointsDeControle = new ArrayList<>();
-    private final CorrespondanceEtapes correspondancesEtapes = new CorrespondanceEtapes();
     private int identifiantStyle;
     private boolean modeCreation;
     private int nombreDeClients;
@@ -36,7 +34,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
     /**
      * Constructeur d'un MondeIG
      */
-    public MondeIG() {
+    public MondeIG(){
         ajouter("Activite");
         identifiantStyle = 0;
         nombreDeClients = 10;
@@ -190,7 +188,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
     /**
      * La fonction créer une ActiviteRestreinteIG si elle est précédé par un GuichetIG
      */
-    private void creerActiviteRestreinte() {
+    private void creerActiviteRestreinte(){
         for (EtapeIG etapeIG : this) {
             if (etapeIG.estUnGuichet()) {
                 ((ActiviteIG) etapeIG.iterator().next()).setEstUneActiviteRestreinte(true);
@@ -263,7 +261,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
      * fonction réagir()
      */
     @Override
-    public void reagir() {
+    public void reagir(){
         notifierObservateur();
     }
 
@@ -309,10 +307,6 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         if (!verifierExisteSortie()) {
             throw new ExceptionMondeIG("Monde invalide : Le monde ne possède pas de Sortie");
         }
-        if (!verifierEntreesNeSontPasDesSorties()){
-            throw new ExceptionMondeIG("Monde pas accepté : Une entrée est à la fois une Sortie");
-        }
-
     }
 
 
@@ -402,6 +396,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
      */
     private Monde creerMonde() {
         Monde monde = new Monde();
+        CorrespondanceEtapes correspondancesEtapes = new CorrespondanceEtapes();
         for (EtapeIG etapeIG : this) {
             Etape etape = null;
             if (etapeIG.estUneActiviteRestreinte()) {
@@ -493,6 +488,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
      * @param monde le Monde à simuler
      */
     private void start(Monde monde){
+        System.out.println("nb threads créer : " + GestionnaireThreads.getInstance().nbthread());
         MondeIG mde = this;
         Task<Void> task = new Task<>() {
             @Override
@@ -557,7 +553,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
     public void assignerEntree() {
         for (EtapeIG etape : this) {
             if (etape.estSelectionne()) {
-                if(etape.estUneActivite()) {
+                if(etape.estUneActivite() && !(etape.estUneSortie())) {
                     etape.setEstUneEntree(!etape.estUneEntree());
                 }
             }
@@ -573,7 +569,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
     public void assignerSortie() {
         for (EtapeIG etape : this) {
             if (etape.estSelectionne()) {
-                if(etape.estUneActivite()) {
+                if(etape.estUneActivite() && !(etape.estUneEntree())) {
                     etape.setEstUneSortie(!etape.estUneSortie());
                 }
             }
@@ -807,19 +803,6 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         return !res;
     }
 
-    /**
-     * retourne faux si il exite une étape qui soit à la fois
-     * une entrée et une sortie
-     * @return vrai si la condition est fausse
-     */
-    public boolean verifierEntreesNeSontPasDesSorties(){
-        for(EtapeIG etapeIG : this){
-            if(etapeIG.estUneEntree() && etapeIG.estUneSortie()){
-                return false;
-            }
-        }
-        return true;
-    }
 
     /**
      * on vérifie qu'un guichet a toujours un successeur
@@ -846,5 +829,4 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         }
         return true;
     }
-
 }

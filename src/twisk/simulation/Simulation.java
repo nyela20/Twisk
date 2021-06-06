@@ -16,8 +16,6 @@ public class Simulation extends SujetObserve implements Iterable<Client> , Seria
 
 
     private int nbClients;
-    private int[] TabPid = new int[0];
-    private final KitC kitC = new KitC();
     private final GestionnaireClients gestionnaireClients;
 
     public Simulation() {
@@ -33,7 +31,6 @@ public class Simulation extends SujetObserve implements Iterable<Client> , Seria
     public void setNbClients(int nbClients) {
         assert (nbClients > 0) : "erreur valeur nbclients.";
         this.nbClients = nbClients;
-        TabPid = new int[nbClients];
     }
 
     /**
@@ -53,6 +50,8 @@ public class Simulation extends SujetObserve implements Iterable<Client> , Seria
      * @param monde le monde à simuler
      */
     public void simuler(Monde monde) throws IOException, InterruptedException {
+        KitC kitC = new KitC();
+        int[] TabPid = new int[nbClients];
         try {
             FabriqueNumero.getInstance().incrementerlibrairenum();
             String libnum = String.valueOf(FabriqueNumero.getInstance().getNumerolibrairie());
@@ -92,6 +91,7 @@ public class Simulation extends SujetObserve implements Iterable<Client> , Seria
                 notifierObservateur();
             }
         } catch (Exception e) {
+            gestionnaireClients.reset();
             kitC.kill(TabPid);
             nettoyage();
             notifierObservateur();

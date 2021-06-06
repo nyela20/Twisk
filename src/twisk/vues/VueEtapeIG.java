@@ -1,5 +1,6 @@
 package twisk.vues;
 
+import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -42,6 +43,7 @@ public abstract class VueEtapeIG extends VBox implements Observateur {
             for (int i = 0; i < nombreHbox ; i++) {
                 HBox caseClients2 = new HBox();
                 caseClients2.setId("guichet" + style + "_hbox_clients");
+                caseClients2.setFillHeight(false);
                 caseClients.getChildren().add(caseClients2);
             }
         }
@@ -53,8 +55,8 @@ public abstract class VueEtapeIG extends VBox implements Observateur {
     }
 
     /**
-     * la fonction assigner un Style à le vue Etape
-     * en vérifiant si oui/non l'Etape est Séléctionné
+     * la fonction assigner un style graphique à vue Etape qui le démarque
+     * si oui/non l'Etape est Séléctionné
      * @param etape L'etape
      * @param style l'Identifiant le style
      * @param type le type
@@ -70,7 +72,7 @@ public abstract class VueEtapeIG extends VBox implements Observateur {
 
     /**
      * la fonction sert à ajouter/enlever le logo Entree/Sortie
-     * si oui/non l'Etape est une Entree nor une Sortie
+     * si oui/non l'Etape est une Entree ou bien une Sortie
      * @param etape l'Etape
      */
     public void idEntreeSortie(EtapeIG etape){

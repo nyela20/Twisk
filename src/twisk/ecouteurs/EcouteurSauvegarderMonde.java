@@ -2,7 +2,6 @@ package twisk.ecouteurs;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.TextInputDialog;
 import twisk.mondeIG.MondeIG;
 
 import javax.swing.*;

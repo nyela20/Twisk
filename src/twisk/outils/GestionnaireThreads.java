@@ -23,6 +23,10 @@ public class GestionnaireThreads {
         }
     }
 
+    public int nbthread(){
+        return LesThreads.size();
+    }
+
     /**
      * execution des threads
      * @param task la tâche du thread

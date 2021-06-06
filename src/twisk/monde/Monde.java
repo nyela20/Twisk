@@ -1,7 +1,5 @@
 package twisk.monde;
 
-import twisk.exceptionstwiskIG.ExceptionObjetNonTrouve;
-import twisk.mondeIG.MondeIG;
 import twisk.outils.FabriqueNumero;
 
 import java.util.Iterator;
@@ -142,7 +140,6 @@ public class Monde implements Iterable<Etape> {
 
         //Ecriture de la fonction Simuler
         affichage.append("void simulation(int ids){\n");
-        affichage.append("int nb;\n");
 
         affichage.append(sasEntree.toC());
         //sasEntree.toC();

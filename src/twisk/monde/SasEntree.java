@@ -25,8 +25,9 @@ public class SasEntree extends Activite {
         }
         if (nbSuccesseurs() > 1) {
             Iterator<Etape> iterator = this.iterator();
-            affichage.append("\nnb = (int)((rand()/(float) RAND_MAX) *").append(nbSuccesseurs()).append(");\n");
-            affichage.append("switch(nb){\n");
+
+            affichage.append("\nint sasE = (int)((rand()/(float) RAND_MAX) *").append(nbSuccesseurs()).append(");\n");
+            affichage.append("switch(sasE){\n");
             for (int i = 0; i < nbSuccesseurs(); i++) {
                 Etape succ = iterator.next();
                 affichage.append("case ").append(i).append(":\n");

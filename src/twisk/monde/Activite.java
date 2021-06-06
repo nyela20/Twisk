@@ -99,8 +99,8 @@ public class Activite extends Etape {
         //bifurcation
         if (nbSuccesseurs() > 1) {
             Iterator<Etape> iterator = this.iterator();
-            affichage.append("\nnb = (int)((rand()/(float) RAND_MAX) *").append(nbSuccesseurs()).append(");\n");
-                affichage.append("switch(nb){\n");
+            affichage.append("\nint ").append(getNom()).append("nb = (int)((rand()/(float) RAND_MAX) *").append(nbSuccesseurs()).append(");\n");
+                affichage.append("switch(").append(getNom()).append("nb){\n");
                     for (int i = 0; i < nbSuccesseurs(); i++) {
                         Etape succ = iterator.next();
                         affichage.append("case ").append(i).append(":\n");

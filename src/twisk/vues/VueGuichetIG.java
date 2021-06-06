@@ -21,7 +21,7 @@ public class VueGuichetIG extends VueEtapeIG{
         super(monde, guichetIG);
         this.guichetIG = guichetIG;
         Label labelTitre = new Label(guichetIG.getNom()+ " : " + guichetIG.getNombreDeJetons() +" jetons\n\n");
-        this.getChildren().add(labelTitre);
+        getChildren().add(labelTitre);
         idSelectionne(guichetIG,style,"guichet");
         boiteClients = ajouterHbox(9, style,guichetIG);
         Button boutonAjouterActRes = new Button("Activite Res");
