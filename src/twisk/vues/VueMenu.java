@@ -141,7 +141,7 @@ public class VueMenu extends MenuBar implements Observateur {
         LoiPoisson.setOnAction(actionEvent -> {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.getDialogPane().setMinHeight(200);
-            alert.setContentText("Avec la loi poisson, il peut PARFOIS arriver que l'affichage de l'interface soit mal mis à jour ");
+            alert.setContentText("Avec la loi poisson, il peut parfois arriver que l'affichage de l'interface soit mal mis à jour ");
             alert.showAndWait();
             initGraphics(LoiNormale,LoiPoisson,LoiUniforme);
             mondeIG.initLoi(); mondeIG.setSuitLoiPoisson(true);

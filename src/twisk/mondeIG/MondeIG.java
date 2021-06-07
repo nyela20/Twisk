@@ -427,7 +427,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
                     ajouter(etapeIG.getPointDeControle("droite"), etapeIGsucc.getPointDeControle("gauche"));
                 }
             } catch (Exception exception) {
-                System.out.print(exception.getMessage());
+                System.out.println();
             }
             notifierObservateur();
         }
@@ -493,7 +493,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
                 assignerSensDeCirculationGuichetIG(arc);
             }
         } catch (ExceptionArcIG invaliditeSurLesArcs) {
-            System.out.println(invaliditeSurLesArcs.getMessage());
+            System.out.println();
         }
         pt1.setEstSelectionne(false);
         pt2.setEstSelectionne(false);
@@ -563,11 +563,9 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
                     Method sim = simulation.getClass().getMethod("simuler", Monde.class);
                     sim.invoke(simulation, monde);
 
-                    System.out.println(".............................................................................................Fin Simulation");
                     mde.setModeCreation(true);
                     mde.notifierObservateur();
                 } catch (Exception exception) {
-                    System.out.println(exception.getMessage());
                     exception.printStackTrace();
                 }
                 return null;
@@ -699,7 +697,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
             try {
                 ajouter(p, p2);
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.out.println();
             }
         }
         notifierObservateur();

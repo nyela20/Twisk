@@ -50,7 +50,7 @@ public class Monde1 {
             mondeIG.ajouter(cinema.getPointDeControle("bas"),guichetArcade.getPointDeControle("gauche"));
             mondeIG.ajouter(guichetArcade.getPointDeControle("droite"),arcade.getPointDeControle("gauche"));
         }catch (TwiskException exception){
-            System.out.println(exception.getMessage());
+            System.out.println("");
         }
 
         /*ajouter E/S*/

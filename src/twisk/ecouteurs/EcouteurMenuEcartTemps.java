@@ -30,8 +30,6 @@ public class EcouteurMenuEcartTemps extends EcouteurAbstractMenu {
             }else {
                 super.getMonde().assignerEcartTempsAEtape(Integer.parseInt(ecarttemps));
             }
-        }catch(ExceptionVueMenu e){
-            System.out.println(e.getMessage());
-        }
+        }catch(ExceptionVueMenu e){ }
     }
 }

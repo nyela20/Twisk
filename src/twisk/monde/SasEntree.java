@@ -41,15 +41,12 @@ public class SasEntree extends Activite {
                 Etape succ = iterator.next();
                 affichage.append("case ").append(i).append(":\n");
                 if (monde.suitLoiUniforme()) {
-                    System.out.println("ON SUIT UNE LOI UNIFORME !!!");
                     affichage.append("entrer(").append(getNom()).append(");\n").append("delai(").append(getTemps()).append(",").append(getEcartTemps()).append(");\n").append("transfert(").append(getNom()).append(",").append(succ.getNom()).append(");").append(succ.toC()).append("break;\n");
                 }
                 if(monde.suitLoiNormale()) {
-                    System.out.println("ON SUIT UNE LOI NORMALE !!!");
                     affichage.append("entrer(").append(getNom()).append(");\n").append("delaiGauss(").append(getTemps()).append(",").append(getEcartTemps()).append(");\n").append("transfert(").append(getNom()).append(",").append(succ.getNom()).append(");").append(succ.toC());
                 }
                 if(monde.suisLoiPoisson()){
-                    System.out.println("ON SUIT UNE LOI NORMALE !!!");
                     affichage.append("entrer(").append(getNom()).append(");\n").append("delaiExponentiel(").append(getTemps()).append(");\n").append("transfert(").append(getNom()).append(",").append(succ.getNom()).append(");").append(succ.toC());
                 }
             }

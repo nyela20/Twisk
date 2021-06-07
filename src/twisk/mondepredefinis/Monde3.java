@@ -1,8 +1,6 @@
 package twisk.mondepredefinis;
 
 import twisk.exceptionstwiskIG.ExceptionArcIG;
-import twisk.monde.Activite;
-import twisk.monde.Guichet;
 import twisk.mondeIG.ActiviteIG;
 import twisk.mondeIG.GuichetIG;
 import twisk.mondeIG.MondeIG;
@@ -57,7 +55,7 @@ public class Monde3 {
             mondeIG.ajouter(guichetRugbyVIP.getPointDeControle("gauche"), volley.getPointDeControle("bas"));
             mondeIG.ajouter(guichetVolleyVIP.getPointDeControle("droite"), rugby.getPointDeControle("bas"));
         } catch (ExceptionArcIG exceptionArcIG) {
-            exceptionArcIG.printStackTrace();
+            System.out.println();
         }
 
         /*ajouter entrees/sorties*/

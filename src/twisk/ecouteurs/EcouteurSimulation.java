@@ -17,9 +17,7 @@ public class EcouteurSimulation extends EcouteurAbstractMenu {
         if (getMonde().estModeCreation()) {
             try {
                 getMonde().simuler();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            } catch (Exception e) { }
         }else{
             getMonde().stopSimulation();
         }

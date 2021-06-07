@@ -24,8 +24,6 @@ public class EcouteurMenuNombreDeJetons extends EcouteurAbstractMenu {
             } else {
                 super.getMonde().assignerNombreDeJetonsAEtape(Integer.parseInt(nombreDeJetons));
             }
-        } catch (ExceptionVueMenu e) {
-            System.out.println(e.getMessage());
-        }
+        } catch (ExceptionVueMenu e) { }
     }
 }

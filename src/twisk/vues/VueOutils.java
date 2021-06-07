@@ -2,6 +2,7 @@ package twisk.vues;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.Font;
 import twisk.ecouteurs.EcouteurOutilsAssignerNombreDeClients;
@@ -26,8 +27,11 @@ public class VueOutils extends TilePane implements Observateur {
         try {
         mondeIG.ajouter(this);
         buttonAjouterActivite.setOnAction(event -> mondeIG.ajouter("Activite"));
+        buttonAjouterActivite.setGraphic(new ImageView("twisk/ressources/images/outils/activite.png"));
         buttonAjouterGuichet.setOnAction(event -> mondeIG.ajouter("Guichet"));
+        buttonAjouterGuichet.setGraphic(new ImageView("twisk/ressources/images/outils/guichet.png"));
         buttonDeSimulation.setOnAction(new EcouteurSimulation(mondeIG,buttonDeSimulation));
+        buttonDeSimulation.setGraphic(new ImageView("twisk/ressources/images/outils/startstop.png"));
         buttonSetNombreDeClients.setOnAction(new EcouteurOutilsAssignerNombreDeClients(mondeIG));
 
         getChildren().add(buttonAjouterActivite);
@@ -43,7 +47,7 @@ public class VueOutils extends TilePane implements Observateur {
 
     @Override
     public void reagir() {
-        buttonSetNombreDeClients.setText("modifier nb clients : " + mondeIG.getNombreDeClients());
+        buttonSetNombreDeClients.setText("modifier nombre de client(s) : " + mondeIG.getNombreDeClients());
         this.setId("background"+ mondeIG.getIdentifiantStyle());
         buttonAjouterActivite.setId("buttonActivite"+ mondeIG.getIdentifiantStyle());
         buttonAjouterGuichet.setId("buttonGuichet"+ mondeIG.getIdentifiantStyle());

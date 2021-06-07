@@ -30,8 +30,6 @@ public class EcouteurMenuDelai extends EcouteurAbstractMenu {
             }else {
                 super.getMonde().assignerDelaiAEtape(Integer.parseInt(delai));
             }
-        }catch(ExceptionVueMenu e){
-            System.out.println(e.getMessage());
-        }
+        }catch(ExceptionVueMenu e){ }
     }
 }

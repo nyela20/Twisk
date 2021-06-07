@@ -51,7 +51,7 @@ public class Monde2 {
             mondeIG.ajouter(guichetBowling.getPointDeControle("gauche"),bowling.getPointDeControle("haut"));
             mondeIG.ajouter(guichetBanque.getPointDeControle("droite"),banque.getPointDeControle("haut"));
         }catch (TwiskException exception){
-            System.out.println(exception.getMessage());
+            System.out.println("");
         }
 
         /*ajouter E/S*/

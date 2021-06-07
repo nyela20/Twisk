@@ -27,7 +27,6 @@ public class EcouteurOutilsAssignerNombreDeClients extends EcouteurAbstractMenu 
                 super.getMonde().setNombreDeClients(Integer.parseInt(nbClients));
             }
         } catch (ExceptionVueMenu e) {
-            System.out.println(e.getMessage());
         }
     }
 }
