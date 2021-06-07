@@ -16,9 +16,9 @@ import java.io.IOException;
 import java.io.Serializable;
 
 
-public class MainTwisk extends Application  {
-    int LargeurPanneauPrincipale = 850;
-    int HauteurPanneauPrincipale = 750;
+public class MainTwisk extends Application {
+    int LargeurPanneauPrincipale = 1000;
+    int HauteurPanneauPrincipale = 1200;
 
     @Override
     public void start(Stage primaryStage){

@@ -19,9 +19,9 @@ public class VuePointDeControleIG extends Circle implements Observateur {
         double taille;
         this.setOnMouseClicked(new EcouteurPointDeControle(mondeIG,pdc));
         if(pdc.estSelectionne()){
-            taille = 10.0f;
+            taille = 14.0f;
         }else{
-            taille = 6.0f;
+            taille = 8.0f;
         }
         this.setCenterX(pdc.getx());
         this.setCenterY(pdc.gety());

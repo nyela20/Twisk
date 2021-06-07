@@ -9,17 +9,24 @@ public class Monde implements Iterable<Etape> {
     private final Etape sasSortie;
     private final Etape sasEntree;
     private final GestionnaireEtapes gestioEtapes;
-
+    private boolean suitLoiUniforme;
+    private boolean suitLoiPoisson;
+    private boolean suitLoiNormale;
 
     /**
      * Constructeur d'un Monde
      */
     public Monde(){
         FabriqueNumero.getInstance().reset();
-        this.sasEntree = new SasEntree();
+        this.sasEntree = new SasEntree(this);
         this.gestioEtapes = new GestionnaireEtapes();
         this.sasSortie = new SasSortie();
+        suitLoiUniforme = true;
+        suitLoiPoisson = false;
     }
+
+
+
 
     /**
      * Défini les entrées du monde
@@ -51,6 +58,62 @@ public class Monde implements Iterable<Etape> {
             }
         }
         return null;
+    }
+
+    /**
+     * le monde ne suis aucun loi
+     * toutes les lois sont définies à false
+     */
+    public void initLoi(){
+        suitLoiUniforme = false;
+        suitLoiNormale = false;
+        suitLoiPoisson = false;
+    }
+
+    /**
+     * retourne vrai si le monde suit une Loi Uniforme,sinon faux
+     * @return suisLoiUniforme
+     */
+    public boolean suitLoiUniforme(){
+        return suitLoiUniforme;
+    }
+
+    /**
+     * retourne vrai si le monde suit une Loi Normale, sinon faux
+     * @return  suisLoiNormale
+     */
+    public boolean suitLoiNormale(){ return suitLoiNormale; }
+
+    /**
+     * retourne vrai si le monde suis une Loi Poisson, sinon faux
+     * @return suisLoiPoisson
+     */
+    public boolean suisLoiPoisson() {
+        return suitLoiPoisson;
+    }
+
+    /**
+     * le monde suit une loi Poisson si vrai, sinon faux
+     */
+    public void setSuitLoiPoisson() {
+        initLoi();
+        this.suitLoiPoisson = true;
+    }
+
+    /**
+     * le monde suit une loi uniforme si vrai, sinon faux
+     */
+    public void setSuitLoiUniforme() {
+        initLoi();
+        this.suitLoiUniforme = true;
+    }
+
+    /**
+     * le monde suit une loi Normale si vrai, sinon faux
+     */
+    public void setSuitLoiNormale() {
+        initLoi();
+        this.suitLoiNormale = true;
     }
 
     /**
@@ -102,6 +165,38 @@ public class Monde implements Iterable<Etape> {
     }
 
     /**
+     * Ecriture de la fonction gérère un temps d'attente en fonction
+     * de la loi Gaussienne
+     * @return le code de la loi Gaussienne
+     */
+    public String ecritureLoiGausienne(){
+
+        String string = "void delaiGauss(double moyenne,double ecartype){\n" +
+                "    float u1,u2,nbSec;\n" +
+                "    u1 = ((float)rand()/(RAND_MAX));\n" +
+                "    u2 = ((float)rand()/(RAND_MAX));\n" +
+                "    nbSec = (sqrt(-2*log(u1)) * (cos(2*M_PI*u2)*ecartype)) + moyenne;\n" +
+                "    usleep(nbSec*1000000);\n" +
+                "}\n\n";
+        return string;
+    }
+
+    /**
+     * Ecriture de la fonction gérère un temps d'attente en fonction
+     * de la loi Poisson
+     * @return
+     */
+    public String ecritureLoiPoisson(){
+        String string = "void delaiExponentiel(double lambda){\n" +
+                "    float u1,nbSec;\n" +
+                "    u1 = ((float)rand()/(RAND_MAX));\n" +
+                "    nbSec = (-log(u1))/(1/lambda);\n" +
+                "    usleep(nbSec*1000000);\n" +
+                "}\n\n";
+        return string;
+    }
+
+    /**
      * le monde sous code C
      *
      * @return code C
@@ -109,12 +204,16 @@ public class Monde implements Iterable<Etape> {
     public String toC() {
         StringBuilder affichage = new StringBuilder();
 
+
         //----------------------------------EN TETE CLIENT.C
 
         //Ecriture des includes
         affichage.append("#include<stdio.h>\n");
         affichage.append("#include<stdlib.h>\n");
+        affichage.append("#include<unistd.h>\n");
+        affichage.append("#include<math.h>\n");
         affichage.append("#include\"def.h\"\n\n");
+
 
         //ecriture des defines des etapes
         affichage.append("#define ").append(sasEntree.getNom()).append(" ").append(sasEntree.getNumeroEtape()).append("\n\n");
@@ -122,6 +221,8 @@ public class Monde implements Iterable<Etape> {
             affichage.append("#define ").append(e.getNom()).append(" ").append(e.getNumeroEtape()).append("\n");
         }
         affichage.append("\n#define ").append(sasSortie.getNom()).append(" ").append(sasSortie.getNumeroEtape()).append("\n\n");
+
+
 
         //Ecritures des defines des numero des semamphores
         System.out.println();
@@ -134,7 +235,9 @@ public class Monde implements Iterable<Etape> {
             }
         }
 
-
+        //ecriture des lois d'entrée
+        affichage.append(ecritureLoiGausienne());
+        affichage.append(ecritureLoiPoisson());
 
         //------------------------------------------------------FONCTION SIMULER
 

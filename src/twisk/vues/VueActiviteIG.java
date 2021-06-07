@@ -22,6 +22,8 @@ public class VueActiviteIG extends VueEtapeIG implements Observateur {
         Label labelTitre = new Label(activiteIG.getNom() + " : " + activiteIG.getDelai() + " ± " + activiteIG.getEcarttemps() + " temps\n\n");
         this.getChildren().add(labelTitre);
         idSelectionne(activiteIG,style,"activite");
+        this.setMaxHeight(activiteIG.getHauteur());
+        this.setWidth(activiteIG.getLargeur());
         boiteClients = ajouterHbox(1, style, activiteIG);
 
         Button buttonActAdd = new Button("activite");

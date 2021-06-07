@@ -70,7 +70,7 @@ public class KitC implements Serializable {
     public void compiler() {
         try {
             Runtime runtime = Runtime.getRuntime();
-            Process p = runtime.exec("gcc -Wall -fPIC -c /tmp/twisk/client.c -o /tmp/twisk/client.o");
+            Process p = runtime.exec("gcc -Wall -fPIC -c /tmp/twisk/client.c -o /tmp/twisk/client.o -lm");
 
             // récupération des messages sur la sortie standard et la sortie d’erreur de la commande exécutée
             // à reprendre éventuellement et à adapter à votre code

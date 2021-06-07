@@ -29,6 +29,9 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
     private int identifiantStyle;
     private boolean modeCreation;
     private int nombreDeClients;
+    private boolean suitLoiUniforme;
+    private boolean suitLoiPoisson;
+    private boolean suitLoiNormale;
     private Object simulation = new Simulation();
 
     /**
@@ -39,6 +42,8 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         identifiantStyle = 0;
         nombreDeClients = 10;
         modeCreation = true;
+        initLoi();
+        setSuitLoiUniforme(true);
     }
 
     /**
@@ -77,7 +82,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
     /**
      * Selectionne toutes les etapes du monde
      */
-    public void toutSupprimer(){
+    public void nouveauMonde(){
         for(EtapeIG etapeIG : this){
             etapeIG.setEstSelectionne(true);
         }
@@ -91,6 +96,65 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
     public boolean estModeCreation() {
         return modeCreation;
     }
+
+    /**
+     * assigne une loi d'entrée qui suit la loi uniforme
+     */
+    public void setSuitLoiNormale(boolean suitLoiNormale) {
+        initLoi();
+        this.suitLoiNormale = suitLoiNormale;
+    }
+
+    /**
+     * assigne une loi d'entrée qui suit la loi de Poisson au Monde
+     */
+    public void setSuitLoiPoisson(boolean suitLoiPoisson) {
+        initLoi();
+        this.suitLoiPoisson = suitLoiPoisson;
+    }
+
+    /**
+     * assigne une loi d'entrée qui suit la loi de Poisson au Monde
+     */
+    public void setSuitLoiUniforme(boolean suitLoiUniforme) {
+        initLoi();
+        this.suitLoiUniforme = suitLoiUniforme;
+    }
+
+    /**
+     * retourne vrai si le Monde suit une loi Normale, sinon faux
+     * @return suitLoiNormale
+     */
+    public boolean suitLoiNormale() {
+        return suitLoiNormale;
+    }
+
+    /**
+     * retourne vrai si le Monde suit une loi Poisson, sinon faux
+     * @return suitLoiPoisson
+     */
+    public boolean suitLoiPoisson() {
+        return suitLoiPoisson;
+    }
+
+    /**
+     * retourne vrai si le Monde suit une loi Uniforme, sinon faux
+     * @return suitLoiUniforme
+     */
+    public boolean suitLoiUniforme() {
+        return suitLoiUniforme;
+    }
+
+    /**
+     * Les lois d'entrées sont réinitialisée le monde ne connaît
+     * donc aucun loi d'entrée.
+     */
+    public void initLoi(){
+        this.suitLoiPoisson = false;
+        this.suitLoiUniforme = false;
+        this.suitLoiNormale = false;
+    }
+
 
     /**
      * assigne un mode
@@ -227,7 +291,7 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
      * @param mondeIG Le monde à charger
      */
     public void chargerMonde(MondeIG mondeIG){
-        toutSupprimer();
+        nouveauMonde();
         for(EtapeIG etapeIG : mondeIG){
             this.TableauEtapesIG.put(etapeIG.getIdentifiant(),etapeIG);
         }
@@ -274,12 +338,17 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         return TableauArcsIG.iterator();
     }
 
+
     public void simuler() throws ExceptionMondeIG {
+        System.out.println(suitLoiUniforme);
+        System.out.println(suitLoiNormale);
+        System.out.println(suitLoiPoisson);
         verifierMondeIG();
         Monde monde = creerMonde();
         setModeCreation(false);
         start(monde);
     }
+
 
     /**
      * vérifie que la composition du monIg est correcte
@@ -419,6 +488,16 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
             for (EtapeIG successeur : etapeIG) {
                 correspondancesEtapes.get(etapeIG).ajouterSuccesseur(correspondancesEtapes.get(successeur));
             }
+        }
+        /* assigne les lois d'entréés gaussienne ou uniforme ou exponentielle*/
+        if (suitLoiUniforme) {
+            monde.setSuitLoiUniforme();
+        }
+        if (suitLoiPoisson) {
+            monde.setSuitLoiPoisson();
+        }
+        if (suitLoiNormale) {
+            monde.setSuitLoiNormale();
         }
         return monde;
     }

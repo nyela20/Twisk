@@ -43,7 +43,7 @@ public class KeyEvents implements EventHandler<KeyEvent> {
                 new EcouteurMenuNombreDeJetons(mondeIG).handle(new ActionEvent());
             }
             if (keyEvent.getCode() ==KeyCode.N){
-                mondeIG.toutSupprimer();
+                mondeIG.nouveauMonde();
             }
             if (keyEvent.getCode() == KeyCode.A){
                 mondeIG.ajouter("Activite");

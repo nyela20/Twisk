@@ -3,12 +3,13 @@ package twisk.monde;
 import java.util.Iterator;
 
 public class SasEntree extends Activite {
-
+    private final Monde monde;
     /**
      * Constructeur des SasEntree
      */
-    public SasEntree() {
+    public SasEntree(Monde monde) {
         super("Sas_Entree", 3, 1);
+        this.monde = monde;
     }
 
     @Override
@@ -21,7 +22,15 @@ public class SasEntree extends Activite {
         StringBuilder affichage = new StringBuilder();
         if (nbSuccesseurs() == 1) {
             Etape succ = iterator().next();
-            affichage.append("entrer(").append(getNom()).append(");\n").append("delai(").append(getTemps()).append(",").append(getEcartTemps()).append(");\n").append("transfert(").append(getNom()).append(",").append(succ.getNom()).append(");").append(succ.toC());
+            if(monde.suitLoiUniforme()) {
+                affichage.append("entrer(").append(getNom()).append(");\n").append("delai(").append(getTemps()).append(",").append(getEcartTemps()).append(");\n").append("transfert(").append(getNom()).append(",").append(succ.getNom()).append(");").append(succ.toC());
+            }
+            if(monde.suitLoiNormale()) {
+                affichage.append("entrer(").append(getNom()).append(");\n").append("delaiGauss(").append(getTemps()).append(",").append(getEcartTemps()).append(");\n").append("transfert(").append(getNom()).append(",").append(succ.getNom()).append(");").append(succ.toC());
+            }
+            if(monde.suisLoiPoisson()){
+                affichage.append("entrer(").append(getNom()).append(");\n").append("delaiExponentiel(").append(getTemps()).append(");\n").append("transfert(").append(getNom()).append(",").append(succ.getNom()).append(");").append(succ.toC());
+            }
         }
         if (nbSuccesseurs() > 1) {
             Iterator<Etape> iterator = this.iterator();
@@ -31,7 +40,18 @@ public class SasEntree extends Activite {
             for (int i = 0; i < nbSuccesseurs(); i++) {
                 Etape succ = iterator.next();
                 affichage.append("case ").append(i).append(":\n");
-                affichage.append("entrer(").append(getNom()).append(");\n").append("delai(").append(getTemps()).append(",").append(getEcartTemps()).append(");\n").append("transfert(").append(getNom()).append(",").append(succ.getNom()).append(");").append(succ.toC()).append("break;\n");
+                if (monde.suitLoiUniforme()) {
+                    System.out.println("ON SUIT UNE LOI UNIFORME !!!");
+                    affichage.append("entrer(").append(getNom()).append(");\n").append("delai(").append(getTemps()).append(",").append(getEcartTemps()).append(");\n").append("transfert(").append(getNom()).append(",").append(succ.getNom()).append(");").append(succ.toC()).append("break;\n");
+                }
+                if(monde.suitLoiNormale()) {
+                    System.out.println("ON SUIT UNE LOI NORMALE !!!");
+                    affichage.append("entrer(").append(getNom()).append(");\n").append("delaiGauss(").append(getTemps()).append(",").append(getEcartTemps()).append(");\n").append("transfert(").append(getNom()).append(",").append(succ.getNom()).append(");").append(succ.toC());
+                }
+                if(monde.suisLoiPoisson()){
+                    System.out.println("ON SUIT UNE LOI NORMALE !!!");
+                    affichage.append("entrer(").append(getNom()).append(");\n").append("delaiExponentiel(").append(getTemps()).append(");\n").append("transfert(").append(getNom()).append(",").append(succ.getNom()).append(");").append(succ.toC());
+                }
             }
             affichage.append("}\n");
         }
