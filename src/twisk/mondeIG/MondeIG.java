@@ -121,29 +121,6 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
         this.suitLoiUniforme = suitLoiUniforme;
     }
 
-    /**
-     * retourne vrai si le Monde suit une loi Normale, sinon faux
-     * @return suitLoiNormale
-     */
-    public boolean suitLoiNormale() {
-        return suitLoiNormale;
-    }
-
-    /**
-     * retourne vrai si le Monde suit une loi Poisson, sinon faux
-     * @return suitLoiPoisson
-     */
-    public boolean suitLoiPoisson() {
-        return suitLoiPoisson;
-    }
-
-    /**
-     * retourne vrai si le Monde suit une loi Uniforme, sinon faux
-     * @return suitLoiUniforme
-     */
-    public boolean suitLoiUniforme() {
-        return suitLoiUniforme;
-    }
 
     /**
      * Les lois d'entrées sont réinitialisée le monde ne connaît
@@ -340,9 +317,6 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
 
 
     public void simuler() throws ExceptionMondeIG {
-        System.out.println(suitLoiUniforme);
-        System.out.println(suitLoiNormale);
-        System.out.println(suitLoiPoisson);
         verifierMondeIG();
         Monde monde = creerMonde();
         setModeCreation(false);
@@ -567,7 +541,6 @@ public class MondeIG extends SujetObserve implements Iterable<EtapeIG>, Observat
      * @param monde le Monde à simuler
      */
     private void start(Monde monde){
-        System.out.println("nb threads créer : " + GestionnaireThreads.getInstance().nbthread());
         MondeIG mde = this;
         Task<Void> task = new Task<>() {
             @Override

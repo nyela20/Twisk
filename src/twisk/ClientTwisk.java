@@ -1,8 +1,6 @@
 package twisk;
 
 import twisk.monde.*;
-import twisk.mondeIG.EtapeIG;
-import twisk.mondeIG.GuichetIG;
 import twisk.outils.ClassLoaderPerso;
 import twisk.simulation.Simulation;
 

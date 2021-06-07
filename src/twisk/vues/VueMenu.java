@@ -63,9 +63,10 @@ public class VueMenu extends MenuBar implements Observateur {
         Mondepredefinis.getItems().add(Monde3);
 
         /*--NOUVEAU--*/
-        MenuItem ToutSupprimer = new MenuItem("Nouveau (Ctrl + N)");
-        ToutSupprimer.setOnAction(actionEvent -> mondeIG.nouveauMonde());
-        Fichier.getItems().add(ToutSupprimer);
+        MenuItem nouveau = new MenuItem("Nouveau (Ctrl + N)");
+        nouveau.setOnAction(actionEvent -> mondeIG.nouveauMonde());
+        ajouterGraphic(nouveau,"twisk/ressources/images/menu/nouveau.png");
+        Fichier.getItems().add(nouveau);
 
         /*--DELAI--*/
        MenuItem Delai = new MenuItem("Délai (Ctrl + D)");
@@ -82,22 +83,25 @@ public class VueMenu extends MenuBar implements Observateur {
         /*--JETONS-GUICHETS-*/
         MenuItem JetonsGuichet = new MenuItem("Nombre de Jeton(s) (Ctrl + J)");
         JetonsGuichet.setOnAction(new EcouteurMenuNombreDeJetons(mondeIG));
-        ajouterGraphic(JetonsGuichet,"twisk/ressources/images/menu/temp.png");
+        ajouterGraphic(JetonsGuichet,"twisk/ressources/images/menu/jeton.png");
         Parametre.getItems().add(JetonsGuichet);
 
         /*CHARGER*/
         MenuItem Ouvrir = new MenuItem("Ouvrir... (Ctrl + O)");
         Ouvrir.setOnAction(new EcouteurOuvrirMonde(mondeIG));
+        ajouterGraphic(Ouvrir,"twisk/ressources/images/menu/ouvrir.png");
         Fichier.getItems().add(Ouvrir);
 
         /*-SAUVEGARDER-*/
         MenuItem Sauvegarder = new MenuItem("Sauvegarder (Ctrl + Q)");
         Sauvegarder.setOnAction(new EcouteurSauvegarderMonde(mondeIG));
+        ajouterGraphic(Sauvegarder,"twisk/ressources/images/menu/save.png");
         Fichier.getItems().add(Sauvegarder);
 
         /*--QUITTER--*/
         MenuItem Quitter = new MenuItem("Quitter (Ctrl + Esc)");
         Quitter.setOnAction(new EcouteurMenuFichierQuitter(mondeIG));
+        ajouterGraphic(Quitter,"twisk/ressources/images/menu/quitter.png");
         Fichier.getItems().add(Quitter);
 
 
@@ -137,7 +141,7 @@ public class VueMenu extends MenuBar implements Observateur {
         LoiPoisson.setOnAction(actionEvent -> {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.getDialogPane().setMinHeight(200);
-            alert.setContentText("Avec la loi poisson, il peut parfois arriver que l'affichage de l'interface soit mal mis à jour ");
+            alert.setContentText("Avec la loi poisson, il peut PARFOIS arriver que l'affichage de l'interface soit mal mis à jour ");
             alert.showAndWait();
             initGraphics(LoiNormale,LoiPoisson,LoiUniforme);
             mondeIG.initLoi(); mondeIG.setSuitLoiPoisson(true);
@@ -149,7 +153,7 @@ public class VueMenu extends MenuBar implements Observateur {
         LoiNormale.setOnAction(actionEvent -> {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.getDialogPane().setMinHeight(200);
-            alert.setContentText("Avec la loi normale, il peut parfois arriver que l'affichage de l'interface soit mal mis à jour ");
+            alert.setContentText("Avec la loi normale, il peut PARFOIS arriver que l'affichage de l'interface soit mal mis à jour ");
             alert.showAndWait();
             initGraphics(LoiNormale,LoiPoisson,LoiUniforme);
             mondeIG.initLoi(); mondeIG.setSuitLoiNormale(true);

@@ -11,14 +11,10 @@ import twisk.vues.VueMenu;
 import twisk.vues.VueMondeIG;
 import twisk.vues.VueOutils;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.Serializable;
-
 
 public class MainTwisk extends Application {
     int LargeurPanneauPrincipale = 1000;
-    int HauteurPanneauPrincipale = 1200;
+    int HauteurPanneauPrincipale = 800;
 
     @Override
     public void start(Stage primaryStage){

@@ -11,11 +11,11 @@
 }
 
 #buttonActivite1 {
-    -fx-background-color:  #c0c0c3;
+    -fx-background-color: #9370DB;
 }
 
 #buttonActivite2 {
-   -fx-background-color: #ffd65b;
+   -fx-background-color: #0000FF;
     -fx-text-fill: white;
 }
 
@@ -25,20 +25,20 @@
 }
 
 #buttonActivite4 {
-    -fx-background-color:  #c0c0c3;
+    -fx-background-color:  #1E90FF;
 }
 
 #buttonGuichet0 {
-    -fx-background-color: #7cfc00;
+    -fx-background-color: #FFFF33;
     -fx-text-fill: black;
 }
 
 #buttonGuichet1 {
-    -fx-background-color:  #c0c0c3;
+    -fx-background-color:  #7CFC00;
 }
 
 #buttonGuichet2 {
-    -fx-background-color:  #41f025;
+    -fx-background-color:  #32CD32;
     -fx-text-fill: black;
 }
 
@@ -48,14 +48,14 @@
 }
 
 #buttonGuichet4 {
-    -fx-background-color:  #c0c0c3;
+    -fx-background-color:  #32CD32;
 }
 
 
 /*--STYLE-DU-BACKGROUND--*/
 
 #background0 {
-    -fx-background-color:  blanchedalmond;
+    -fx-background-color:  #E8E8E8;
 }
 
 #background1 {
