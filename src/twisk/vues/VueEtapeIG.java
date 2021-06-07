@@ -13,7 +13,7 @@ import twisk.mondeIG.MondeIG;
 
 
 
-public abstract class VueEtapeIG extends VBox implements Observateur {
+public abstract class  VueEtapeIG extends VBox implements Observateur {
 
     /**
      * Constructeur d'une VueEtapeIG

@@ -9,7 +9,6 @@ import java.util.Iterator;
 public class GestionnaireClients implements Iterable<Client>, Serializable {
 
     private final ArrayList<Client> gestionnaireClients;
-    private int nombreDeClients;
 
     public GestionnaireClients(){
         gestionnaireClients = new ArrayList<>();
@@ -26,9 +25,6 @@ public class GestionnaireClients implements Iterable<Client>, Serializable {
         }
     }
 
-    public void setNbClients(int nbClients){
-        nombreDeClients = nbClients;
-    }
 
     public void allerA(int numeroClient,Etape etape,int rang){
         for(Client client : gestionnaireClients){

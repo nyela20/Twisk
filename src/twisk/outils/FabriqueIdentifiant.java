@@ -42,15 +42,6 @@ public class FabriqueIdentifiant {
     }
 
     /**
-     * retourne un identifiant de PointDeControle unique
-     * @return noEtapePointDC
-     */
-    public String getPointDeControleIdentifiant(){
-            noEtapePointDC++;
-            return "PointDC" + (noEtapePointDC - 1);
-    }
-
-    /**
      * retourne un identifiant d'ArcIG unique
      * @return noArcs
      */

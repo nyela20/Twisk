@@ -2,14 +2,10 @@ package twisk.ecouteurs;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import twisk.mondeIG.MondeIG;
-
 import javax.swing.*;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 
 public class EcouteurOuvrirMonde implements EventHandler<ActionEvent> {

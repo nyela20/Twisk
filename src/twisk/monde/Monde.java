@@ -169,7 +169,7 @@ public class Monde implements Iterable<Etape> {
      * de la loi Gaussienne
      * @return le code de la loi Gaussienne
      */
-    public String ecritureLoiGausienne(){
+    public String ecritureLoiGaussienne(){
 
         String string = "void delaiGauss(double moyenne,double ecartype){\n" +
                 "    float u1,u2,nbSec;\n" +
@@ -236,7 +236,7 @@ public class Monde implements Iterable<Etape> {
         }
 
         //ecriture des lois d'entrée
-        affichage.append(ecritureLoiGausienne());
+        affichage.append(ecritureLoiGaussienne());
         affichage.append(ecritureLoiPoisson());
 
         //------------------------------------------------------FONCTION SIMULER
