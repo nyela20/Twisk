@@ -7,7 +7,7 @@
 
 #buttonActivite0 {
    -fx-background-color: #00bfffDB;
-    -fx-text-fill: black;
+   -fx-text-fill: black;
 }
 
 #buttonActivite1 {
@@ -16,7 +16,7 @@
 
 #buttonActivite2 {
    -fx-background-color: #0000FF;
-    -fx-text-fill: white;
+   -fx-text-fill: white;
 }
 
 #buttonActivite3 {
@@ -50,7 +50,6 @@
 #buttonGuichet4 {
     -fx-background-color:  #32CD32;
 }
-
 
 /*--STYLE-DU-BACKGROUND--*/
 
